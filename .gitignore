@@ -24,3 +24,6 @@ Homestead.json
 
 # JetBrains files
 .idea
+
+# VS Code files
+.DS_Store
