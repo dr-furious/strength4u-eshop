@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{html,js}"],
-  theme: {
-    extend: {},
+import { green } from 'tailwindcss/colors'
+
+export const content = ["./src/**/*.{html,js}"]
+export const theme = {
+  extend: {
+    colors: {
+      primary: green,
+    }
   },
-  plugins: [],
 }
+export const plugins = []
 
