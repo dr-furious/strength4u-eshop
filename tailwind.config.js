@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-import { green } from 'tailwindcss/colors'
+import { green } from "tailwindcss/colors";
 
-export const content = ["./src/**/*.{html,js}"]
+export const content = ["./src/**/*.{html,js}"];
 export const theme = {
   extend: {
     colors: {
       primary: green,
-    }
+    },
   },
-}
-export const plugins = []
-
+};
+export const plugins = [];
