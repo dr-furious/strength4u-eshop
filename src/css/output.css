@@ -544,6 +544,7 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.font-bold {
-  font-weight: 700;
+.bg-primary-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 253 244 / var(--tw-bg-opacity));
 }
