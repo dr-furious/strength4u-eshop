@@ -8,329 +8,108 @@
 
   <body>
     <div class="font-dm px-4 py-4 text-xl font-bold">strength4u</div>
-    <nav
-      class="font-dm bg-primary-grey-100 sticky top-0 z-50 flex items-center justify-around px-4 py-4 font-light shadow-md"
-    >
-      <ul class="flex gap-6 text-lg">
-        <li>
-          <a class="custom-underline-transition" href="./index.html">Home</a>
-        </li>
-        <li>
-          <a class="custom-underline-transition" href="./shop.html">Shop</a>
-        </li>
-        <li>
-          <a class="custom-underline-transition" href="./index.html">About</a>
-        </li>
-      </ul>
+    <header class="sticky top-0 z-50">
+      <nav
+        class="font-dm bg-primary-grey-100 flex items-center justify-around px-4 py-4 font-light shadow-md"
+      >
+        <ul class="flex gap-6 text-lg">
+          <li>
+            <a class="custom-underline-transition" href="./index.html">Home</a>
+          </li>
+          <li>
+            <a class="custom-underline-transition" href="./shop.html">Shop</a>
+          </li>
+          <li>
+            <a class="custom-underline-transition" href="./index.html">About</a>
+          </li>
+        </ul>
 
-      <div class="relative w-1/2">
-        <label class="hidden" for="search-bar">Search</label>
-        <input
-          class="h-12 w-full rounded-[4px] border px-6 font-light"
-          type="search"
-          name="search-bar"
-          id="search-bar"
-          placeholder="Search for your favourite product..."
-        />
-        <div class="absolute right-3 inline-flex h-full items-center">
-          <svg
-            class="fill-slate-500"
-            xmlns="http://www.w3.org/2000/svg"
-            height="32"
-            viewBox="0 -960 960 960"
-            width="32"
-          >
-            <path
-              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
-            />
-          </svg>
-        </div>
-      </div>
-
-      <ul class="flex gap-8">
-        <li class="relative">
-          <a class="custom-underline-transition" href="#"
-            ><svg
-              class="fill-slate-800"
+        <div class="relative w-1/2">
+          <label class="hidden" for="search-bar">Search</label>
+          <input
+            class="h-12 w-full rounded-[4px] border px-6 font-light"
+            type="search"
+            name="search-bar"
+            id="search-bar"
+            placeholder="Search for your favourite product..."
+          />
+          <div class="absolute right-3 inline-flex h-full items-center">
+            <svg
+              class="fill-slate-500"
               xmlns="http://www.w3.org/2000/svg"
               height="32"
               viewBox="0 -960 960 960"
               width="32"
             >
               <path
-                d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
-              /></svg
-          ></a>
-          <div
-            class="font-dm absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
-          >
-            0
-          </div>
-        </li>
-        <li class="relative">
-          <a
-            class="custom-underline-transition custom-number-bubble-after"
-            href="./cart.html"
-            ><svg
-              class="fill-slate-800"
-              xmlns="http://www.w3.org/2000/svg"
-              height="32"
-              viewBox="0 -960 960 960"
-              width="32"
-            >
-              <path
-                d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"
+                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
               />
             </svg>
-            <div
-              class="font-dm absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
-            >
-              9+
-            </div></a
-          >
-        </li>
-        <li>
-          <a class="custom-underline-transition" href="#"
-            ><svg
-              class="fill-slate-800"
-              xmlns="http://www.w3.org/2000/svg"
-              height="32"
-              viewBox="0 -960 960 960"
-              width="32"
-            >
-              <path
-                d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
-              /></svg
-          ></a>
-        </li>
-      </ul>
-    </nav>
+          </div>
+        </div>
 
-    <main class="p-8">
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio cum
-        ratione perferendis libero exercitationem quibusdam animi et fugiat
-        explicabo iure corporis esse, laboriosam ullam aperiam asperiores
-        laudantium? Facere magnam excepturi quam porro at assumenda laudantium
-        unde dolorem quo quaerat? Voluptatum corporis temporibus iusto? Nulla
-        culpa dolorem, repellat vero quia explicabo odio maxime, debitis natus
-        ab, amet nisi at alias qui quae corrupti nostrum minima? Perspiciatis
-        culpa nam blanditiis harum consequatur earum recusandae. Quasi iure
-        tenetur earum voluptatibus consectetur natus quod suscipit magni veniam
-        sed sint delectus cupiditate molestias doloremque reprehenderit, maiores
-        id esse perspiciatis eveniet unde officiis alias minima illo excepturi?
-        Ab, odio doloremque? Repudiandae vel velit voluptatum quia laboriosam
-        ipsa reiciendis est dolorem tenetur fugit dignissimos eaque, quos
-        perferendis incidunt, cumque voluptas nam aliquid sit ipsum aut rem.
-        Nihil nemo molestiae cum alias repellendus, eos quibusdam est dolor
-        incidunt, odit facilis beatae adipisci non saepe veniam, nesciunt
-        consequatur distinctio ad. Magni ut dolor recusandae eligendi ducimus.
-        Debitis mollitia laudantium non eos accusamus eveniet nostrum dolorum
-        qui facilis ad explicabo, dignissimos dicta earum, quidem repellendus,
-        reiciendis eum veniam! Perspiciatis, sapiente esse! Totam, dicta amet
-        cum temporibus libero officia cumque, harum sequi velit esse cupiditate
-        et enim id ad optio reprehenderit laborum molestias blanditiis error
-        earum eveniet illum pariatur autem expedita. Culpa iure ab voluptatem
-        delectus itaque, cupiditate temporibus iusto quo nisi? Excepturi saepe
-        perferendis, vitae adipisci ducimus aspernatur exercitationem quibusdam
-        voluptate vero repellendus eligendi voluptas minus dolore quos quasi
-        laudantium optio perspiciatis nobis accusantium temporibus odio incidunt
-        magnam? Incidunt dolorum veniam adipisci quibusdam, consectetur ipsam
-        eos modi architecto, nemo animi ea dignissimos aliquid iste error
-        dolores placeat. Quisquam sit nobis cum laborum aspernatur, voluptatem
-        ea voluptate id accusantium labore. Natus velit vel mollitia molestiae
-        earum nesciunt eligendi tempora illum, saepe cupiditate explicabo
-        aliquam voluptatem non rem voluptatum tenetur. Laboriosam reiciendis,
-        tenetur animi pariatur necessitatibus placeat quisquam! Qui quis
-        adipisci tenetur cum, ipsam iure facere! Repudiandae in reiciendis
-        aperiam esse earum quae a, fugiat alias ipsam natus ab facilis quo,
-        perspiciatis debitis exercitationem voluptatem, vitae odit velit rerum
-        blanditiis optio dolore vero ex? Voluptates, sequi fugiat non alias ab
-        quasi vero debitis aperiam molestiae nisi quidem voluptate! Saepe omnis
-        consequatur corrupti quam quos voluptate assumenda. Dignissimos nesciunt
-        enim ducimus, ipsum hic laboriosam eum corrupti incidunt esse aspernatur
-        tempore sint adipisci id, officiis architecto accusantium ut. Architecto
-        laudantium pariatur ad omnis! Pariatur, possimus molestias sequi fugit
-        a, quo error repudiandae, ratione est exercitationem modi. Cumque ab
-        maiores expedita eaque quam. Sint natus numquam perspiciatis voluptatem
-        tempore molestiae temporibus, assumenda necessitatibus officia eum,
-        debitis et sed. Ipsum voluptatibus, aut delectus nobis debitis veritatis
-        deserunt eaque sequi odio! Minus harum explicabo voluptate nihil
-        molestias odio quam omnis, obcaecati voluptatem cumque laboriosam velit
-        similique esse eos corporis, incidunt quo magnam tempore facere nisi
-        molestiae architecto aut corrupti! Facilis fugit eaque commodi est sunt,
-        hic perspiciatis iusto nesciunt cumque excepturi, perferendis odio
-        aspernatur illo eius, rerum tempore! Laudantium doloremque, minus
-        dolorum harum dolore nam asperiores adipisci modi quia voluptas at iste
-        sequi ipsam voluptatibus cumque, placeat sint provident est! Iste aut,
-        quam illum similique dicta quos ad provident recusandae assumenda
-        delectus nisi totam neque commodi nam fugiat sequi? Nobis quibusdam
-        maxime ullam perferendis minima quidem distinctio ipsam iste atque? Unde
-        excepturi numquam ducimus. Dolores praesentium optio possimus, corporis
-        iure voluptatum officia mollitia sapiente, sed eligendi nisi doloremque
-        rem enim. Voluptatibus incidunt fugiat iusto facilis eveniet rerum, eius
-        iste, quibusdam in, temporibus voluptatum non nesciunt modi obcaecati
-        veniam ut sapiente enim quasi? Provident nesciunt error ipsam quis velit
-        officia eum id molestiae quam, minima ad, itaque dignissimos culpa ut
-        reprehenderit similique! Deserunt sequi, voluptatibus rem et distinctio
-        quas? Quam ad rerum sunt ipsam molestiae inventore, quod in vitae
-        deserunt unde, accusantium fugiat cumque? Eaque, nostrum in incidunt
-        eligendi temporibus dolore fugit atque rerum. Ullam totam asperiores,
-        impedit obcaecati eaque quis culpa sint commodi sit tempora eum officiis
-        laborum dolorem modi ducimus doloremque! Reprehenderit quod fugiat sunt,
-        culpa nostrum sequi unde repellendus enim commodi ut necessitatibus
-        itaque repellat dolorum nulla voluptates velit minus dignissimos maxime
-        perferendis incidunt vero doloribus esse. Distinctio eius, fugit
-        voluptatum quibusdam quidem voluptatem iste perferendis ullam itaque,
-        officia vitae maiores quia debitis illo maxime nihil. Corporis, maxime
-        quas a quia, laudantium sed alias facilis, voluptates repellat neque
-        delectus optio natus! Tenetur amet quod quia quaerat dolor. Molestiae
-        numquam magni ipsum delectus sequi architecto accusantium explicabo.
-        Architecto explicabo ipsam id natus saepe, iste atque ad facilis, quas
-        asperiores, error quam eos sapiente possimus dolor et? Nam ea voluptatum
-        asperiores esse natus rerum! Ea eaque veritatis esse consequatur unde
-        dolor laboriosam facilis omnis deleniti similique. Earum debitis labore
-        consectetur aperiam iusto sit voluptatem excepturi libero quo, ratione
-        nesciunt, molestias, inventore voluptatibus nostrum vitae. Eius
-        distinctio accusantium, non neque magnam iusto magni delectus autem sed
-        nihil voluptas nostrum aspernatur suscipit laudantium vero officia
-        inventore libero? Ex iste veritatis voluptatum quos optio assumenda id,
-        sit omnis nostrum laborum deserunt a corrupti quibusdam ipsum ipsa? Sit
-        commodi unde sapiente ducimus. Officia fugiat saepe vel eum impedit
-        laborum mollitia quam expedita temporibus quisquam minus deserunt
-        consequatur quae a modi, fuga earum cum necessitatibus dolorum. Magni
-        similique explicabo necessitatibus consequatur error cumque corporis
-        iste provident aperiam quisquam quia officia, inventore, laborum
-        perspiciatis, odio distinctio. Culpa debitis molestiae recusandae earum,
-        voluptate cupiditate. Delectus reiciendis quisquam in aspernatur cum
-        facilis eum voluptas optio magnam nesciunt porro labore assumenda
-        aliquam nulla minus excepturi vero iste error esse deleniti quod itaque,
-        accusantium voluptatem. Repellendus, a. Ab dolore eaque iste tenetur!
-        Nesciunt animi ea obcaecati libero illum dolorem molestiae eligendi quod
-        autem consectetur quaerat ipsa similique laboriosam porro ipsum aliquid,
-        sapiente enim facilis blanditiis soluta, id nihil sit perspiciatis odio.
-        Nulla maxime quibusdam fuga, assumenda laudantium molestias
-        exercitationem aliquid temporibus expedita sit laboriosam consequuntur.
-        Id odit rem totam deserunt maxime, praesentium facilis blanditiis magnam
-        libero nobis voluptatibus eligendi assumenda culpa consequuntur
-        quibusdam laudantium quo harum laboriosam commodi officiis incidunt
-        ipsa. Perspiciatis, magni impedit a corporis aperiam aliquam ratione
-        voluptate qui, aliquid maiores cumque, aut odit deserunt exercitationem
-        possimus quo voluptatem porro quisquam unde est soluta omnis!
-      </p>
+        <ul class="flex gap-8">
+          <li class="relative">
+            <a class="custom-underline-transition" href="#"
+              ><svg
+                class="fill-slate-800"
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                viewBox="0 -960 960 960"
+                width="32"
+              >
+                <path
+                  d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                />
+              </svg>
+              <div
+                class="font-dm absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+              >
+                0
+              </div></a
+            >
+          </li>
+          <li class="relative">
+            <a
+              class="custom-underline-transition custom-number-bubble-after"
+              href="./cart.html"
+              ><svg
+                class="fill-slate-800"
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                viewBox="0 -960 960 960"
+                width="32"
+              >
+                <path
+                  d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"
+                />
+              </svg>
+              <div
+                class="font-dm absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+              >
+                9+
+              </div></a
+            >
+          </li>
+          <li>
+            <a class="custom-underline-transition" href="#"
+              ><svg
+                class="fill-slate-800"
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                viewBox="0 -960 960 960"
+                width="32"
+              >
+                <path
+                  d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+                /></svg
+            ></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio cum
-        ratione perferendis libero exercitationem quibusdam animi et fugiat
-        explicabo iure corporis esse, laboriosam ullam aperiam asperiores
-        laudantium? Facere magnam excepturi quam porro at assumenda laudantium
-        unde dolorem quo quaerat? Voluptatum corporis temporibus iusto? Nulla
-        culpa dolorem, repellat vero quia explicabo odio maxime, debitis natus
-        ab, amet nisi at alias qui quae corrupti nostrum minima? Perspiciatis
-        culpa nam blanditiis harum consequatur earum recusandae. Quasi iure
-        tenetur earum voluptatibus consectetur natus quod suscipit magni veniam
-        sed sint delectus cupiditate molestias doloremque reprehenderit, maiores
-        id esse perspiciatis eveniet unde officiis alias minima illo excepturi?
-        Ab, odio doloremque? Repudiandae vel velit voluptatum quia laboriosam
-        ipsa reiciendis est dolorem tenetur fugit dignissimos eaque, quos
-        perferendis incidunt, cumque voluptas nam aliquid sit ipsum aut rem.
-        Nihil nemo molestiae cum alias repellendus, eos quibusdam est dolor
-        incidunt, odit facilis beatae adipisci non saepe veniam, nesciunt
-        consequatur distinctio ad. Magni ut dolor recusandae eligendi ducimus.
-        Debitis mollitia laudantium non eos accusamus eveniet nostrum dolorum
-        qui facilis ad explicabo, dignissimos dicta earum, quidem repellendus,
-        reiciendis eum veniam! Perspiciatis, sapiente esse! Totam, dicta amet
-        cum temporibus libero officia cumque, harum sequi velit esse cupiditate
-        et enim id ad optio reprehenderit laborum molestias blanditiis error
-        earum eveniet illum pariatur autem expedita. Culpa iure ab voluptatem
-        delectus itaque, cupiditate temporibus iusto quo nisi? Excepturi saepe
-        perferendis, vitae adipisci ducimus aspernatur exercitationem quibusdam
-        voluptate vero repellendus eligendi voluptas minus dolore quos quasi
-        laudantium optio perspiciatis nobis accusantium temporibus odio incidunt
-        magnam? Incidunt dolorum veniam adipisci quibusdam, consectetur ipsam
-        eos modi architecto, nemo animi ea dignissimos aliquid iste error
-        dolores placeat. Quisquam sit nobis cum laborum aspernatur, voluptatem
-        ea voluptate id accusantium labore. Natus velit vel mollitia molestiae
-        earum nesciunt eligendi tempora illum, saepe cupiditate explicabo
-        aliquam voluptatem non rem voluptatum tenetur. Laboriosam reiciendis,
-        tenetur animi pariatur necessitatibus placeat quisquam! Qui quis
-        adipisci tenetur cum, ipsam iure facere! Repudiandae in reiciendis
-        aperiam esse earum quae a, fugiat alias ipsam natus ab facilis quo,
-        perspiciatis debitis exercitationem voluptatem, vitae odit velit rerum
-        blanditiis optio dolore vero ex? Voluptates, sequi fugiat non alias ab
-        quasi vero debitis aperiam molestiae nisi quidem voluptate! Saepe omnis
-        consequatur corrupti quam quos voluptate assumenda. Dignissimos nesciunt
-        enim ducimus, ipsum hic laboriosam eum corrupti incidunt esse aspernatur
-        tempore sint adipisci id, officiis architecto accusantium ut. Architecto
-        laudantium pariatur ad omnis! Pariatur, possimus molestias sequi fugit
-        a, quo error repudiandae, ratione est exercitationem modi. Cumque ab
-        maiores expedita eaque quam. Sint natus numquam perspiciatis voluptatem
-        tempore molestiae temporibus, assumenda necessitatibus officia eum,
-        debitis et sed. Ipsum voluptatibus, aut delectus nobis debitis veritatis
-        deserunt eaque sequi odio! Minus harum explicabo voluptate nihil
-        molestias odio quam omnis, obcaecati voluptatem cumque laboriosam velit
-        similique esse eos corporis, incidunt quo magnam tempore facere nisi
-        molestiae architecto aut corrupti! Facilis fugit eaque commodi est sunt,
-        hic perspiciatis iusto nesciunt cumque excepturi, perferendis odio
-        aspernatur illo eius, rerum tempore! Laudantium doloremque, minus
-        dolorum harum dolore nam asperiores adipisci modi quia voluptas at iste
-        sequi ipsam voluptatibus cumque, placeat sint provident est! Iste aut,
-        quam illum similique dicta quos ad provident recusandae assumenda
-        delectus nisi totam neque commodi nam fugiat sequi? Nobis quibusdam
-        maxime ullam perferendis minima quidem distinctio ipsam iste atque? Unde
-        excepturi numquam ducimus. Dolores praesentium optio possimus, corporis
-        iure voluptatum officia mollitia sapiente, sed eligendi nisi doloremque
-        rem enim. Voluptatibus incidunt fugiat iusto facilis eveniet rerum, eius
-        iste, quibusdam in, temporibus voluptatum non nesciunt modi obcaecati
-        veniam ut sapiente enim quasi? Provident nesciunt error ipsam quis velit
-        officia eum id molestiae quam, minima ad, itaque dignissimos culpa ut
-        reprehenderit similique! Deserunt sequi, voluptatibus rem et distinctio
-        quas? Quam ad rerum sunt ipsam molestiae inventore, quod in vitae
-        deserunt unde, accusantium fugiat cumque? Eaque, nostrum in incidunt
-        eligendi temporibus dolore fugit atque rerum. Ullam totam asperiores,
-        impedit obcaecati eaque quis culpa sint commodi sit tempora eum officiis
-        laborum dolorem modi ducimus doloremque! Reprehenderit quod fugiat sunt,
-        culpa nostrum sequi unde repellendus enim commodi ut necessitatibus
-        itaque repellat dolorum nulla voluptates velit minus dignissimos maxime
-        perferendis incidunt vero doloribus esse. Distinctio eius, fugit
-        voluptatum quibusdam quidem voluptatem iste perferendis ullam itaque,
-        officia vitae maiores quia debitis illo maxime nihil. Corporis, maxime
-        quas a quia, laudantium sed alias facilis, voluptates repellat neque
-        delectus optio natus! Tenetur amet quod quia quaerat dolor. Molestiae
-        numquam magni ipsum delectus sequi architecto accusantium explicabo.
-        Architecto explicabo ipsam id natus saepe, iste atque ad facilis, quas
-        asperiores, error quam eos sapiente possimus dolor et? Nam ea voluptatum
-        asperiores esse natus rerum! Ea eaque veritatis esse consequatur unde
-        dolor laboriosam facilis omnis deleniti similique. Earum debitis labore
-        consectetur aperiam iusto sit voluptatem excepturi libero quo, ratione
-        nesciunt, molestias, inventore voluptatibus nostrum vitae. Eius
-        distinctio accusantium, non neque magnam iusto magni delectus autem sed
-        nihil voluptas nostrum aspernatur suscipit laudantium vero officia
-        inventore libero? Ex iste veritatis voluptatum quos optio assumenda id,
-        sit omnis nostrum laborum deserunt a corrupti quibusdam ipsum ipsa? Sit
-        commodi unde sapiente ducimus. Officia fugiat saepe vel eum impedit
-        laborum mollitia quam expedita temporibus quisquam minus deserunt
-        consequatur quae a modi, fuga earum cum necessitatibus dolorum. Magni
-        similique explicabo necessitatibus consequatur error cumque corporis
-        iste provident aperiam quisquam quia officia, inventore, laborum
-        perspiciatis, odio distinctio. Culpa debitis molestiae recusandae earum,
-        voluptate cupiditate. Delectus reiciendis quisquam in aspernatur cum
-        facilis eum voluptas optio magnam nesciunt porro labore assumenda
-        aliquam nulla minus excepturi vero iste error esse deleniti quod itaque,
-        accusantium voluptatem. Repellendus, a. Ab dolore eaque iste tenetur!
-        Nesciunt animi ea obcaecati libero illum dolorem molestiae eligendi quod
-        autem consectetur quaerat ipsa similique laboriosam porro ipsum aliquid,
-        sapiente enim facilis blanditiis soluta, id nihil sit perspiciatis odio.
-        Nulla maxime quibusdam fuga, assumenda laudantium molestias
-        exercitationem aliquid temporibus expedita sit laboriosam consequuntur.
-        Id odit rem totam deserunt maxime, praesentium facilis blanditiis magnam
-        libero nobis voluptatibus eligendi assumenda culpa consequuntur
-        quibusdam laudantium quo harum laboriosam commodi officiis incidunt
-        ipsa. Perspiciatis, magni impedit a corporis aperiam aliquam ratione
-        voluptate qui, aliquid maiores cumque, aut odit deserunt exercitationem
-        possimus quo voluptatem porro quisquam unde est soluta omnis!
-      </p>
-    </main>
+    <main class="p-8"></main>
 
     <footer class="font-dm bg-slate-800 px-4 py-4 text-white">
       <div class="font-dm mb-8 text-xl font-bold text-white">strength4u</div>
