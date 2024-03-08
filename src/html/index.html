@@ -6,11 +6,11 @@
     <link href="./../css/output.css" rel="stylesheet" />
   </head>
 
-  <body>
-    <div class="font-dm px-4 py-4 text-xl font-bold">strength4u</div>
+  <body class="bg-primary-grey-100 font-dm">
+    <div class="bg-white px-4 py-4 text-xl font-bold">strength4u</div>
     <header class="sticky top-0 z-50">
       <nav
-        class="font-dm bg-primary-grey-100 flex items-center justify-around px-4 py-4 font-light shadow-md"
+        class="bg-primary-grey-100 flex items-center justify-around px-4 py-4 font-light shadow-md"
       >
         <ul class="flex gap-6 text-lg">
           <li>
@@ -63,7 +63,7 @@
                 />
               </svg>
               <div
-                class="font-dm absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
               >
                 0
               </div></a
@@ -85,7 +85,7 @@
                 />
               </svg>
               <div
-                class="font-dm absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
               >
                 9+
               </div></a
@@ -109,10 +109,308 @@
       </nav>
     </header>
 
-    <main class="p-8"></main>
+    <section
+      style="background-image: url(./../../images/man-gym.jpg)"
+      class="relative h-96 bg-cover bg-left"
+    >
+      <!-- image source: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.goodfon.com%2Fsports%2Fwallpaper-vzgliad-poza-fitnes-muscle-myshtsy-press-atlet-trenazhery--2.html&psig=AOvVaw2aRlvOzRpAvhKRhCyPRjhW&ust=1709931702088000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMiK6JWG44QDFQAAAAAdAAAAABAD -->
+      <div class="absolute inset-0 bg-black opacity-60"></div>
 
-    <footer class="font-dm bg-slate-800 px-4 py-4 text-white">
-      <div class="font-dm mb-8 text-xl font-bold text-white">strength4u</div>
+      <div
+        class="z-2 absolute bottom-20 left-20 flex flex-col items-start gap-6 text-white"
+      >
+        <h1 class="text-4xl font-bold capitalize">Make your workout count!</h1>
+        <p class="text-lg font-light">
+          Choose between the best supplements on the market. <br />
+          It's fast, it's easy.
+        </p>
+        <a
+          class="transform rounded-[8px] bg-blue-600 px-6 py-3 text-lg text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
+          href="./shop.html"
+          >Shop now</a
+        >
+      </div>
+    </section>
+
+    <section class="mx-24 mt-12">
+      <h2 class="text-center text-3xl font-bold text-slate-800">Bestsellers</h2>
+      <div class="mt-8 grid grid-cols-5 gap-4">
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein super duper ultra boost special offer
+            destroyer</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg"
+        >
+          <div
+            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+          >
+            <img
+              class="object-cover"
+              src="./../../images/protein-protein.webp"
+              alt="protein image"
+            />
+          </div>
+          <p class="self-center text-slate-600">PROtein</p>
+          <a
+            class="text-lg text-blue-500 hover:underline"
+            href="./product-detail.html"
+            >Pure whey protein</a
+          >
+          <div class="mt-auto flex items-end justify-between pt-2">
+            <button
+              class="transform rounded-[8px] border border-transparent bg-slate-700 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-slate-800"
+            >
+              Add to cart
+            </button>
+            <p class="font-bold">$45.99</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-12 bg-slate-800 px-4 py-4 text-white">
+      <div class="mb-8 text-xl font-bold text-white">strength4u</div>
 
       <hr class="mx-auto mb-8 w-3/4 opacity-50" />
 
