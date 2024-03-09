@@ -38,6 +38,28 @@
   left: 0;
 }
 
+.custom-button-shadow {
+  box-shadow:
+    6px 6px 12px #d3d5d6,
+    -6px -6px 12px #ffffff,
+    inset 6px 6px 8px #ffffff,
+    inset -6px -6px 8px #d3d5d6;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .cm-circle-button__checked {
+    @apply border-slate-900 bg-slate-400;
+  }
+
+  .cm-testimonial__hidden {
+    @apply hidden;
+  }
+
+  .cm-testimonial__shown {
+    @apply flex flex-col md:flex-row;
+  }
+}
