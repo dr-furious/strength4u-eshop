@@ -1,3 +1,43 @@
+/* Define the DM_Sans fonts here */
+@font-face {
+  font-family: "DM_Sans";
+  src: url("./../../fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM_Sans";
+  src: url("./../../fonts/DM_Sans/DMSans-Italic-VariableFont_opsz\,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+/* CUSTOM NATIVE CSS RULES */
+.custom-underline-transition {
+  position: relative;
+}
+
+.custom-underline-transition::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px; /* Underline thickness */
+  bottom: -0.1rem;
+  left: 0;
+  background-color: rgb(30, 41, 59); /* Use text color */
+  transition:
+    width 0.2s ease-in-out,
+    left 0.2s ease-in-out; /* Transition effect */
+}
+
+.custom-underline-transition:hover::after {
+  width: 100%;
+  left: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

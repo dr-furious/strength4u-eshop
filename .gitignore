@@ -27,3 +27,6 @@ Homestead.json
 
 # VS Code files
 .DS_Store
+
+# Ignore ouput.css during development
+src/css/output.css

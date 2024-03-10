@@ -1,11 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-import { green } from "tailwindcss/colors";
+import { blue } from "tailwindcss/colors";
 
 export const content = ["./src/**/*.{html,js}"];
 export const theme = {
   extend: {
     colors: {
-      primary: green,
+      primary: blue,
+      "primary-grey-100": "#f4f7f8",
+    },
+    fontFamily: {
+      dm: ["DM_Sans", "sans-serif"], // Define your custom font family
     },
   },
 };
