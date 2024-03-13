@@ -4,7 +4,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <link href="./../css/output.css" rel="stylesheet" />
-    <title>Title</title>
+    <title>strength4u-shop</title>
+    <script>
+      function setupFilterToggle(buttonId, filterListId) {
+        const button = document.getElementById(buttonId);
+        const filterList = document.getElementById(filterListId);
+        const indicator = filterList.querySelector(".cm-scroll-indicator");
+        const chevronIcon = button.querySelector(".cm-filter-chevron-icon");
+
+        button.addEventListener("click", () => {
+          filterList.classList.toggle("max-h-0");
+          filterList.classList.toggle("max-h-80"); // Adjust visibility
+          indicator.classList.toggle("hidden"); // Hide scroll indicator
+          if (chevronIcon) {
+            chevronIcon.classList.toggle("rotate-90"); // Rotate chevron, if exists
+          }
+        });
+      }
+
+      function handleScroll(filterListId) {
+        const filterList = document.getElementById(filterListId);
+        const indicator = filterList.querySelector(".cm-scroll-indicator");
+
+        const checkScroll = () => {
+          // Check if the list has been scrolled to the bottom
+          if (
+            filterList.scrollTop + filterList.offsetHeight >=
+            filterList.scrollHeight
+          ) {
+            indicator.classList.add("hidden"); // Hide gradient
+          } else {
+            indicator.classList.remove("hidden"); // Show gradient
+          }
+        };
+
+        filterList.addEventListener("scroll", checkScroll);
+        checkScroll(); // Initialize indicator state based on current scroll
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setupFilterToggle("flavourBtn", "flavourList");
+        setupFilterToggle("brandBtn", "brandList");
+
+        handleScroll("flavourList");
+        handleScroll("brandList");
+      });
+    </script>
   </head>
   <body class="bg-primary-grey-100 font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">strength4u</div>
@@ -147,764 +192,964 @@
     </section>
 
     <section
-      class="mx-4 flex flex-col items-center gap-8 pt-12 md:mt-8 xl:mx-24 2xl:mx-auto 2xl:max-w-[1240px]"
+      class="mx-4 flex flex-col items-center gap-4 pt-12 md:mt-8 lg:gap-8 xl:mx-24 2xl:mx-auto 2xl:max-w-[1280px]"
     >
-      <h2 class="text-center text-3xl font-bold capitalize text-slate-800">
+      <h2 class="text-center text-5xl font-bold capitalize text-slate-800">
         Shop
       </h2>
 
       <ul
-        class="mt-4 grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        class="ml-auto flex w-full gap-16 text-xl font-semibold text-slate-500 lg:w-3/4 lg:pl-8"
       >
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
-            >
-              gift
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/protein-protein.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">PROtein</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$36.79</span>
-              <span class="text-slate-600 line-through">$45.99</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Pure whey protein</a
-          >
-          <p>
-            This is a very long desctiption of the product but only xy chars
-            will be shown, the rest could be seen on the products detail page...
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
+        <li>
+          <button class="cm-sort-btn__selected hover:text-slate-700">
+            Newest
+          </button>
         </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
-            >
-              gift
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/protein-furious.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">Furious</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$71.92</span>
-              <span class="text-slate-600 line-through">$89.90</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Delicious whey protein from grass-fed cows</a
-          >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Consequuntur, esse.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
-            >
-              free delivery
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/creatine.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">Creapure</p>
-            <p class="text-lg font-bold">$25.99</p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Creapure creatine</a
-          >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            iste optio magni.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
-            >
-              free delivery
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
-            >
-              +1
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/creatine-7-strong-brothers.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">7 Strong Brothers</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$116.79</span>
-              <span class="text-slate-600 line-through">$145.99</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Strongest creatine monohydrate</a
-          >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
-            asperiores sapiente! Deleniti, recusandae ullam.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
-            >
-              free delivery
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/protein-protein.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">PROtein</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$36.79</span>
-              <span class="text-slate-600 line-through">$45.99</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Pure whey protein</a
-          >
-          <p>
-            This is a very long desctiption of the product but only xy chars
-            will be shown, the rest could be seen on the products detail page...
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
-            >
-              free delivery
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
-            >
-              +1
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/protein-furious.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">Furious</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$71.92</span>
-              <span class="text-slate-600 line-through">$89.90</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Delicious whey protein from grass-fed cows</a
-          >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Consequuntur, esse.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-orange-900"
-            >
-              20% off
-            </p>
-
-            <p
-              class="rounded-full border border-transparent bg-green-300 bg-opacity-70 px-2 text-green-900"
-            >
-              gift
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/creatine.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">Creapure</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$20.79</span>
-              <span class="text-slate-600 line-through">$25.99</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Creapure creatine</a
-          >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            iste optio magni.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-green-300 bg-opacity-70 px-2 text-green-900"
-            >
-              gift
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/creatine-7-strong-brothers.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">7 Strong Brothers</p>
-            <p class="text-lg font-bold">$145.99</p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Strongest creatine monohydrate</a
-          >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
-            asperiores sapiente! Deleniti, recusandae ullam.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
-            >
-              gift
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/protein-protein.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">PROtein</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$36.79</span>
-              <span class="text-slate-600 line-through">$45.99</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Pure whey protein</a
-          >
-          <p>
-            This is a very long desctiption of the product but only xy chars
-            will be shown, the rest could be seen on the products detail page...
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
-            >
-              gift
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/protein-furious.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">Furious</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$71.92</span>
-              <span class="text-slate-600 line-through">$89.90</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Delicious whey protein from grass-fed cows</a
-          >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Consequuntur, esse.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
-            >
-              free delivery
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/creatine.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">Creapure</p>
-            <p class="text-lg font-bold">$25.99</p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Creapure creatine</a
-          >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            iste optio magni.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-
-        <li
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
-        >
-          <div
-            class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
-          >
-            <p
-              class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-red-900"
-            >
-              20% off
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
-            >
-              free delivery
-            </p>
-            <p
-              class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
-            >
-              +1
-            </p>
-          </div>
-          <div
-            class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
-          >
-            <img
-              class="h-auto w-full object-cover"
-              src="./../../images/creatine-7-strong-brothers.webp"
-              alt="protein image"
-            />
-          </div>
-          <div>
-            <p class="text-slate-600">7 Strong Brothers</p>
-            <p class="flex gap-2 text-lg">
-              <span class="font-bold text-red-600">$116.79</span>
-              <span class="text-slate-600 line-through">$145.99</span>
-            </p>
-          </div>
-          <a
-            class="text-lg text-blue-500 hover:underline"
-            href="./product-detail.html"
-            >Strongest creatine monohydrate</a
-          >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
-            asperiores sapiente! Deleniti, recusandae ullam.
-          </p>
-          <div
-            class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
-          >
-            <button
-              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
-            >
-              <svg
-                class="fill-slate-100"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
+        <li><button class="hover:text-slate-700">Oldest</button></li>
+        <li><button class="hover:text-slate-700">Price up</button></li>
+        <li><button class="hover:text-slate-700">Price down</button></li>
       </ul>
-      <nav class="pb-8 pt-4" href="./shop.html">
+
+      <div class="flex flex-col gap-16 lg:flex-row">
+        <div class="flex flex-col gap-8 overflow-y-auto lg:w-1/4">
+          <div class="text-slate-700">
+            <p class="text-xl font-semibold">Price</p>
+            <div class="mt-2">
+              <!-- Price Range Slider -->
+              <input type="range" min="5" max="200" class="w-full" />
+              <div class="flex justify-between text-sm">
+                <span>$5</span>
+                <span>$200</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flavour Filter Section -->
+          <div class="relative text-slate-700">
+            <div class="flex items-center justify-between">
+              <p class="text-xl font-semibold">Flavour</p>
+              <button
+                id="flavourBtn"
+                class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
+              >
+                <svg
+                  class="cm-filter-chevron-icon rotate-90 fill-current transition duration-200 ease-in-out"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!-- Dropdown List -->
+            <div
+              id="flavourList"
+              class="cm-filter-list mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
+            >
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Vanilla</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Strawberry</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Mint Chocolate Chip</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Cookies and Cream</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Pistachio</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Salted Caramel</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Raspberry</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Natural</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Chocolate</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Rocky Road</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Banana</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Coconut</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Coffee</span>
+              </label>
+              <div
+                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+              ></div>
+            </div>
+          </div>
+
+          <div class="relative text-slate-700">
+            <div class="flex items-center justify-between">
+              <p class="text-xl font-semibold">Brand</p>
+              <button
+                id="brandBtn"
+                class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
+              >
+                <svg
+                  class="cm-filter-chevron-icon rotate-90 fill-current transition duration-200 ease-in-out"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!-- Dropdown List -->
+            <div
+              id="brandList"
+              class="cm-filter-list mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
+            >
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">PROtein</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Furious</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Creapure</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">7 Strong Brothers</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Nutriblast</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Vitalist</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">GreenGain</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">PurePower</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">OmegaPeak</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">HerbalHarvest</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Essentials</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Beasts</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="leading-tight" />
+                <span class="ml-2">Aura</span>
+              </label>
+              <div
+                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <ul
+          class="grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:w-3/4"
+        >
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+              >
+                gift
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/protein-protein.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">PROtein</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$36.79</span>
+                <span class="text-slate-600 line-through">$45.99</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Pure whey protein</a
+            >
+            <p>
+              This is a very long desctiption of the product but only xy chars
+              will be shown, the rest could be seen on the products detail
+              page...
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+              >
+                gift
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/protein-furious.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">Furious</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$71.92</span>
+                <span class="text-slate-600 line-through">$89.90</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Delicious whey protein from grass-fed cows</a
+            >
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Consequuntur, esse.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
+              >
+                free delivery
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/creatine.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">Creapure</p>
+              <p class="text-lg font-bold">$25.99</p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Creapure creatine</a
+            >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              iste optio magni.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
+              >
+                free delivery
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
+              >
+                +1
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/creatine-7-strong-brothers.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">7 Strong Brothers</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$116.79</span>
+                <span class="text-slate-600 line-through">$145.99</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Strongest creatine monohydrate</a
+            >
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
+              asperiores sapiente! Deleniti, recusandae ullam.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
+              >
+                free delivery
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/protein-protein.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">PROtein</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$36.79</span>
+                <span class="text-slate-600 line-through">$45.99</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Pure whey protein</a
+            >
+            <p>
+              This is a very long desctiption of the product but only xy chars
+              will be shown, the rest could be seen on the products detail
+              page...
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
+              >
+                free delivery
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
+              >
+                +1
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/protein-furious.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">Furious</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$71.92</span>
+                <span class="text-slate-600 line-through">$89.90</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Delicious whey protein from grass-fed cows</a
+            >
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Consequuntur, esse.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-orange-900"
+              >
+                20% off
+              </p>
+
+              <p
+                class="rounded-full border border-transparent bg-green-300 bg-opacity-70 px-2 text-green-900"
+              >
+                gift
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/creatine.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">Creapure</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$20.79</span>
+                <span class="text-slate-600 line-through">$25.99</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Creapure creatine</a
+            >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              iste optio magni.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-green-300 bg-opacity-70 px-2 text-green-900"
+              >
+                gift
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/creatine-7-strong-brothers.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">7 Strong Brothers</p>
+              <p class="text-lg font-bold">$145.99</p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Strongest creatine monohydrate</a
+            >
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
+              asperiores sapiente! Deleniti, recusandae ullam.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+              >
+                gift
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/protein-protein.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">PROtein</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$36.79</span>
+                <span class="text-slate-600 line-through">$45.99</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Pure whey protein</a
+            >
+            <p>
+              This is a very long desctiption of the product but only xy chars
+              will be shown, the rest could be seen on the products detail
+              page...
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+              >
+                gift
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/protein-furious.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">Furious</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$71.92</span>
+                <span class="text-slate-600 line-through">$89.90</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Delicious whey protein from grass-fed cows</a
+            >
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Consequuntur, esse.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
+              >
+                free delivery
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/creatine.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">Creapure</p>
+              <p class="text-lg font-bold">$25.99</p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Creapure creatine</a
+            >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              iste optio magni.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li
+            class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          >
+            <div
+              class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
+            >
+              <p
+                class="rounded-full border border-transparent bg-red-300 bg-opacity-70 px-2 text-red-900"
+              >
+                20% off
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
+              >
+                free delivery
+              </p>
+              <p
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
+              >
+                +1
+              </p>
+            </div>
+            <div
+              class="w-full self-center overflow-hidden rounded-[8px] border border-transparent"
+            >
+              <img
+                class="h-auto w-full object-cover"
+                src="./../../images/creatine-7-strong-brothers.webp"
+                alt="protein image"
+              />
+            </div>
+            <div>
+              <p class="text-slate-600">7 Strong Brothers</p>
+              <p class="flex gap-2 text-lg">
+                <span class="font-bold text-red-600">$116.79</span>
+                <span class="text-slate-600 line-through">$145.99</span>
+              </p>
+            </div>
+            <a
+              class="text-lg text-blue-500 hover:underline"
+              href="./product-detail.html"
+              >Strongest creatine monohydrate</a
+            >
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
+              asperiores sapiente! Deleniti, recusandae ullam.
+            </p>
+            <div
+              class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2"
+            >
+              <button
+                class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              >
+                <svg
+                  class="fill-slate-100"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path
+                    d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <nav class="ml-auto w-full pb-8 pt-4 lg:w-3/4 lg:pt-8" href="./shop.html">
         <ul class="flex items-center justify-center gap-4 text-slate-600">
           <li>
             <a

@@ -62,4 +62,8 @@
   .cm-testimonial__shown {
     @apply flex flex-col md:flex-row;
   }
+
+  .cm-sort-btn__selected {
+    @apply text-slate-700;
+  }
 }
