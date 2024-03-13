@@ -10,10 +10,7 @@
         const button = document.getElementById(buttonId);
         const filterList = document.getElementById(filterListId);
         const chevronIcon = button.querySelector(".cm-filter-chevron-icon");
-        const indicator = null;
-        try {
-          indicator = filterList.querySelector(".cm-scroll-indicator");
-        } catch (error) {}
+        const indicator = filterList.querySelector(".cm-scroll-indicator");
 
         button.addEventListener("click", () => {
           filterList.classList.toggle("max-h-0");
