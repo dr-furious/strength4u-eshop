@@ -9,19 +9,29 @@
       function setupFilterToggle(buttonId, filterListId) {
         const button = document.getElementById(buttonId);
         const filterList = document.getElementById(filterListId);
-        const indicator = filterList.querySelector(".cm-scroll-indicator");
         const chevronIcon = button.querySelector(".cm-filter-chevron-icon");
+        const indicator = null;
+        try {
+          indicator = filterList.querySelector(".cm-scroll-indicator");
+        } catch (error) {}
 
         button.addEventListener("click", () => {
           filterList.classList.toggle("max-h-0");
           filterList.classList.toggle("max-h-80"); // Adjust visibility
+          remSize = parseFloat(
+            getComputedStyle(document.documentElement).fontSize,
+          ); // Get the rem size
           if (
+            indicator != null &&
+            indicator.classList.contains("hidden") &&
             filterList.classList.contains("max-h-80") &&
-            indicator.classList.contains("hidden")
+            filterList.scrollHeight > 20 * remSize
           ) {
-            indicator.classList.remove("hidden"); // Show scroll indicator when list has height
+            indicator.classList.remove("hidden"); // Show scroll indicator when list has height greater then 20rem (max-h-80 in tailwind)
+            filterList.scrollTop = 0; // Scroll the list to its top
           } else if (
             filterList.classList.contains("max-h-0") &&
+            indicator != null &&
             !indicator.classList.contains("hidden")
           ) {
             indicator.classList.add("hidden");
@@ -37,28 +47,40 @@
         const filterList = document.getElementById(filterListId);
         const indicator = filterList.querySelector(".cm-scroll-indicator");
 
-        const checkScroll = () => {
-          // Check if the list has been scrolled to the bottom
+        const checkScroll = (keepHidden) => {
+          if (indicator.classList.contains("hidden") && keepHidden === true) {
+            return;
+          }
           if (
             filterList.scrollTop + filterList.offsetHeight >=
             filterList.scrollHeight
           ) {
+            // Check if the list has been scrolled to the bottom
             indicator.classList.add("hidden"); // Hide gradient
           } else {
             indicator.classList.remove("hidden"); // Show gradient
           }
         };
 
-        filterList.addEventListener("scroll", checkScroll);
-        checkScroll(); // Initialize indicator state based on current scroll
+        filterList.addEventListener("scroll", (event) =>
+          checkScroll(event, false),
+        );
+        checkScroll(true); // Initialize indicator state based on current scroll
+      }
+
+      function updatePriceValue(value) {
+        document.getElementById("currentPrice").textContent = value;
       }
 
       document.addEventListener("DOMContentLoaded", () => {
         setupFilterToggle("flavourBtn", "flavourList");
         setupFilterToggle("brandBtn", "brandList");
+        setupFilterToggle("categoryBtn", "categoryList");
+        setupFilterToggle("priceBtn", "priceList");
 
         handleScroll("flavourList");
         handleScroll("brandList");
+        handleScroll("categoryList");
       });
     </script>
   </head>
@@ -203,32 +225,80 @@
     </section>
 
     <section
-      class="mx-4 flex flex-col items-center gap-4 pt-12 md:mt-8 lg:gap-8 xl:mx-24 2xl:mx-auto 2xl:max-w-[1280px]"
+      class="mx-4 flex flex-col items-center gap-4 pt-12 md:mt-8 lg:gap-12 xl:mx-24 2xl:mx-auto 2xl:max-w-[1280px]"
     >
       <h2 class="text-center text-5xl font-bold capitalize text-slate-800">
         Shop
       </h2>
 
-      <ul
-        class="ml-auto flex w-full gap-16 text-xl font-semibold text-slate-500 lg:w-3/4 lg:pl-8"
+      <div
+        class="ml-auto flex w-full gap-6 px-4 font-semibold text-slate-800 lg:w-3/4 lg:pl-12"
       >
-        <li>
-          <button class="cm-sort-btn__selected hover:text-slate-700">
-            Newest
-          </button>
-        </li>
-        <li><button class="hover:text-slate-700">Oldest</button></li>
-        <li><button class="hover:text-slate-700">Price up</button></li>
-        <li><button class="hover:text-slate-700">Price down</button></li>
-      </ul>
+        <p class="text-2xl">Order By:</p>
+        <ul class="flex items-center gap-8 text-xl text-slate-400">
+          <li>
+            <button class="cm-sort-btn__selected hover:text-slate-700">
+              Newest
+            </button>
+          </li>
+          <li><button class="hover:text-slate-700">Oldest</button></li>
+          <li><button class="hover:text-slate-700">Discount</button></li>
+          <li><button class="hover:text-slate-700">Price up</button></li>
+          <li><button class="hover:text-slate-700">Price down</button></li>
+        </ul>
+      </div>
 
       <div class="flex flex-col gap-16 lg:flex-row">
-        <div class="flex flex-col gap-8 overflow-y-auto lg:w-1/4">
-          <div class="text-slate-700">
-            <p class="text-xl font-semibold">Price</p>
-            <div class="mt-2">
+        <div
+          class="bg-primary-grey-100 flex w-full flex-col gap-3 overflow-y-scroll px-4 lg:w-1/4"
+        >
+          <div
+            class="flex items-center justify-between pt-4 text-2xl font-semibold text-slate-800 lg:pb-4 lg:pt-0"
+          >
+            <p>Filter By:</p>
+          </div>
+
+          <!-- Price Range -->
+          <div
+            class="border-b border-b-slate-400 border-opacity-50 pb-3 text-slate-700"
+          >
+            <div class="flex items-center justify-between">
+              <p class="text-xl font-semibold">Price</p>
+              <button
+                id="priceBtn"
+                class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
+              >
+                <svg
+                  class="cm-filter-chevron-icon rotate-90 fill-current transition duration-200 ease-in-out"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              id="priceList"
+              class="mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
+            >
               <!-- Price Range Slider -->
-              <input type="range" min="5" max="200" class="w-full" />
+              <!-- Display Current Value -->
+              <p class="mt-2">
+                Current Price: $0 - $<span id="currentPrice">200</span>
+              </p>
+              <input
+                type="range"
+                id="priceRange"
+                min="5"
+                max="200"
+                value="200"
+                class="w-full cursor-pointer"
+                oninput="updatePriceValue(this.value)"
+              />
               <div class="flex justify-between text-sm">
                 <span>$5</span>
                 <span>$200</span>
@@ -236,8 +306,68 @@
             </div>
           </div>
 
+          <!-- Category Filter Section -->
+          <div
+            class="relative border-b border-b-slate-400 border-opacity-50 pb-3 text-slate-700"
+          >
+            <div class="flex items-center justify-between">
+              <p class="text-xl font-semibold">Category</p>
+              <button
+                id="categoryBtn"
+                class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
+              >
+                <svg
+                  class="cm-filter-chevron-icon rotate-90 fill-current transition duration-200 ease-in-out"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <!-- Dropdown List -->
+            <div
+              id="categoryList"
+              class="mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
+            >
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="cursor-pointer" />
+                <span class="ml-2">Proteins</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="cursor-pointer" />
+                <span class="ml-2">Amino Acids</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="cursor-pointer" />
+                <span class="ml-2">Vitamins</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="cursor-pointer" />
+                <span class="ml-2">Minerals</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="cursor-pointer" />
+                <span class="ml-2">Healthy Food</span>
+              </label>
+              <label class="ml-4 mt-2 block">
+                <input type="checkbox" class="cursor-pointer" />
+                <span class="ml-2">Special Offers</span>
+              </label>
+              <div
+                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+              ></div>
+            </div>
+          </div>
+
           <!-- Flavour Filter Section -->
-          <div class="relative text-slate-700">
+          <div
+            class="relative border-b border-b-slate-400 border-opacity-50 pb-3 text-slate-700"
+          >
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Flavour</p>
               <button
@@ -245,7 +375,7 @@
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
-                  class="cm-filter-chevron-icon rotate-90 fill-current transition duration-200 ease-in-out"
+                  class="cm-filter-chevron-icon fill-current transition duration-200 ease-in-out"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
                   viewBox="0 -960 960 960"
@@ -260,67 +390,70 @@
             <!-- Dropdown List -->
             <div
               id="flavourList"
-              class="cm-filter-list mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
+              class="mt-4 max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Vanilla</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Strawberry</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Mint Chocolate Chip</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Cookies and Cream</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Pistachio</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Salted Caramel</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Raspberry</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Natural</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Chocolate</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Rocky Road</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Banana</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Coconut</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Coffee</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t to-transparent"
               ></div>
             </div>
           </div>
 
-          <div class="relative text-slate-700">
+          <!-- Brand Filter Section -->
+          <div
+            class="relative border-b border-b-slate-400 border-opacity-50 pb-3 text-slate-700"
+          >
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Brand</p>
               <button
@@ -328,7 +461,7 @@
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
-                  class="cm-filter-chevron-icon rotate-90 fill-current transition duration-200 ease-in-out"
+                  class="cm-filter-chevron-icon fill-current transition duration-200 ease-in-out"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
                   viewBox="0 -960 960 960"
@@ -343,62 +476,62 @@
             <!-- Dropdown List -->
             <div
               id="brandList"
-              class="cm-filter-list mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
+              class="mt-4 max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">PROtein</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Furious</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Creapure</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">7 Strong Brothers</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Nutriblast</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Vitalist</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">GreenGain</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">PurePower</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">OmegaPeak</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">HerbalHarvest</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Essentials</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Beasts</span>
               </label>
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="leading-tight" />
+                <input type="checkbox" class="cursor-pointer" />
                 <span class="ml-2">Aura</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t to-transparent"
               ></div>
             </div>
           </div>
