@@ -15,7 +15,18 @@
         button.addEventListener("click", () => {
           filterList.classList.toggle("max-h-0");
           filterList.classList.toggle("max-h-80"); // Adjust visibility
-          indicator.classList.toggle("hidden"); // Hide scroll indicator
+          if (
+            filterList.classList.contains("max-h-80") &&
+            indicator.classList.contains("hidden")
+          ) {
+            indicator.classList.remove("hidden"); // Show scroll indicator when list has height
+          } else if (
+            filterList.classList.contains("max-h-0") &&
+            !indicator.classList.contains("hidden")
+          ) {
+            indicator.classList.add("hidden");
+          }
+
           if (chevronIcon) {
             chevronIcon.classList.toggle("rotate-90"); // Rotate chevron, if exists
           }
