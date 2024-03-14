@@ -136,3 +136,10 @@ document
 document
   .getElementById("radioButtonBankT")
   .addEventListener("click", toggleOnlinePayDiv);
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("radioButtonDHL").click();
+});
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("radioButtonOnlineP").click();
+});
