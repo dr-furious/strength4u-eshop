@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
-    <script src="../js/input_form_handlers.js" defer></script>
+    <script src="../js/checkout_handlers.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100">
@@ -239,7 +239,7 @@
                     id="tel_num"
                     name="tel_num"
                     placeholder="+421 912 345 789"
-                    type="text"
+                    type="number"
                     required
                   />
                 </div>
@@ -254,8 +254,8 @@
 
           <!-- Shipping method -->
           <p class="mx-8 mt-8 text-2xl font-bold">Shipping method</p>
-          <div class="ml-8 p-3 md:w-11/12 md:p-6">
-            <div class="flex flex-row gap-8">
+          <div class="p-3 text-center sm:ml-8 md:w-11/12 md:p-6">
+            <div class="flex flex-row gap-2 md:gap-8">
               <input
                 class="h-5 w-5"
                 id="radioButtonDHL"
@@ -268,7 +268,7 @@
               </label>
               <p>5,5 €</p>
             </div>
-            <div class="my-4 flex flex-row gap-8">
+            <div class="my-4 flex flex-row gap-2 md:gap-8">
               <input
                 class="h-5 w-5"
                 id="radioButtonSPS"
@@ -281,7 +281,7 @@
               </label>
               <p>7,5 €</p>
             </div>
-            <div class="flex flex-row gap-8">
+            <div class="flex flex-row gap-2 md:gap-8">
               <input
                 class="h-5 w-5"
                 id="radioButtonPacketa"
@@ -303,8 +303,8 @@
 
           <!-- Payment -->
           <p class="mx-8 mt-8 text-2xl font-bold">Payment</p>
-          <div class="ml-8 p-3 md:w-11/12 md:p-6">
-            <div class="flex flex-row gap-8">
+          <div class="p-3 text-center sm:ml-8 md:w-11/12 md:p-6">
+            <div class="flex flex-row gap-1 md:gap-8">
               <input
                 class="h-5 w-5"
                 id="radioButtonCashOnD"
@@ -317,7 +317,7 @@
               </label>
               <p>+1,5 €</p>
             </div>
-            <div class="my-4 flex flex-row gap-8">
+            <div class="my-4 flex flex-row gap-1 md:gap-8">
               <input
                 class="h-5 w-5"
                 id="radioButtonOnlineP"
@@ -330,7 +330,7 @@
               </label>
               <p>+0,0 €</p>
             </div>
-            <div class="flex flex-row gap-8">
+            <div class="flex flex-row gap-1 md:gap-8">
               <input
                 class="h-5 w-5"
                 id="radioButtonBankT"
