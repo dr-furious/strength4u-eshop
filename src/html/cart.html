@@ -2,15 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function decrement(e) {
+        const container = e.target.closest(".custom-number-input");
+        const input = container.querySelector('input[type="number"]');
+        let value = Number(input.value);
+        if (value > 0) {
+          value--;
+          input.value = value;
+        }
+      }
+
+      function increment(e) {
+        const container = e.target.closest(".custom-number-input");
+        const input = container.querySelector('input[type="number"]');
+        let value = Number(input.value);
+        value++;
+        input.value = value;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const decrementButtons = document.querySelectorAll(
+          'button[data-action="decrement"]',
+        );
+        const incrementButtons = document.querySelectorAll(
+          'button[data-action="increment"]',
+        );
+
+        decrementButtons.forEach((btn) => {
+          btn.addEventListener("click", decrement);
+        });
+
+        incrementButtons.forEach((btn) => {
+          btn.addEventListener("click", increment);
+        });
+      });
+    </script>
   </head>
-  <body>
+  <body class="font-dm bg-primary-grey-100">
     <div class="bg-white px-4 py-4 text-xl font-bold">strength4u</div>
     <header class="sticky top-0 z-50">
       <nav
-        class="flex items-center justify-around bg-primary-grey-100 px-4 py-4 font-light shadow-md"
+        class="bg-primary-grey-100 flex items-center justify-around px-4 py-4 font-light shadow-md"
       >
         <ul class="flex gap-6 text-lg">
           <li>
@@ -110,101 +146,346 @@
         </ul>
       </nav>
     </header>
-    <div class="flex flex-row p-4">
-      <p class="mx-7 font-bold">1. Shopping Cart</p>
-      <p class="mx-7 text-gray-700">2. Checkout</p>
-      <p class="mx-7 text-gray-700">3. Order Succesed</p>
+
+    <div class="flex gap-8 bg-white py-4 pl-12">
+      <p class="font-bold text-slate-800">1. Shopping Cart</p>
+      <p class="text-slate-500">2. Checkout</p>
+      <p class="text-slate-500">3. Order Succesed</p>
     </div>
-    <main class="flex flex-col bg-primary-grey-100 lg:flex-row">
+    <main
+      class="mx-8 flex max-w-screen-xl flex-col lg:mb-8 lg:flex-row 2xl:m-auto"
+    >
       <section class="flex flex-col lg:w-3/4">
-        <p class="p-4 text-4xl font-bold">My Cart</p>
-        <div class="flex flex-row justify-end text-center font-bold md:mr-10">
-          <p class="mx-auto w-1/5">Product</p>
-          <p class="mx-auto w-1/5">Description</p>
-          <p class="mx-auto w-1/5">Amount</p>
-          <p class="mx-auto w-1/5">Unit Price</p>
-          <p class="mx-auto w-1/5">Total price</p>
-        </div>
-        <!-- Product -->
-        <div class="flex h-56 flex-row items-center p-4 text-center">
-          <img class="mr-2 w-1/5" src="../images/protein.png" />
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>Whey Protein Ultra</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>1</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <a href="#">
-            <img alt="delete" src="../../icons/delete.svg" />
-          </a>
-        </div>
-        <!-- Product -->
-        <div class="flex h-56 flex-row items-center p-4 text-center">
-          <img class="mr-2 w-1/5" src="../images/protein.png" />
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>Whey Protein Ultra</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>1</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <a href="#">
-            <img alt="delete" src="../../icons/delete.svg" />
-          </a>
-        </div>
-        <!-- Product -->
-        <div class="flex h-56 flex-row items-center p-4 text-center">
-          <img class="mr-2 w-1/5" src="../images/protein.png" />
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>Whey Protein Ultra</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>1</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <a href="#">
-            <img alt="delete" src="../../icons/delete.svg" />
-          </a>
-        </div>
-        <!-- Product -->
-        <div class="flex h-56 flex-row items-center p-4 text-center">
-          <img class="mr-2 w-1/5" src="../images/protein.png" />
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>Whey Protein Ultra</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>1</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <div class="mx-auto flex w-1/5 flex-col justify-center">
-            <p>55,99€</p>
-          </div>
-          <a href="#">
-            <img alt="delete" src="../../icons/delete.svg" />
-          </a>
-        </div>
+        <p class="p-4 text-4xl font-bold text-slate-800">My Cart</p>
+
+        <ul
+          class="mt-4 flex min-h-[60vh] flex-col gap-4 rounded-[4px] bg-white p-4"
+        >
+          <li
+            class="hidden justify-between border-b border-slate-400 pb-2 font-bold text-slate-800 md:flex"
+          >
+            <p class="w-5/12 text-center">Product</p>
+            <p class="w-2/12 text-center">Amount</p>
+            <p class="w-2/12 text-center">Unit Price</p>
+            <p class="w-2/12 text-center">Total price</p>
+            <p class="w-1/12 text-center"></p>
+            <!-- Can be 'Delete' here but looks OK now-->
+          </li>
+
+          <!-- Product -->
+          <li
+            class="flex items-center justify-between border-b border-slate-200 pb-2 text-slate-800"
+          >
+            <div class="flex w-5/12 items-center gap-8">
+              <div class="w-1/5 min-w-[20%] overflow-hidden rounded-[8px]">
+                <img
+                  class="w-full bg-cover"
+                  src="./../../images/protein-protein.webp"
+                />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-bold text-slate-500">PROtein</p>
+                <a
+                  class="text-blue-500 hover:underline"
+                  href="./product-detail.html"
+                  >Pure Whey Protein</a
+                >
+
+                <p class="text-sm font-light lowercase text-slate-800">
+                  Chocolate
+                </p>
+              </div>
+            </div>
+            <div class="flex w-2/12 justify-center">
+              <!--https://tailwindcomponents.com/component/number-input-counter -->
+              <div
+                class="custom-number-input flex w-4/6 flex-row rounded-[8px] text-center"
+              >
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="decrement"
+                >
+                  <span class="m-auto text-2xl font-thin">−</span>
+                </button>
+
+                <input
+                  class="text-md md:text-basecursor-default bg-primary-grey-100 flex w-2/4 items-center text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:outline-none"
+                  min="0"
+                  name="custom-input-number"
+                  type="number"
+                  value="0"
+                />
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="increment"
+                >
+                  <span class="m-auto text-2xl font-thin">+</span>
+                </button>
+              </div>
+            </div>
+            <div class="w-2/12 text-center">
+              <p>$45.99</p>
+            </div>
+            <div class="w-2/12 text-center">
+              <p>$45.99</p>
+            </div>
+
+            <div class="w-1/12 text-center">
+              <button
+                id=""
+                class="rounded-full p-2 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10 hover:text-red-600"
+              >
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- Product -->
+          <li
+            class="flex items-center justify-between border-b border-slate-200 pb-2 text-slate-800"
+          >
+            <div class="flex w-5/12 items-center justify-center gap-8">
+              <div class="w-1/5 min-w-[20%] overflow-hidden rounded-[8px]">
+                <img
+                  class="w-full bg-cover"
+                  src="./../../images/protein-furious.webp"
+                />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-bold text-slate-500">Furious</p>
+                <a
+                  class="text-blue-500 hover:underline"
+                  href="./product-detail.html"
+                  >Delicious whey protein from grass-fed cows</a
+                >
+                <p class="text-sm font-light lowercase text-slate-800">
+                  Chocalate chip
+                </p>
+              </div>
+            </div>
+            <div class="flex w-2/12 justify-center">
+              <!--https://tailwindcomponents.com/component/number-input-counter -->
+              <div
+                class="custom-number-input flex w-2/3 flex-row rounded-[8px] text-center"
+              >
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="decrement"
+                >
+                  <span class="m-auto text-2xl font-thin">−</span>
+                </button>
+
+                <input
+                  class="text-md md:text-basecursor-default bg-primary-grey-100 flex w-2/4 items-center text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:bg-opacity-70 focus:outline-none"
+                  min="0"
+                  name="custom-input-number"
+                  type="number"
+                  value="0"
+                />
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="increment"
+                >
+                  <span class="m-auto text-2xl font-thin">+</span>
+                </button>
+              </div>
+            </div>
+            <div class="w-2/12 text-center">
+              <p>$89.90</p>
+            </div>
+            <div class="w-2/12 text-center">
+              <p>$89.90</p>
+            </div>
+
+            <div class="w-1/12 text-center">
+              <button
+                id=""
+                class="rounded-full p-2 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10 hover:text-red-600"
+              >
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- Product -->
+          <li
+            class="flex items-center justify-between border-b border-slate-200 pb-2 text-slate-800"
+          >
+            <div class="flex w-5/12 items-center gap-8">
+              <div class="w-1/5 min-w-[20%] overflow-hidden rounded-[8px]">
+                <img class="w-full bg-cover" src="../../images/creatine.webp" />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-bold text-slate-500">PROtein</p>
+                <a
+                  class="text-blue-500 hover:underline"
+                  href="./product-detail.html"
+                  >Creapure creatine</a
+                >
+                <p class="text-sm font-light lowercase text-slate-800">
+                  Natural
+                </p>
+              </div>
+            </div>
+            <div class="flex w-2/12 justify-center">
+              <!--https://tailwindcomponents.com/component/number-input-counter -->
+              <div
+                class="custom-number-input flex w-2/3 flex-row rounded-[8px] text-center"
+              >
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="decrement"
+                >
+                  <span class="m-auto text-2xl font-thin">−</span>
+                </button>
+
+                <input
+                  class="text-md md:text-basecursor-default bg-primary-grey-100 flex w-2/4 items-center text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:bg-opacity-70 focus:outline-none"
+                  min="0"
+                  name="custom-input-number"
+                  type="number"
+                  value="0"
+                />
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="increment"
+                >
+                  <span class="m-auto text-2xl font-thin">+</span>
+                </button>
+              </div>
+            </div>
+            <div class="w-2/12 text-center">
+              <p class="text-slate-600 line-through">$25.99</p>
+              <p class="font-bold text-red-600">$20.79</p>
+            </div>
+            <div class="w-2/12 text-center">
+              <p class="text-slate-600 line-through">$25.99</p>
+              <p class="font-bold text-red-600">$20.79</p>
+            </div>
+
+            <div class="w-1/12 text-center">
+              <button
+                id=""
+                class="rounded-full p-2 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10 hover:text-red-600"
+              >
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <!-- Product -->
+          <li
+            class="flex items-center justify-between border-b border-slate-200 pb-2 text-slate-800"
+          >
+            <div class="flex w-5/12 items-center gap-8">
+              <div class="w-1/5 min-w-[20%] overflow-hidden rounded-[8px]">
+                <img
+                  class="w-full bg-cover"
+                  src="./../../images/creatine-7-strong-brothers.webp"
+                />
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-bold text-slate-500">PROtein</p>
+                <a
+                  class="text-blue-500 hover:underline"
+                  href="./product-detail.html"
+                  >Strongest creatine monohydrate
+                </a>
+                <p class="text-sm font-light lowercase text-slate-800">
+                  Lemon ice tea
+                </p>
+              </div>
+            </div>
+            <div class="flex w-2/12 justify-center">
+              <!--https://tailwindcomponents.com/component/number-input-counter -->
+              <div
+                class="custom-number-input flex w-2/3 flex-row rounded-[8px] text-center"
+              >
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="decrement"
+                >
+                  <span class="m-auto text-2xl font-thin">−</span>
+                </button>
+
+                <input
+                  class="text-md md:text-basecursor-default bg-primary-grey-100 flex w-2/4 items-center text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:bg-opacity-70 focus:outline-none"
+                  min="0"
+                  name="custom-input-number"
+                  type="number"
+                  value="0"
+                />
+                <button
+                  class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                  data-action="increment"
+                >
+                  <span class="m-auto text-2xl font-thin">+</span>
+                </button>
+              </div>
+            </div>
+            <div class="w-2/12 text-center">
+              <p class="text-slate-600 line-through">$145.99</p>
+              <p class="font-bold text-red-600">$116.79</p>
+            </div>
+            <div class="w-2/12 text-center">
+              <p class="text-slate-600 line-through">$145.99</p>
+              <p class="font-bold text-red-600">$116.79</p>
+            </div>
+
+            <div class="w-1/12 text-center">
+              <button
+                id=""
+                class="rounded-full p-2 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10 hover:text-red-600"
+              >
+                <svg
+                  class="fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </li>
+        </ul>
       </section>
 
       <section
-        class="mx-auto my-2 mt-6 flex max-w-96 flex-col rounded-lg border bg-gray-200 p-6 lg:fixed lg:right-0 lg:mx-2 lg:w-1/4 lg:max-w-full"
+        class="mx-auto my-2 mt-6 flex max-w-80 flex-col rounded-lg border bg-gray-200 p-6 lg:fixed lg:right-0 lg:mx-2 lg:w-72 lg:max-w-full"
       >
         <h2 class="text-center text-xl font-bold">Cart Totals</h2>
         <div class="flex justify-between">
@@ -225,6 +506,7 @@
         </p>
       </section>
     </main>
+
     <footer class="bg-slate-800 px-4 py-4 text-white">
       <div class="mb-8 text-xl font-bold text-white">strength4u</div>
 
