@@ -101,7 +101,7 @@ function toggleShippingDiv() {
 }
 
 function updateElementValue(newSubtotal, element) {
-  document.getElementById(element).textContent = `${newSubtotal}€`;
+  document.getElementById(element).textContent = `$${newSubtotal}`;
 }
 
 //===================shipping===================
