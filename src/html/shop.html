@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
-    <title>strength4u-shop</title>
+    <script src="./../js/user_nav_handler.js"></script>
     <script>
       function setupFilterToggle(buttonId, filterListId) {
         const button = document.getElementById(buttonId);
@@ -70,22 +71,24 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        setupFilterToggle("flavourBtn", "flavourList");
-        setupFilterToggle("brandBtn", "brandList");
-        setupFilterToggle("categoryBtn", "categoryList");
-        setupFilterToggle("priceBtn", "priceList");
+        setupFilterToggle("flavour-btn", "flavour-list");
+        setupFilterToggle("brand-btn", "brand-list");
+        setupFilterToggle("category-btn", "category-list");
+        setupFilterToggle("price-btn", "price-list");
 
-        handleScroll("flavourList");
-        handleScroll("brandList");
-        handleScroll("categoryList");
+        handleScroll("flavour-list");
+        handleScroll("brand-list");
+        handleScroll("category-list");
       });
     </script>
   </head>
   <body class="bg-primary-grey-100 font-dm">
-    <div class="bg-white px-4 py-4 text-xl font-bold">strength4u</div>
-    <header class="sticky top-0 z-50">
+    <div class="bg-white px-4 py-4 text-xl font-bold">
+      <a href="./index.html">strength4u</a>
+    </div>
+    <header class="sticky top-0 z-50 w-full bg-primary-grey-100 shadow-md">
       <nav
-        class="bg-primary-grey-100 flex items-center justify-around px-4 py-4 font-light shadow-md"
+        class="flex max-w-screen-2xl items-center justify-around bg-primary-grey-100 px-4 py-4 font-light xl:mx-auto"
       >
         <ul class="flex gap-6 text-lg">
           <li>
@@ -95,20 +98,25 @@
             <a class="custom-underline-transition" href="./shop.html">Shop</a>
           </li>
           <li>
-            <a class="custom-underline-transition" href="./index.html">About</a>
+            <a class="custom-underline-transition" href="./index.html#about-us"
+              >About Us</a
+            >
           </li>
         </ul>
 
-        <div class="relative w-1/2">
-          <label class="hidden" for="search-bar">Search</label>
+        <form action="/search" method="GET" class="relative w-1/2">
+          <label for="search-bar" class="hidden">Search</label>
           <input
-            class="h-12 w-full rounded-[4px] border px-6 font-light"
+            class="h-12 w-full rounded-[4px] border border-slate-200 px-6 font-light outline-blue-600"
             type="search"
-            name="search-bar"
+            name="query"
             id="search-bar"
             placeholder="Search for your favourite product..."
           />
-          <div class="absolute right-3 inline-flex h-full items-center">
+          <button
+            type="submit"
+            class="absolute right-3 inline-flex h-full items-center"
+          >
             <svg
               class="fill-slate-500"
               xmlns="http://www.w3.org/2000/svg"
@@ -120,30 +128,10 @@
                 d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
               />
             </svg>
-          </div>
-        </div>
+          </button>
+        </form>
 
         <ul class="flex gap-8">
-          <li class="relative">
-            <a class="custom-underline-transition" href="#"
-              ><svg
-                class="fill-slate-800"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
-                />
-              </svg>
-              <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
-              >
-                0
-              </div></a
-            >
-          </li>
           <li class="relative">
             <a
               class="custom-underline-transition custom-number-bubble-after"
@@ -160,17 +148,17 @@
                 />
               </svg>
               <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 bg-slate-800 text-slate-100"
               >
                 9+
-              </div></a
-            >
+              </div>
+            </a>
           </li>
 
           <li class="relative">
-            <a
+            <button
+              id="user-btn"
               class="custom-underline-transition custom-number-bubble-after"
-              href="#"
             >
               <svg
                 class="fill-slate-800"
@@ -184,7 +172,8 @@
                 />
               </svg>
               <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-green-500 bg-opacity-20"
+                id="user-signed"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 bg-green-500 bg-opacity-20"
               >
                 <svg
                   class="fill-green-700"
@@ -198,7 +187,38 @@
                   />
                 </svg>
               </div>
-            </a>
+            </button>
+            <div
+              id="user-nav"
+              class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
+            >
+              <ul class="flex flex-col">
+                <li class="rounded-t-[8px]">
+                  <a
+                    id="login-link"
+                    href="./login.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                    >Log in</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="signup-link"
+                    href="./signup.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                    >Sign up</a
+                  >
+                </li>
+                <li class="rounded-b-[8px] border-t">
+                  <a
+                    id="admin-link"
+                    href="./admin-panel.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                    >Admin</a
+                  >
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
@@ -247,7 +267,7 @@
 
       <div class="flex flex-col gap-16 lg:flex-row">
         <div
-          class="bg-primary-grey-100 flex w-full flex-col gap-3 overflow-y-scroll px-4 lg:w-1/4"
+          class="flex w-full flex-col gap-3 overflow-y-auto bg-primary-grey-100 px-4 lg:w-1/4"
         >
           <div
             class="flex items-center justify-between pt-4 text-2xl font-semibold text-slate-800 lg:pb-4 lg:pt-0"
@@ -262,7 +282,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Price</p>
               <button
-                id="priceBtn"
+                id="price-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -279,7 +299,7 @@
               </button>
             </div>
             <div
-              id="priceList"
+              id="price-list"
               class="mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <!-- Price Range Slider -->
@@ -310,7 +330,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Category</p>
               <button
-                id="categoryBtn"
+                id="category-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -328,7 +348,7 @@
             </div>
             <!-- Dropdown List -->
             <div
-              id="categoryList"
+              id="category-list"
               class="mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
@@ -356,7 +376,7 @@
                 <span class="ml-2">Special Offers</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+                class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
@@ -368,7 +388,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Flavour</p>
               <button
-                id="flavourBtn"
+                id="flavour-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -386,7 +406,7 @@
             </div>
             <!-- Dropdown List -->
             <div
-              id="flavourList"
+              id="flavour-list"
               class="mt-4 max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
@@ -442,7 +462,7 @@
                 <span class="ml-2">Coffee</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t to-transparent"
+                class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
@@ -454,7 +474,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Brand</p>
               <button
-                id="brandBtn"
+                id="brand-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -472,7 +492,7 @@
             </div>
             <!-- Dropdown List -->
             <div
-              id="brandList"
+              id="brand-list"
               class="mt-4 max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
@@ -528,7 +548,7 @@
                 <span class="ml-2">Aura</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t to-transparent"
+                class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
@@ -1391,7 +1411,9 @@
     </section>
 
     <footer class="mt-12 bg-slate-800 px-4 py-4 text-white">
-      <div class="mb-8 text-xl font-bold text-white">strength4u</div>
+      <div class="mb-8 text-xl font-bold text-white">
+        <a href="./index.html">strength4u</a>
+      </div>
 
       <hr class="mx-auto mb-8 w-3/4 opacity-50" />
 

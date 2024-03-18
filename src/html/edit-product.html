@@ -2,25 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./../js/admin_add_prod.js" defer></script>
     <script src="./../js/preload_prod_info.js" defer></script>
+    <script src="./../js/user_nav_handler.js"></script>
   </head>
   <body class="bg-primary-grey-100 font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">
-      <a href="index.html">strength4u</a>
+      <a href="./index.html">strength4u</a>
     </div>
     <header class="sticky top-0 z-50">
       <nav
         class="flex items-center justify-end bg-primary-grey-100 px-4 py-4 font-light shadow-md"
       >
         <ul class="flex items-center gap-8 pr-14">
-          <li class="relative flex items-center">
+          <li class="">
             <a
+              class="transform rounded-[8px] bg-blue-600 px-4 py-2 capitalize text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
+              href="./add-product.html"
+            >
+              Add new
+            </a>
+          </li>
+          <li class="relative flex items-center">
+            <button
+              id="user-btn"
               class="custom-underline-transition custom-number-bubble-after"
-              href="admin-panel.html"
             >
               <svg
                 class="fill-slate-800"
@@ -34,7 +44,8 @@
                 />
               </svg>
               <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-green-500 bg-opacity-20"
+                id="user-signed"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 border-transparent bg-green-500 bg-opacity-20"
               >
                 <svg
                   class="fill-green-700"
@@ -48,7 +59,22 @@
                   />
                 </svg>
               </div>
-            </a>
+            </button>
+            <div
+              id="user-nav"
+              class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
+            >
+              <ul class="flex flex-col">
+                <li class="rounded-t-[8px]">
+                  <a
+                    id="login-link"
+                    href="./index.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:text-red-600 hover:underline"
+                    >Log out</a
+                  >
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
@@ -330,5 +356,57 @@
         </form>
       </section>
     </main>
+
+    <footer class="mt-12 bg-slate-800 px-4 py-4 text-white">
+      <div class="mb-8 text-xl font-bold text-white">
+        <a href="./index.html">strength4u</a>
+      </div>
+
+      <hr class="mx-auto mb-8 w-3/4 opacity-50" />
+
+      <div class="flex flex-col items-center justify-center">
+        <ul
+          class="mb-6 flex gap-8 rounded-full border border-solid border-transparent bg-slate-200 px-4 py-1 text-slate-800"
+        >
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/instagram-svgrepo-com.svg"
+                alt="instagram icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/facebook-svgrepo-com.svg"
+                alt="facebook icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/twitter-color-svgrepo.svg"
+                alt="facebook icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/youtube-svgrepo-com.svg"
+                alt="facebook icon"
+              />
+            </a>
+          </li>
+        </ul>
+        <p class="font-extralight">&copy;Copyright. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
