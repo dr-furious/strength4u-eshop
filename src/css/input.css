@@ -63,10 +63,6 @@
     @apply flex flex-col md:flex-row;
   }
 
-  .cm-sort-btn__selected {
-    @apply text-slate-700;
-  }
-
   /* Hide cancel icon in search bar for WebKit browsers like Chrome and Safari */
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden; /* Using Tailwind's 'hidden' utility class */
