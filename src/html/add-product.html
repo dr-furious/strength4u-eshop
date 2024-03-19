@@ -98,10 +98,10 @@
             class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
             id="title"
             name="title"
-            placeholder="Product title (max 25 symbols)"
+            placeholder="Product title (max 50 symbols)"
             type="text"
             required
-            maxlength="25"
+            maxlength="50"
           />
           <!-- Main Description -->
           <label class="my-3 block font-bold" for="desc">
@@ -111,7 +111,7 @@
             class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
             id="desc"
             name="desc"
-            placeholder="Product Description (max 600 symbols, after 2 ENTER`s auto new paragraph)"
+            placeholder="Product Description (max 600 symbols, after 2 ENTER`s auto new paragraph, max 4 paragraph)"
             type="text"
             maxlength="600"
             rows="4"
@@ -125,7 +125,7 @@
             class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
             id="secondary_desc"
             name="secondary_desc"
-            placeholder="Product Secondary Description (max 600 symbols, after 2 ENTER`s auto new paragraph)"
+            placeholder="Product Secondary Description (max 600 symbols, after 2 ENTER`s auto new paragraph, max 4 paragraph)"
             type="text"
             maxlength="600"
             rows="4"
@@ -201,16 +201,23 @@
             type="number"
             required
           />
-          <!-- Tag -->
-          <label class="my-3 block font-bold" for="tag"> Tag* </label>
-          <input
+          <!-- Category -->
+          <label class="my-3 block font-bold" for="category"> Category* </label>
+          <select
+            id="category"
+            name="category"
             class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-            id="tag"
-            name="tag"
-            placeholder="Protein | Vitamins | ..."
-            type="text"
             required
-          />
+          >
+            <option value="">Select a category</option>
+            <!-- Placeholder option -->
+            <option value="proteins">Proteins</option>
+            <option value="amino_acids">Amino Acids</option>
+            <option value="vitamins">Vitamins</option>
+            <option value="minerals">Minerals</option>
+            <option value="healthy_food">Healthy Food</option>
+            <option value="special_offers">Special Offers</option>
+          </select>
           <!-- Vendor -->
           <label class="my-3 block font-bold" for="vendor">Vendor*</label>
           <select
@@ -236,6 +243,7 @@
               name="new_vendor"
               placeholder="Type vendor that is not in the list ..."
               type="text"
+              maxlength="25"
               required
             />
           </div>
@@ -303,7 +311,8 @@
                 type="text"
                 id="new-flavor"
                 class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                placeholder="Enter a flavor"
+                placeholder="Enter a flavor (max 25 symbols)"
+                maxlength="25"
               />
               <button
                 type="button"
@@ -314,21 +323,6 @@
               </button>
             </div>
           </div>
-          <!-- Status -->
-          <label class="my-3 block font-bold" for="status"
-            >Product Status*</label
-          >
-          <select
-            id="status"
-            name="status"
-            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-            required
-          >
-            <option value="">Select status</option>
-            <!-- Placeholder option -->
-            <option value="on_stock">On Stock</option>
-            <option value="sold_out">Sold out</option>
-          </select>
           <button
             class="mt-6 w-64 self-center rounded-md border-2 border-gray-900 bg-black px-6 py-2 font-medium text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
             type="submit"
