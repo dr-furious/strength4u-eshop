@@ -16,23 +16,40 @@ function toggleNewVendorInput() {
 document.getElementById("add-flavor").addEventListener("click", function () {
   const newFlavor = document.getElementById("new-flavor").value.trim();
   if (newFlavor) {
+    // all new elements that are needed
     const div = document.createElement("div");
     const label = document.createElement("label");
-    label.className = "inline-flex items-center";
+    const label_amount = document.createElement("label");
     const input = document.createElement("input");
+    const input_amount = document.createElement("input");
+    const span = document.createElement("span");
+    // define new div
+    div.className = "flex w-96 justify-between";
+    // define new labels
+    label.className = "inline-flex items-center";
+    label_amount.className = "inline-flex items-center";
+    // define all flavour input
     input.type = "checkbox";
     input.className = "form-checkbox";
     input.name = "flavors";
     input.value = newFlavor;
-    const span = document.createElement("span");
+    // define amount input
+    input_amount.type = "number";
+    input_amount.className =
+      "ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md";
+    input_amount.min = "0";
+    input_amount.value = "0";
+    // define span with flavour name
     span.className = "ml-2";
     span.textContent = newFlavor;
-
+    // define structure of defined elements
     label.appendChild(input);
     label.appendChild(span);
+    label_amount.appendChild(input_amount);
     div.appendChild(label);
+    div.appendChild(label_amount);
+    // put all to page + set 'enter a flavour' to empty
     document.getElementById("flavor-list").appendChild(div);
-
     document.getElementById("new-flavor").value = ""; // Clear input field
   }
 });
