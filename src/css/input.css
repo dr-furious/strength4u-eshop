@@ -51,16 +51,8 @@
 @tailwind utilities;
 
 @layer components {
-  .cm-circle-button__checked {
-    @apply border-slate-900 bg-slate-400;
-  }
-
-  .cm-testimonial__hidden {
-    @apply hidden;
-  }
-
-  .cm-testimonial__shown {
-    @apply flex flex-col md:flex-row;
+  .cm-circle-btn__checked {
+    @apply border-slate-700 bg-slate-300;
   }
 
   /* Hide cancel icon in search bar for WebKit browsers like Chrome and Safari */

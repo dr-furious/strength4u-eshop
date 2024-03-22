@@ -6,6 +6,7 @@
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
     <script src="./../js/nav_handlers.js"></script>
+    <script src="./../js/carousel-handler.js"></script>
   </head>
 
   <body class="bg-primary-grey-100 font-dm">
@@ -21,7 +22,7 @@
         <!-- this part of navbar disappears for devices with width bellow 768px -->
         <div
           id="mobile-nav"
-          class="absolute left-0 right-0 top-full flex h-[20rem] max-h-[0] w-full flex-col-reverse items-start justify-end gap-8 overflow-hidden bg-black bg-opacity-95 shadow-2xl transition-all duration-500 ease-in-out md:static md:h-auto md:max-h-[unset] md:flex-row md:items-center md:justify-between md:bg-inherit md:bg-opacity-100 md:p-0 md:shadow-none md:transition-none lg:gap-20 xl:gap-24"
+          class="absolute left-0 right-0 top-full flex h-[20rem] max-h-[0] w-full flex-col-reverse items-start justify-end gap-8 overflow-hidden border-b-2 border-b-primary-grey-100 bg-black bg-opacity-95 shadow-2xl transition-all duration-500 ease-in-out md:static md:h-auto md:max-h-[unset] md:flex-row md:items-center md:justify-between md:border-none md:bg-inherit md:bg-opacity-100 md:p-0 md:shadow-none md:transition-none lg:gap-20 xl:gap-24"
         >
           <ul
             class="flex w-fit flex-col gap-6 px-4 text-lg text-slate-100 md:flex-row md:text-inherit"
@@ -263,7 +264,7 @@
           </p>
           <div class="mt-auto flex w-full items-end justify-end gap-1 pt-2">
             <button
-              class="flex w-3/4 transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
+              class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600"
             >
               <svg
                 class="fill-slate-100"
@@ -274,22 +275,6 @@
               >
                 <path
                   d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"
-                />
-              </svg>
-            </button>
-
-            <button
-              class="flex w-1/4 transform items-center justify-center rounded-[8px] border border-transparent bg-slate-200 p-2 text-slate-700 duration-200 ease-in-out hover:bg-slate-300"
-            >
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                viewBox="0 -960 960 960"
-                width="32"
-              >
-                <path
-                  d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
                 />
               </svg>
             </button>
@@ -1626,177 +1611,275 @@
       class="mx-4 flex flex-col items-center gap-8 pt-12 md:mt-12 lg:mx-16 xl:mx-24 2xl:mx-auto 2xl:max-w-[1280px]"
     >
       <h2 class="text-center text-3xl font-bold capitalize text-slate-800">
-        Trusted by big names
+        Trusted by you
       </h2>
-      <div>
-        <div
-          class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white px-8 py-4 shadow-md lg:px-16 lg:py-8"
+
+      <div
+        class="relative flex max-w-full flex-col gap-1 rounded-[4px] border border-transparent bg-white px-8 py-4 shadow-md md:w-full lg:px-16 lg:py-8"
+      >
+        <!-- left arrow button -->
+        <button
+          id="left-arrow-btn"
+          class="custom-button-shadow bottom absolute left-0 top-1/2 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white lg:flex"
         >
-          <button
-            id="left-arrow-button"
-            class="custom-button-shadow bottom absolute left-0 top-1/2 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white lg:flex"
+          <svg
+            class="h-3/4 w-3/5 stroke-slate-500 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              class="h-3/4 w-3/5 stroke-slate-500 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 19l-7-7 7-7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+            <path
+              d="M15 19l-7-7 7-7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
 
-          <button
-            class="custom-button-shadow absolute right-0 top-1/2 hidden h-16 w-16 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-white lg:flex"
-            id="right-arrow-button"
+        <!-- right arrow button -->
+        <button
+          class="custom-button-shadow absolute right-0 top-1/2 hidden h-16 w-16 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-white lg:flex"
+          id="right-arrow-btn"
+        >
+          <svg
+            class="h-3/4 w-3/5 stroke-slate-500 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              class="h-3/4 w-3/5 stroke-slate-500 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 5l7 7-7 7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+            <path
+              d="M9 5l7 7-7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
 
-          <div class="cm-testimonial__shown gap-4 lg:gap-8">
-            <div class="overflow-hidden rounded-[8px]">
-              <img
-                class="w-full rounded-[8px] object-cover"
-                alt="Lewis Hamilton in F1 car"
-                src="./../../images/lewis-hamilton.jpg"
-              />
-            </div>
-            <div class="flex flex-col-reverse gap-6 md:flex-col">
-              <blockquote class="text-slate-700 lg:text-lg">
-                I am very happy with the products I bought on the Streght4u
-                website. All supplements I had were top quality so I can be even
-                faster. Great products, kind customer service and fast delivery.
-                Keep pushing!
-              </blockquote>
-              <div>
-                <p class="text-slate-800 lg:text-lg">Lewis Hamilton</p>
-                <p class="capitalize text-slate-900">Formula 1 driver</p>
+        <!-- carousel container -->
+        <div id="carousel-container" class="flex flex-nowrap overflow-hidden">
+          <!-- carousel item -->
+          <div class="cm-carousel-item w-full flex-shrink-0">
+            <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
+              <div class="overflow-hidden rounded-[8px] lg:w-1/3">
+                <img
+                  class="h-full w-full max-w-full rounded-[8px] object-cover"
+                  alt="Lewis Hamilton in F1 car"
+                  src="./../../images/man2.jpg"
+                />
+              </div>
+              <div class="flex flex-col-reverse gap-6 md:flex-col lg:w-2/3">
+                <blockquote class="text-slate-800 lg:text-lg">
+                  "Discovering strength4u's range of nutritional supplements has
+                  significantly boosted my training sessions. The quality and
+                  effectiveness of their products are unmatched, providing me
+                  with the extra edge I need to push my limits."
+                </blockquote>
+                <div>
+                  <p class="text-slate-700 lg:text-lg">
+                    Einrí Kendal McAlister
+                  </p>
+                  <p class="capitalize text-slate-600">
+                    Calysthenics Enthusiast
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="cm-testimonial__hidden gap-8">
-            <div class="overflow-hidden rounded-[8px]">
-              <img
-                class="w-full object-cover"
-                alt="Lewis Hamilton in F1 car"
-                src="./../../images/lewis-hamilton.jpg"
-              />
-            </div>
-            <div class="flex flex-col gap-6">
-              <blockquote class="text-lg text-slate-700">
-                I am very happy with the products I bought on the Streght4u
-                website. All supplements I had were top quality so I can be even
-                faster. Great products, kind customer service and fast delivery.
-                Keep pushing!
-              </blockquote>
-              <div>
-                <p class="text-lg text-slate-800">Lewis Hamilton</p>
-                <p class="capitalize text-slate-900">Formula 1 driver</p>
+          <!-- carousel item -->
+          <div class="cm-carousel-item w-full flex-shrink-0">
+            <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
+              <div class="overflow-hidden rounded-[8px] lg:w-1/3">
+                <img
+                  class="h-full w-full max-w-full rounded-[8px] object-cover"
+                  alt="Lewis Hamilton in F1 car"
+                  src="./../../images/woman2.jpg"
+                />
+              </div>
+              <div class="flex flex-col-reverse gap-6 md:flex-col lg:w-2/3">
+                <blockquote class="text-slate-800 lg:text-lg">
+                  "Creativity requires energy, and strength4u's supplements have
+                  been a game-changer for me. Their products help me maintain my
+                  focus and energy during long studio sessions, allowing my
+                  creativity to flow uninterrupted."
+                </blockquote>
+                <div>
+                  <p class="text-slate-700 lg:text-lg">
+                    Mary Jane Michelangela
+                  </p>
+                  <p class="capitalize text-slate-600">Artist</p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="cm-testimonial__hidden gap-8">
-            <div class="overflow-hidden rounded-[8px]">
-              <img
-                class="w-full object-cover"
-                alt="Lewis Hamilton in F1 car"
-                src="./../../images/lewis-hamilton.jpg"
-              />
+          <!-- carousel item -->
+          <div class="cm-carousel-item w-full flex-shrink-0">
+            <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
+              <div class="overflow-hidden rounded-[8px] lg:w-1/3">
+                <img
+                  class="h-full w-full max-w-full rounded-[8px] object-cover"
+                  alt="Lewis Hamilton in F1 car"
+                  src="./../../images/man1.jpg"
+                />
+              </div>
+              <div class="flex flex-col-reverse gap-6 md:flex-col lg:w-2/3">
+                <blockquote class="text-slate-800 lg:text-lg">
+                  "In the world of data analysis, mental clarity and focus are
+                  paramount. Vitamins and minerals are a must for brain health -
+                  and strength4u offers the best ones. They have made a
+                  noticeable difference in my ability to concentrate and work
+                  efficiently on complex problems."
+                </blockquote>
+                <div>
+                  <p class="text-slate-700 lg:text-lg">Ebrahim Ali Jafari</p>
+                  <p class="capitalize text-slate-600">Data Analyst</p>
+                </div>
+              </div>
             </div>
-            <div class="flex flex-col gap-6">
-              <blockquote class="text-lg text-slate-700">
-                I am very happy with the products I bought on the Streght4u
-                website. All supplements I had were top quality so I can be even
-                faster. Great products, kind customer service and fast delivery.
-                Keep pushing!
-              </blockquote>
-              <div>
-                <p class="text-lg text-slate-800">Lewis Hamilton</p>
-                <p class="capitalize text-slate-900">Formula 1 driver</p>
+          </div>
+
+          <!-- carousel item -->
+          <div class="cm-carousel-item w-full flex-shrink-0">
+            <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
+              <div class="overflow-hidden rounded-[8px] lg:w-1/3">
+                <img
+                  class="h-full w-full max-w-full rounded-[8px] object-cover"
+                  alt="Lewis Hamilton in F1 car"
+                  src="./../../images/woman1.jpg"
+                />
+              </div>
+              <div class="flex flex-col-reverse gap-6 md:flex-col lg:w-2/3">
+                <blockquote class="text-slate-800 lg:text-lg">
+                  "As a professional athlete, my body is my tool, and
+                  strength4u's supplements ensure it runs like a well-oiled
+                  machine. Their amino acids and minerals are integral to my
+                  training regimen, regeneration, and success."
+                </blockquote>
+                <div>
+                  <p class="text-slate-700 lg:text-lg">Iris Sundberg</p>
+                  <p class="capitalize text-slate-600">Athlete</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- carousel item -->
+          <div class="cm-carousel-item w-full flex-shrink-0">
+            <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
+              <div class="overflow-hidden rounded-[8px] lg:w-1/3">
+                <img
+                  class="h-full w-full max-w-full rounded-[8px] object-cover"
+                  alt="Lewis Hamilton in F1 car"
+                  src="./../../images/man3.jpeg"
+                />
+              </div>
+              <div class="flex flex-col-reverse gap-6 md:flex-col lg:w-2/3">
+                <blockquote class="text-slate-700 lg:text-lg">
+                  "Managing a fast-paced work environment demands both physical
+                  and mental stamina. Energy supplements keep me sharp and
+                  energized, enabling me to lead my team effectively and handle
+                  challenges with ease - deffinitely recommend!"
+                </blockquote>
+                <div>
+                  <p class="text-slate-800 lg:text-lg">Kaden Barrett</p>
+                  <p class="capitalize text-slate-900">Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- carousel item -->
+          <div class="cm-carousel-item w-full flex-shrink-0">
+            <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
+              <div class="overflow-hidden rounded-[8px] lg:w-1/3">
+                <img
+                  class="h-full w-full max-w-full rounded-[8px] object-cover"
+                  alt="Lewis Hamilton in F1 car"
+                  src="./../../images/woman3.jpeg"
+                />
+              </div>
+              <div class="flex flex-col-reverse gap-6 md:flex-col lg:w-2/3">
+                <blockquote class="text-slate-800 lg:text-lg">
+                  "Balancing client meetings, design projects, and tight
+                  deadlines can be overwhelming. Thanks to strength4u and their
+                  stress management supplements, I can maintain my calm,
+                  creativity, and focus, ensuring every space I design reflects
+                  perfection."
+                </blockquote>
+                <div>
+                  <p class="text-slate-700 lg:text-lg">
+                    Marie-Claire Éloïse Boucher
+                  </p>
+                  <p class="capitalize text-slate-600">Interior Designer</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div
-          id="circle-buttons"
-          class="mt-4 flex items-center justify-center gap-3"
-        >
-          <button class="h-8 w-8 lg:hidden">
-            <svg
-              class="stroke-slate-700 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 19l-7-7 7-7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+      <!-- Circle nav buttons -->
+      <div id="circle-btns" class="flex items-center justify-center gap-3">
+        <!-- Left mobile button -->
+        <button id="left-mobile-btn" class="h-8 w-8 lg:hidden">
+          <svg
+            class="stroke-slate-700 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 19l-7-7 7-7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
 
-          <button
-            class="cm-circle-button__checked cm-circle-button h-4 w-4 rounded-full border-2 border-slate-700 transition duration-200 ease-in-out hover:border-slate-900"
-          ></button>
-          <button
-            class="cm-circle-button h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-900"
-          ></button>
-          <button
-            class="cm-circle-button hover:border-slate-90 h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-900"
-          ></button>
-          <button
-            class="cm-circle-button h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-900"
-          ></button>
-          <button
-            class="cm-circle-button h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-900"
-          ></button>
+        <button
+          class="cm-circle-btn h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-700"
+        ></button>
+        <button
+          class="cm-circle-btn h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-700"
+        ></button>
+        <button
+          class="cm-circle-btn hover:border-slate-90 h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-700"
+        ></button>
+        <button
+          class="cm-circle-btn h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-700"
+        ></button>
+        <button
+          class="cm-circle-btn h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-700"
+        ></button>
 
-          <button
-            class="cm-circle-button h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-900"
-          ></button>
+        <button
+          class="cm-circle-btn h-4 w-4 rounded-full border-2 border-slate-500 transition duration-200 ease-in-out hover:border-slate-700"
+        ></button>
 
-          <button class="h-8 w-8 lg:hidden">
-            <svg
-              class="stroke-slate-700 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 5l7 7-7 7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+        <!-- Right mobile button -->
+        <button id="right-mobile-btn" class="h-8 w-8 lg:hidden">
+          <svg
+            class="stroke-slate-700 transition duration-200 ease-in-out hover:stroke-blue-500 active:stroke-blue-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 5l7 7-7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
       </div>
     </section>
 
