@@ -16,9 +16,9 @@ window.onload = () => {
   addImageToPreview("./../images/protein.png");
   document.getElementById("price").value = "$55,99";
   document.getElementById("discount").value = "0";
-  document.getElementById("amount").value = "3214";
+  document.getElementById("size").value = "3214";
   document.getElementById("tag").value = "protein";
   document.getElementById("vendor").value = "protein";
   document.getElementById("vanilla").checked = true;
-  document.getElementById("status").value = "on_stock";
+  document.getElementById("number_vanilla").value = 123;
 };

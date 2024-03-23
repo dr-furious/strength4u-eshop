@@ -193,11 +193,11 @@
             type="text"
           />
           <!-- Amount -->
-          <label class="my-3 block font-bold" for="amount"> Amount* </label>
+          <label class="my-3 block font-bold" for="size"> Size* </label>
           <input
             class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-            id="amount"
-            name="amount"
+            id="size"
+            name="size"
             placeholder="1,2.3...9999"
             type="number"
             required
@@ -242,63 +242,98 @@
           </div>
           <!-- Flavour -->
           <div id="flavor-list" class="mb-3">
-            <label class="my-3 block font-bold">Flavour*</label>
+            <label class="my-3 block font-bold">Flavour/Amount*</label>
             <div class="mt-2">
               <!-- Flavor checkboxes -->
-              <div>
+              <div class="flex w-96 justify-between">
                 <label class="inline-flex items-center">
                   <input
-                    id="vanilla"
-                    type="checkbox"
-                    class="form-checkbox"
-                    value="Vanilla"
+                          id="vanilla"
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Vanilla"
                   />
                   <span class="ml-2">Vanilla</span>
                 </label>
-              </div>
-              <div>
                 <label class="inline-flex items-center">
                   <input
-                    id="Chocolate"
-                    type="checkbox"
-                    class="form-checkbox"
-                    value="Chocolate"
+                          id="number_vanilla"
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+                </label>
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Chocolate"
                   />
                   <span class="ml-2">Chocolate</span>
                 </label>
-              </div>
-              <div>
                 <label class="inline-flex items-center">
                   <input
-                    id="Strawberry"
-                    type="checkbox"
-                    class="form-checkbox"
-                    value="Strawberry"
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+                </label>
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Strawberry"
                   />
                   <span class="ml-2">Strawberry</span>
                 </label>
-              </div>
-              <div>
                 <label class="inline-flex items-center">
                   <input
-                    id="mint"
-                    type="checkbox"
-                    class="form-checkbox"
-                    value="Mint"
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
                   />
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input type="checkbox" class="form-checkbox" value="Mint" />
                   <span class="ml-2">Mint</span>
                 </label>
-              </div>
-              <div>
                 <label class="inline-flex items-center">
                   <input
-                    id="cookie"
-                    type="checkbox"
-                    class="form-checkbox"
-                    value="Cookie Dough"
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Cookie Dough"
                   />
                   <span class="ml-2">Cookie Dough</span>
                 </label>
+                <label class="inline-flex items-center">
+                  <input
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
               </div>
             </div>
           </div>
@@ -324,21 +359,6 @@
               </button>
             </div>
           </div>
-          <!-- Status -->
-          <label class="my-3 block font-bold" for="status"
-            >Product Status*</label
-          >
-          <select
-            id="status"
-            name="status"
-            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-            required
-          >
-            <option value="">Select status</option>
-            <!-- Placeholder option -->
-            <option value="on_stock">On Stock</option>
-            <option value="sold_out">Sold out</option>
-          </select>
           <div class="mx-auto mt-6 flex gap-4">
             <a
               class="w-64 rounded-md border-2 border-gray-900 bg-black px-6 py-2 text-center font-medium text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
