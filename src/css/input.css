@@ -46,6 +46,12 @@
     inset -6px -6px 8px #d3d5d6;
 }
 
+.custom-number-input-rm-arrows::-webkit-inner-spin-button,
+.custom-number-input-rm-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

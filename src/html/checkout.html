@@ -20,10 +20,10 @@
       <nav
         class="relative flex max-w-screen-2xl items-center justify-between gap-8 bg-primary-grey-100 px-4 py-4 font-light lg:gap-20 xl:mx-auto xl:gap-24"
       >
-        <!-- navbar disappears for devices with width below 768px -->
+        <!-- this part of navbar disappears for devices with width bellow 768px -->
         <div
           id="mobile-nav"
-          class="absolute left-0 right-0 top-full flex h-[20rem] max-h-[0] w-full flex-col-reverse items-start justify-end gap-8 overflow-hidden bg-black bg-opacity-95 shadow-2xl transition-all duration-500 ease-in-out md:static md:h-auto md:max-h-[unset] md:flex-row md:items-center md:justify-between md:bg-inherit md:bg-opacity-100 md:p-0 md:shadow-none md:transition-none lg:gap-20 xl:gap-24"
+          class="absolute left-0 right-0 top-full flex h-[20rem] max-h-[0] w-full flex-col-reverse items-start justify-end gap-8 overflow-hidden border-b-2 border-b-primary-grey-100 bg-black bg-opacity-95 shadow-2xl transition-all duration-500 ease-in-out md:static md:h-auto md:max-h-[unset] md:flex-row md:items-center md:justify-between md:border-none md:bg-inherit md:bg-opacity-100 md:p-0 md:shadow-none md:transition-none lg:gap-20 xl:gap-24"
         >
           <ul
             class="flex w-fit flex-col gap-6 px-4 text-lg text-slate-100 md:flex-row md:text-inherit"
@@ -60,7 +60,7 @@
             />
             <button
               type="submit"
-              class="absolute right-4 inline-flex h-full items-center"
+              class="absolute right-6 inline-flex h-full items-center"
             >
               <svg
                 class="fill-slate-500"
@@ -78,6 +78,7 @@
         </div>
 
         <ul class="flex w-full items-center justify-end gap-8 md:w-fit">
+          <!-- Burger icon to display menu for small devices bellow 768px -->
           <li class="mr-auto md:hidden" id="show-nav-li">
             <button id="show-mobile-nav-btn" class="">
               <svg
@@ -94,6 +95,7 @@
             </button>
           </li>
 
+          <!-- Cross icon to hide menu for small devices bellow 768px -->
           <li class="mr-auto hidden md:hidden" id="hide-nav-li">
             <button id="hide-mobile-nav-btn" class="">
               <svg
@@ -112,10 +114,10 @@
 
           <li class="relative">
             <a
-              class="custom-underline-transition custom-number-bubble-after"
+              class="custom-underline-transition custom-number-bubble-after flex items-center"
               href="./cart.html"
               ><svg
-                class="inline-flex items-center fill-slate-800"
+                class="fill-slate-800"
                 xmlns="http://www.w3.org/2000/svg"
                 height="32"
                 viewBox="0 -960 960 960"
@@ -136,10 +138,10 @@
           <li class="relative">
             <button
               id="user-btn"
-              class="custom-underline-transition custom-number-bubble-after"
+              class="custom-underline-transition custom-number-bubble-after flex items-center"
             >
               <svg
-                class="inline-flex items-center fill-slate-800"
+                class="fill-slate-800"
                 xmlns="http://www.w3.org/2000/svg"
                 height="32"
                 viewBox="0 -960 960 960"
@@ -166,6 +168,8 @@
                 </svg>
               </div>
             </button>
+
+            <!-- User navigation -->
             <div
               id="user-nav"
               class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
