@@ -6,42 +6,7 @@
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
     <script src="./../js/nav_handlers.js"></script>
-    <script>
-      function decrement(e) {
-        const container = e.target.closest(".custom-number-input");
-        const input = container.querySelector('input[type="number"]');
-        let value = Number(input.value);
-        if (value > 0) {
-          value--;
-          input.value = value;
-        }
-      }
-
-      function increment(e) {
-        const container = e.target.closest(".custom-number-input");
-        const input = container.querySelector('input[type="number"]');
-        let value = Number(input.value);
-        value++;
-        input.value = value;
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const decrementButtons = document.querySelectorAll(
-          'button[data-action="decrement"]',
-        );
-        const incrementButtons = document.querySelectorAll(
-          'button[data-action="increment"]',
-        );
-
-        decrementButtons.forEach((btn) => {
-          btn.addEventListener("click", decrement);
-        });
-
-        incrementButtons.forEach((btn) => {
-          btn.addEventListener("click", increment);
-        });
-      });
-    </script>
+    <script src="./../js/amount_handler.js"></script>
   </head>
   <body class="bg-primary-grey-100 font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">
@@ -240,10 +205,10 @@
       </nav>
     </header>
 
-    <div class="flex gap-8 bg-white py-4 pl-12">
-      <p class="font-bold text-slate-800">1. Shopping Cart</p>
-      <p class="text-slate-500">2. Checkout</p>
-      <p class="text-slate-500">3. Order Succesed</p>
+    <div class="flex flex-row gap-4 p-4">
+      <p class="mx-2 font-bold md:mx-7">1. Shopping Cart</p>
+      <p class="mx-2 text-gray-700 md:mx-7">2. Checkout</p>
+      <p class="mx-2 text-gray-700 md:mx-7">3. Order Succeed</p>
     </div>
     <h2 class="w-full p-8 text-center text-4xl font-bold text-slate-800">
       My Cart
@@ -615,25 +580,21 @@
 
       <!-- Price and checkout section -->
       <section
-        class="sticky top-24 mx-auto mt-4 flex max-w-72 flex-col gap-4 self-start rounded-[4px] border bg-gray-200 p-6 shadow-sm lg:mt-0 lg:w-72"
+        class="mx-auto my-2 mb-6 mt-6 flex min-w-80 flex-col rounded-lg border bg-gray-200 p-6 lg:fixed lg:right-0 lg:mx-2 lg:w-1/4 lg:min-w-0 lg:max-w-full"
       >
-        <h2 class="text-center text-xl font-bold">Cart Totals</h2>
-        <div class="flex justify-between">
-          <p class="text-lg font-bold">Total</p>
+        <h2 class="mb-5 text-center text-xl font-bold">Cart Total</h2>
+        <div class="my-2 flex justify-between">
+          <p class="text-lg font-bold">Subtotal</p>
           <div>
-            <p class="text-lg font-bold">$134.98</p>
-            <p class="text-sm text-gray-700">including VAT</p>
+            <p class="mb-1 text-lg font-bold" id="subtotal">$200</p>
           </div>
         </div>
         <a
-          class="w-full self-center rounded-md border-2 border-gray-900 bg-black px-6 py-2 text-center font-medium text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
           href="checkout.html"
+          class="mt-6 w-4/5 self-center rounded-md border-2 border-gray-900 bg-black px-6 py-2 text-center font-medium text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
         >
-          Check Out
+          Checkout
         </a>
-        <p class="text-sm text-gray-700">
-          For postage information, proceed to checkout
-        </p>
       </section>
     </main>
 

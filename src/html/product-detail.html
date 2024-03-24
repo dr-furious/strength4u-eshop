@@ -6,6 +6,7 @@
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
     <script src="./../js/nav_handlers.js"></script>
+    <script src="./../js/amount_handler.js"></script>
   </head>
   <body class="font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">
@@ -231,7 +232,7 @@
       </section>
       <section class="mx-5 flex flex-col items-start md:mx-0 md:w-1/2">
         <h2
-          class="mb-5 self-center text-4xl font-bold md:mb-10 md:self-start md:text-6xl"
+          class="mb-5 mt-8 self-center text-4xl font-bold md:mb-10 md:mr-5 md:self-start md:text-6xl"
         >
           Whey Protein Ultra
         </h2>
@@ -292,7 +293,7 @@
             class="mx-10 flex h-10 w-40 items-center justify-center text-center md:w-60"
           >
             <select
-              class="h-full w-full rounded-[8px] bg-gray-300 p-2 text-center outline-none focus:outline-none"
+              class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
             >
               {genre.map((item, i) => (
               <option key="{i}" value="{item}">Select Flavour</option>
@@ -310,7 +311,7 @@
             class="mx-10 flex h-10 w-40 items-center justify-center text-center md:w-60"
           >
             <select
-              class="h-full w-full rounded-[8px] bg-gray-300 p-2 text-center outline-none focus:outline-none"
+              class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
             >
               {genre.map((item, i) => (
               <option key="{i}" value="{item}">Select Size</option>
@@ -324,7 +325,7 @@
         </div>
         <div class="mr-0 mt-8 flex flex-row self-center xl:mr-40">
           <button
-            class="mx-10 flex flex-row rounded-lg border-2 border-gray-900 bg-black px-6 py-2 text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
+            class="mx-10 flex flex-row rounded-lg bg-blue-500 px-6 py-2 text-black transition duration-200 ease-in hover:bg-blue-600 focus:outline-none"
           >
             Add to cart
             <svg
@@ -432,44 +433,4 @@
       </div>
     </footer>
   </body>
-
-  <script>
-    function decrement(e) {
-      const btn = e.target.parentNode.parentElement.querySelector(
-        'button[data-action="decrement"]',
-      );
-      const target = btn.nextElementSibling;
-      let value = Number(target.value);
-      if (value > 0) {
-        value--;
-      }
-      target.value = value;
-    }
-
-    function increment(e) {
-      const btn = e.target.parentNode.parentElement.querySelector(
-        'button[data-action="decrement"]',
-      );
-      const target = btn.nextElementSibling;
-      let value = Number(target.value);
-      value++;
-      target.value = value;
-    }
-
-    const decrementButtons = document.querySelectorAll(
-      `button[data-action="decrement"]`,
-    );
-
-    const incrementButtons = document.querySelectorAll(
-      `button[data-action="increment"]`,
-    );
-
-    decrementButtons.forEach((btn) => {
-      btn.addEventListener("click", decrement);
-    });
-
-    incrementButtons.forEach((btn) => {
-      btn.addEventListener("click", increment);
-    });
-  </script>
 </html>

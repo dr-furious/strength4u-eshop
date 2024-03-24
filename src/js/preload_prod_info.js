@@ -10,10 +10,10 @@ window.onload = () => {
     "\n" +
     "\n" +
     "But it's not just about the protein. This blend is infused with a robust, manly flavour profile that sets it apart from the rest. Imagine the rich, deep taste of dark chocolate, seamlessly combined with the bold, earthy notes of espresso and a hint of smoky bourbon. It's a flavour that commands attention, satisfying the palate with every sip, making your protein shake not just a part of your routine, but a luxurious ritual.";
-  addImageToPreview("./../images/protein.png");
-  addImageToPreview("./../images/protein.png");
-  addImageToPreview("./../images/protein.png");
-  addImageToPreview("./../images/protein.png");
+  addImageToPreview("./../../images/protein.png");
+  addImageToPreview("./../../images/protein.png");
+  addImageToPreview("./../../images/protein.png");
+  addImageToPreview("./../../images/protein.png");
   document.getElementById("price").value = "$55,99";
   document.getElementById("discount").value = "0";
   document.getElementById("size").value = "3214";
