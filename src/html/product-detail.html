@@ -6,6 +6,7 @@
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
     <script src="./../js/nav_handlers.js"></script>
+    <script src="./../js/amount_handler.js"></script>
   </head>
   <body class="font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">
@@ -205,7 +206,7 @@
     </header>
 
     <main
-      class="mb-3 flex flex-col md:mt-8 md:flex-row 2xl:mx-auto 2xl:max-w-[1280px]"
+      class="mb-8 flex flex-col px-1 md:mt-8 md:flex-row md:px-4 2xl:mx-auto 2xl:max-w-[1280px]"
     >
       <section class="flex flex-col items-start justify-start md:w-1/2">
         <div class="mt-5 flex items-center justify-center">
@@ -231,7 +232,7 @@
       </section>
       <section class="mx-5 flex flex-col items-start md:mx-0 md:w-1/2">
         <h2
-          class="mb-5 self-center text-4xl font-bold md:mb-10 md:self-start md:text-6xl"
+          class="mb-5 mt-8 self-center text-4xl font-bold md:mb-10 md:mr-5 md:self-start md:text-6xl"
         >
           Whey Protein Ultra
         </h2>
@@ -254,93 +255,96 @@
             maximizing the nutritional benefits.
           </p>
         </article>
-        <div class="md:mr-42 mr-0 mt-8 flex flex-row">
-          <h3 class="my-auto mb-1 min-w-20 text-xl font-bold lg:mx-7">
-            Quantity
-          </h3>
-          <!--https://tailwindcomponents.com/component/number-input-counter -->
-          <div
-            class="custom-number-input mx-8 flex w-40 flex-row rounded-[8px] text-center md:w-60"
-          >
-            <button
-              class="h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
-              data-action="decrement"
-            >
-              <span class="m-auto text-2xl font-thin">−</span>
-            </button>
 
-            <input
-              class="text-md md:text-basecursor-default flex w-2/4 items-center bg-primary-grey-100 text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:outline-none"
-              min="0"
-              name="custom-input-number"
-              type="number"
-              value="0"
-            />
-            <button
-              class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
-              data-action="increment"
+        <div class="mt-12 flex w-full flex-col justify-end gap-8 lg:w-8/12">
+          <div class="flex w-full flex-row gap-4">
+            <h3 class="my-auto mb-1 w-1/4 text-xl font-bold">Quantity</h3>
+            <!--https://tailwindcomponents.com/component/number-input-counter -->
+            <div
+              class="custom-number-input flex h-10 w-3/4 flex-row rounded-[8px] text-center"
             >
-              <span class="m-auto text-2xl font-thin">+</span>
+              <button
+                class="h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                data-action="decrement"
+              >
+                <span class="m-auto text-2xl font-thin">−</span>
+              </button>
+
+              <input
+                class="text-md md:text-basecursor-default flex w-2/4 items-center bg-primary-grey-100 text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:outline-none"
+                min="0"
+                name="custom-input-number"
+                type="number"
+                value="0"
+              />
+              <button
+                class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+                data-action="increment"
+              >
+                <span class="m-auto text-2xl font-thin">+</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Flavour -->
+          <div class="flex w-full flex-row gap-4">
+            <h3 class="my-auto mb-1 w-1/4 min-w-20 text-xl font-bold">
+              Flavour
+            </h3>
+            <div
+              class="flex h-10 w-3/4 items-center justify-center text-center"
+            >
+              <select
+                class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
+              >
+                <option value="">Select Flavour</option>
+                <option value="chocolate">Chocolate</option>
+                <option value="vanilla">Vanilla</option>
+                <option value="chocolate-mint">Chocolate-Mint</option>
+                <option value="banana">Banana</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Size -->
+          <div class="flex w-full flex-row gap-4">
+            <h3 class="mb-1 w-1/4 min-w-20 text-xl font-bold">Size</h3>
+            <div
+              class="flex h-10 w-3/4 items-center justify-center text-center"
+            >
+              <select
+                class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
+              >
+                <option value="">Select Size</option>
+                <option value="250g">250g</option>
+                <option value="500g">500g</option>
+                <option value="2025g">2025g</option>
+                <option value="4000g">4000g</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Action button -->
+          <div class="flex items-center justify-end text-center">
+            <button
+              class="flex flex-row rounded-lg bg-blue-600 px-6 py-3 text-white transition duration-200 ease-in hover:bg-blue-700 focus:outline-none"
+            >
+              Add to cart
+              <svg
+                class="ml-2 h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
             </button>
           </div>
-        </div>
-        <div class="mr-0 mt-8 flex flex-row md:mr-40">
-          <h3 class="my-auto mb-1 min-w-20 text-xl font-bold lg:mx-7">
-            Flavour
-          </h3>
-          <div
-            class="mx-10 flex h-10 w-40 items-center justify-center text-center md:w-60"
-          >
-            <select
-              class="h-full w-full rounded-[8px] bg-gray-300 p-2 text-center outline-none focus:outline-none"
-            >
-              {genre.map((item, i) => (
-              <option key="{i}" value="{item}">Select Flavour</option>
-              <option key="{i}" value="{item}">Chocolate</option>
-              <option key="{i}" value="{item}">Vanilla</option>
-              <option key="{i}" value="{item}">Chocolate-Mint</option>
-              <option key="{i}" value="{item}">Banana</option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div class="mr-0 mt-8 flex flex-row md:mr-40">
-          <h3 class="my-auto mb-1 min-w-20 text-xl font-bold lg:mx-7">Size</h3>
-          <div
-            class="mx-10 flex h-10 w-40 items-center justify-center text-center md:w-60"
-          >
-            <select
-              class="h-full w-full rounded-[8px] bg-gray-300 p-2 text-center outline-none focus:outline-none"
-            >
-              {genre.map((item, i) => (
-              <option key="{i}" value="{item}">Select Size</option>
-              <option key="{i}" value="{item}">250 g</option>
-              <option key="{i}" value="{item}">500 g</option>
-              <option key="{i}" value="{item}">2,25 kg</option>
-              <option key="{i}" value="{item}">4 kg</option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div class="mr-0 mt-8 flex flex-row self-center xl:mr-40">
-          <button
-            class="mx-10 flex flex-row rounded-lg border-2 border-gray-900 bg-black px-6 py-2 text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
-          >
-            Add to cart
-            <svg
-              class="ml-2 h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-              />
-            </svg>
-          </button>
         </div>
       </section>
     </main>
@@ -432,44 +436,4 @@
       </div>
     </footer>
   </body>
-
-  <script>
-    function decrement(e) {
-      const btn = e.target.parentNode.parentElement.querySelector(
-        'button[data-action="decrement"]',
-      );
-      const target = btn.nextElementSibling;
-      let value = Number(target.value);
-      if (value > 0) {
-        value--;
-      }
-      target.value = value;
-    }
-
-    function increment(e) {
-      const btn = e.target.parentNode.parentElement.querySelector(
-        'button[data-action="decrement"]',
-      );
-      const target = btn.nextElementSibling;
-      let value = Number(target.value);
-      value++;
-      target.value = value;
-    }
-
-    const decrementButtons = document.querySelectorAll(
-      `button[data-action="decrement"]`,
-    );
-
-    const incrementButtons = document.querySelectorAll(
-      `button[data-action="increment"]`,
-    );
-
-    decrementButtons.forEach((btn) => {
-      btn.addEventListener("click", decrement);
-    });
-
-    incrementButtons.forEach((btn) => {
-      btn.addEventListener("click", increment);
-    });
-  </script>
 </html>
