@@ -52,6 +52,14 @@
   margin: 0;
 }
 
+.cm-required::after {
+  content: "*";
+  vertical-align: top;
+  font-size: 1.125rem;
+  margin-left: 0.125rem;
+  color: rgb(238, 0, 71);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
