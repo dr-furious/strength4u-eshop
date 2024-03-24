@@ -46,24 +46,28 @@
     inset -6px -6px 8px #d3d5d6;
 }
 
+.custom-number-input-rm-arrows::-webkit-inner-spin-button,
+.custom-number-input-rm-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  .cm-circle-button__checked {
-    @apply border-slate-900 bg-slate-400;
+  .cm-circle-btn__checked {
+    @apply border-slate-700 bg-slate-300;
   }
 
-  .cm-testimonial__hidden {
+  /* Hide cancel icon in search bar for WebKit browsers like Chrome and Safari */
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden; /* Using Tailwind's 'hidden' utility class */
+  }
+
+  /* Hide cancel icon in search bar for Firefox */
+  input[type="search"]::-moz-search-clear-button {
     @apply hidden;
-  }
-
-  .cm-testimonial__shown {
-    @apply flex flex-col md:flex-row;
-  }
-
-  .cm-sort-btn__selected {
-    @apply text-slate-700;
   }
 }

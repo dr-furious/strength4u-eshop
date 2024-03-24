@@ -1,152 +1,118 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
-    <title>strength4u-shop</title>
-    <script>
-      function setupFilterToggle(buttonId, filterListId) {
-        const button = document.getElementById(buttonId);
-        const filterList = document.getElementById(filterListId);
-        const chevronIcon = button.querySelector(".cm-filter-chevron-icon");
-        const indicator = filterList.querySelector(".cm-scroll-indicator");
-
-        button.addEventListener("click", () => {
-          filterList.classList.toggle("max-h-0");
-          filterList.classList.toggle("max-h-80"); // Adjust visibility
-          remSize = parseFloat(
-            getComputedStyle(document.documentElement).fontSize,
-          ); // Get the rem size
-          if (
-            indicator != null &&
-            indicator.classList.contains("hidden") &&
-            filterList.classList.contains("max-h-80") &&
-            filterList.scrollHeight > 20 * remSize
-          ) {
-            indicator.classList.remove("hidden"); // Show scroll indicator when list has height greater then 20rem (max-h-80 in tailwind)
-            filterList.scrollTop = 0; // Scroll the list to its top
-          } else if (
-            filterList.classList.contains("max-h-0") &&
-            indicator != null &&
-            !indicator.classList.contains("hidden")
-          ) {
-            indicator.classList.add("hidden");
-          }
-
-          if (chevronIcon) {
-            chevronIcon.classList.toggle("rotate-90"); // Rotate chevron, if exists
-          }
-        });
-      }
-
-      function handleScroll(filterListId) {
-        const filterList = document.getElementById(filterListId);
-        const indicator = filterList.querySelector(".cm-scroll-indicator");
-
-        const checkScroll = (keepHidden) => {
-          if (indicator.classList.contains("hidden") && keepHidden === true) {
-            return;
-          }
-          if (
-            filterList.scrollTop + filterList.offsetHeight >=
-            filterList.scrollHeight
-          ) {
-            // Check if the list has been scrolled to the bottom
-            indicator.classList.add("hidden"); // Hide gradient
-          } else {
-            indicator.classList.remove("hidden"); // Show gradient
-          }
-        };
-
-        filterList.addEventListener("scroll", (event) =>
-          checkScroll(event, false),
-        );
-        checkScroll(true); // Initialize indicator state based on current scroll
-      }
-
-      function updatePriceValue(value) {
-        document.getElementById("currentPrice").textContent = value;
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        setupFilterToggle("flavourBtn", "flavourList");
-        setupFilterToggle("brandBtn", "brandList");
-        setupFilterToggle("categoryBtn", "categoryList");
-        setupFilterToggle("priceBtn", "priceList");
-
-        handleScroll("flavourList");
-        handleScroll("brandList");
-        handleScroll("categoryList");
-      });
-    </script>
+    <script src="./../js/nav_handlers.js"></script>
+    <script src="./../js/ordering-filter_handlers.js"></script>
   </head>
   <body class="bg-primary-grey-100 font-dm">
-    <div class="bg-white px-4 py-4 text-xl font-bold">strength4u</div>
-    <header class="sticky top-0 z-50">
+    <div class="bg-white px-4 py-4 text-xl font-bold">
+      <a href="./index.html">strength4u</a>
+    </div>
+    <header
+      class="sticky top-0 z-50 w-full bg-primary-grey-100 shadow-md lg:px-10"
+    >
       <nav
-        class="bg-primary-grey-100 flex items-center justify-around px-4 py-4 font-light shadow-md"
+        class="relative flex max-w-screen-2xl items-center justify-between gap-8 bg-primary-grey-100 px-4 py-4 font-light lg:gap-20 xl:mx-auto xl:gap-24"
       >
-        <ul class="flex gap-6 text-lg">
-          <li>
-            <a class="custom-underline-transition" href="./index.html">Home</a>
-          </li>
-          <li>
-            <a class="custom-underline-transition" href="./shop.html">Shop</a>
-          </li>
-          <li>
-            <a class="custom-underline-transition" href="./index.html">About</a>
-          </li>
-        </ul>
+        <!-- this part of navbar disappears for devices with width bellow 768px -->
+        <div
+          id="mobile-nav"
+          class="absolute left-0 right-0 top-full flex h-[20rem] max-h-[0] w-full flex-col-reverse items-start justify-end gap-8 overflow-hidden border-b-2 border-b-primary-grey-100 bg-black bg-opacity-95 shadow-2xl transition-all duration-500 ease-in-out md:static md:h-auto md:max-h-[unset] md:flex-row md:items-center md:justify-between md:border-none md:bg-inherit md:bg-opacity-100 md:p-0 md:shadow-none md:transition-none lg:gap-20 xl:gap-24"
+        >
+          <ul
+            class="flex w-fit flex-col gap-6 px-4 text-lg text-slate-100 md:flex-row md:text-inherit"
+          >
+            <li>
+              <a class="custom-underline-transition" href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a class="custom-underline-transition" href="./shop.html">Shop</a>
+            </li>
+            <li>
+              <a
+                class="custom-underline-transition"
+                href="./index.html#about-us"
+                >About
+              </a>
+            </li>
+          </ul>
 
-        <div class="relative w-1/2">
-          <label class="hidden" for="search-bar">Search</label>
-          <input
-            class="h-12 w-full rounded-[4px] border px-6 font-light"
-            type="search"
-            name="search-bar"
-            id="search-bar"
-            placeholder="Search for your favourite product..."
-          />
-          <div class="absolute right-3 inline-flex h-full items-center">
-            <svg
-              class="fill-slate-500"
-              xmlns="http://www.w3.org/2000/svg"
-              height="32"
-              viewBox="0 -960 960 960"
-              width="32"
+          <form
+            action="/search"
+            method="GET"
+            class="relative mt-4 w-full px-4 md:mt-0"
+          >
+            <label for="search-bar" class="hidden">Search</label>
+            <input
+              class="h-12 w-full rounded-[4px] border border-slate-200 px-4 font-light outline-blue-600"
+              type="search"
+              name="query"
+              id="search-bar"
+              placeholder="Search for your favourite product..."
+            />
+            <button
+              type="submit"
+              class="absolute right-6 inline-flex h-full items-center"
             >
-              <path
-                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <ul class="flex gap-8">
-          <li class="relative">
-            <a class="custom-underline-transition" href="#"
-              ><svg
-                class="fill-slate-800"
+              <svg
+                class="fill-slate-500"
                 xmlns="http://www.w3.org/2000/svg"
                 height="32"
                 viewBox="0 -960 960 960"
                 width="32"
               >
                 <path
-                  d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"
+                  d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
                 />
               </svg>
-              <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+            </button>
+          </form>
+        </div>
+
+        <ul class="flex w-full items-center justify-end gap-8 md:w-fit">
+          <!-- Burger icon to display menu for small devices bellow 768px -->
+          <li class="mr-auto md:hidden" id="show-nav-li">
+            <button id="show-mobile-nav-btn" class="">
+              <svg
+                class="inline-flex items-center fill-slate-800"
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                viewBox="0 -960 960 960"
+                width="32"
               >
-                0
-              </div></a
-            >
+                <path
+                  d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+                />
+              </svg>
+            </button>
           </li>
+
+          <!-- Cross icon to hide menu for small devices bellow 768px -->
+          <li class="mr-auto hidden md:hidden" id="hide-nav-li">
+            <button id="hide-mobile-nav-btn" class="">
+              <svg
+                class="inline-flex items-center fill-slate-800"
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                viewBox="0 -960 960 960"
+                width="32"
+              >
+                <path
+                  d="M256-192.348 192.348-256l224-224-224-224L256-767.652l224 224 224-224L767.652-704l-224 224 224 224L704-192.348l-224-224-224 224Z"
+                />
+              </svg>
+            </button>
+          </li>
+
           <li class="relative">
             <a
-              class="custom-underline-transition custom-number-bubble-after"
+              class="custom-underline-transition custom-number-bubble-after flex items-center"
               href="./cart.html"
               ><svg
                 class="fill-slate-800"
@@ -160,17 +126,17 @@
                 />
               </svg>
               <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-slate-800 text-slate-100"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 bg-slate-800 text-slate-100"
               >
                 9+
-              </div></a
-            >
+              </div>
+            </a>
           </li>
 
           <li class="relative">
-            <a
-              class="custom-underline-transition custom-number-bubble-after"
-              href="#"
+            <button
+              id="user-btn"
+              class="custom-underline-transition custom-number-bubble-after flex items-center"
             >
               <svg
                 class="fill-slate-800"
@@ -184,7 +150,8 @@
                 />
               </svg>
               <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-green-500 bg-opacity-20"
+                id="user-signed"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 bg-green-500 bg-opacity-20"
               >
                 <svg
                   class="fill-green-700"
@@ -198,12 +165,46 @@
                   />
                 </svg>
               </div>
-            </a>
+            </button>
+
+            <!-- User navigation -->
+            <div
+              id="user-nav"
+              class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
+            >
+              <ul class="flex flex-col">
+                <li class="rounded-t-[8px]">
+                  <a
+                    id="login-link"
+                    href="./login.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                    >Log in</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="signup-link"
+                    href="./signup.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                    >Sign up</a
+                  >
+                </li>
+                <li class="rounded-b-[8px] border-t">
+                  <a
+                    id="admin-link"
+                    href="./admin-panel.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                    >Admin</a
+                  >
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
     </header>
 
+    <!-- Hero section-->
     <section
       style="background-image: url(./../../images/woman-gym.jpg)"
       class="relative h-96 bg-cover bg-left"
@@ -212,7 +213,7 @@
       <div class="absolute inset-0 bg-black opacity-65"></div>
 
       <div
-        class="z-2 absolute bottom-28 left-20 flex flex-col gap-6 text-white"
+        class="z-2 absolute bottom-24 left-6 flex flex-col items-start gap-6 pr-2 text-white md:left-20"
       >
         <h1 class="text-4xl font-bold capitalize">Let us be your strength!</h1>
         <p class="text-lg font-light">
@@ -221,6 +222,7 @@
       </div>
     </section>
 
+    <!-- Products and filters section -->
     <section
       class="mx-4 flex flex-col items-center gap-4 pt-12 md:mt-8 lg:gap-12 xl:mx-24 2xl:mx-auto 2xl:max-w-[1280px]"
     >
@@ -228,29 +230,117 @@
         Shop
       </h2>
 
+      <!-- Buttons for ordering and filtering for screens bellow 1024px -->
       <div
-        class="ml-auto flex w-full gap-6 px-4 font-semibold text-slate-800 lg:w-3/4 lg:pl-12"
+        class="mb-6 flex w-full justify-between gap-8 border-b border-slate-200 py-4 text-lg text-slate-800 sm:justify-end lg:hidden"
+      >
+        <button
+          id="display-filter-btn"
+          class="flex gap-2 rounded-[8px] border border-slate-300 bg-slate-200 px-4 py-2 shadow-md hover:bg-slate-300 active:bg-slate-300"
+        >
+          <p>Filter</p>
+          <svg
+            class="flex items-center fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 -960 960 960"
+            width="24"
+          >
+            <path
+              d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z"
+            />
+          </svg>
+        </button>
+        <button
+          id="display-ordering-btn"
+          class="flex gap-2 rounded-[8px] border border-slate-300 bg-slate-200 px-4 py-2 shadow-md hover:bg-slate-300 active:bg-slate-300"
+        >
+          <p>Order</p>
+          <svg
+            class="flex items-center fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 -960 960 960"
+            width="24"
+          >
+            <path
+              d="M314.022-439.522v-274.565l-97.5 97.5-64.653-63.652 207.653-207.892 207.652 207.892-64.652 63.652-97.5-97.5v274.565h-91ZM600.478-71.869 392.826-279.761l64.652-63.652 97.5 97.5v-274.565h91v274.565l97.5-97.5 64.653 63.652L600.478-71.869Z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Ordering -->
+      <div
+        id="ordering-menu"
+        class="fixed bottom-0 left-0 right-0 top-0 z-50 ml-auto flex w-full translate-x-full transform flex-col gap-6 bg-primary-grey-100 p-4 font-semibold text-slate-800 transition-transform duration-500 ease-in-out md:pr-48 lg:static lg:z-auto lg:w-3/4 lg:translate-x-0 lg:flex-row lg:p-0 lg:pl-12 lg:transition-none"
       >
         <p class="text-2xl">Order By:</p>
-        <ul class="flex items-center gap-8 text-xl text-slate-400">
+        <ul
+          class="flex flex-col items-start gap-8 text-xl text-slate-400 lg:flex-row lg:items-center"
+        >
           <li>
-            <button class="cm-sort-btn__selected hover:text-slate-700">
+            <button class="cm-order-btn text-slate-700 hover:text-slate-700">
               Newest
             </button>
           </li>
-          <li><button class="hover:text-slate-700">Oldest</button></li>
-          <li><button class="hover:text-slate-700">Discount</button></li>
-          <li><button class="hover:text-slate-700">Price up</button></li>
-          <li><button class="hover:text-slate-700">Price down</button></li>
+          <li>
+            <button class="cm-order-btn hover:text-slate-700">Oldest</button>
+          </li>
+          <li>
+            <button class="cm-order-btn hover:text-slate-700">Discount</button>
+          </li>
+          <li>
+            <button class="cm-order-btn hover:text-slate-700">Price up</button>
+          </li>
+          <li>
+            <button class="cm-order-btn hover:text-slate-700">
+              Price down
+            </button>
+          </li>
         </ul>
+        <button
+          id="hide-ordering-btn"
+          class="fixed right-0 top-0 p-4 lg:hidden"
+        >
+          <svg
+            class="inline-flex items-center fill-slate-800"
+            xmlns="http://www.w3.org/2000/svg"
+            height="32"
+            viewBox="0 -960 960 960"
+            width="32"
+          >
+            <path
+              d="M256-192.348 192.348-256l224-224-224-224L256-767.652l224 224 224-224L767.652-704l-224 224 224 224L704-192.348l-224-224-224 224Z"
+            />
+          </svg>
+        </button>
       </div>
 
       <div class="flex flex-col gap-16 lg:flex-row">
+        <!-- Filters -->
         <div
-          class="bg-primary-grey-100 flex w-full flex-col gap-3 overflow-y-scroll px-4 lg:w-1/4"
+          id="filter-menu"
+          class="fixed bottom-0 left-0 right-0 top-0 z-50 flex w-full translate-x-full transform flex-col gap-3 overflow-y-auto bg-primary-grey-100 px-4 font-semibold text-slate-800 transition-transform duration-500 ease-in-out md:pr-48 lg:static lg:z-auto lg:w-1/4 lg:translate-x-0 lg:pr-0 lg:transition-none"
         >
+          <button
+            id="hide-filter-btn"
+            class="fixed right-0 top-0 p-4 lg:hidden"
+          >
+            <svg
+              class="inline-flex items-center fill-slate-800"
+              xmlns="http://www.w3.org/2000/svg"
+              height="32"
+              viewBox="0 -960 960 960"
+              width="32"
+            >
+              <path
+                d="M256-192.348 192.348-256l224-224-224-224L256-767.652l224 224 224-224L767.652-704l-224 224 224 224L704-192.348l-224-224-224 224Z"
+              />
+            </svg>
+          </button>
           <div
-            class="flex items-center justify-between pt-4 text-2xl font-semibold text-slate-800 lg:pb-4 lg:pt-0"
+            class="flex items-center justify-between py-4 text-2xl font-semibold text-slate-800 lg:pt-0"
           >
             <p>Filter By:</p>
           </div>
@@ -262,7 +352,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Price</p>
               <button
-                id="priceBtn"
+                id="price-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -279,7 +369,7 @@
               </button>
             </div>
             <div
-              id="priceList"
+              id="price-list"
               class="mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <!-- Price Range Slider -->
@@ -310,7 +400,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Category</p>
               <button
-                id="categoryBtn"
+                id="category-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -328,7 +418,7 @@
             </div>
             <!-- Dropdown List -->
             <div
-              id="categoryList"
+              id="category-list"
               class="mt-4 max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
@@ -356,7 +446,7 @@
                 <span class="ml-2">Special Offers</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t to-transparent"
+                class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
@@ -368,7 +458,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Flavour</p>
               <button
-                id="flavourBtn"
+                id="flavour-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -386,7 +476,7 @@
             </div>
             <!-- Dropdown List -->
             <div
-              id="flavourList"
+              id="flavour-list"
               class="mt-4 max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
@@ -442,7 +532,7 @@
                 <span class="ml-2">Coffee</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t to-transparent"
+                class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
@@ -454,7 +544,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Brand</p>
               <button
-                id="brandBtn"
+                id="brand-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
                 <svg
@@ -472,7 +562,7 @@
             </div>
             <!-- Dropdown List -->
             <div
-              id="brandList"
+              id="brand-list"
               class="mt-4 max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <label class="ml-4 mt-2 block">
@@ -528,12 +618,13 @@
                 <span class="ml-2">Aura</span>
               </label>
               <div
-                class="from-primary-grey-100 cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t to-transparent"
+                class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
         </div>
 
+        <!-- Products -->
         <ul
           class="grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:w-3/4"
         >
@@ -549,9 +640,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                gift
+                9+ Flavours
               </p>
             </div>
             <div
@@ -569,19 +660,19 @@
               <p class="flex gap-2 text-lg">
                 <span class="font-bold text-red-600">$36.79</span>
                 <span class="text-slate-600 line-through">$45.99</span>
-                <span
-                  class="ml-auto flex items-center rounded-full bg-slate-200 px-2 py-1 text-sm text-slate-800"
-                >
-                  Chocalate
-                </span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Chocalate Chip Oreo Cookies
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Pure whey protein</a
             >
-            <p class="text-sm">
+            <p class="text-sm text-slate-800">
               This is a very long desctiption of the product but only xy chars
               will be shown, the rest could be seen on the products detail
               page...
@@ -619,9 +710,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                gift
+                5 Flavours
               </p>
             </div>
             <div
@@ -640,12 +731,18 @@
                 <span class="text-slate-600 line-through">$89.90</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Chocalate Chip Oreo Cookies
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Delicious whey protein from grass-fed cows</a
             >
-            <p>
+
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Consequuntur, esse.
             </p>
@@ -677,9 +774,9 @@
               class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
             >
               <p
-                class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                free delivery
+                2 Flavours
               </p>
             </div>
             <div
@@ -695,12 +792,17 @@
               <p class="text-slate-600">Creapure</p>
               <p class="text-lg font-bold">$25.99</p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              natural
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Creapure creatine</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               iste optio magni.
             </p>
@@ -737,14 +839,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                free delivery
-              </p>
-              <p
-                class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
-              >
-                +1
+                4 Flavours
               </p>
             </div>
             <div
@@ -763,12 +860,17 @@
                 <span class="text-slate-600 line-through">$145.99</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Chocalate
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Strongest creatine monohydrate</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
               asperiores sapiente! Deleniti, recusandae ullam.
             </p>
@@ -805,9 +907,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                free delivery
+                1 Flavour
               </p>
             </div>
             <div
@@ -826,12 +928,17 @@
                 <span class="text-slate-600 line-through">$45.99</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              natural
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Pure whey protein</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               This is a very long desctiption of the product but only xy chars
               will be shown, the rest could be seen on the products detail
               page...
@@ -869,14 +976,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                free delivery
-              </p>
-              <p
-                class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
-              >
-                +1
+                6 Flavours
               </p>
             </div>
             <div
@@ -895,12 +997,17 @@
                 <span class="text-slate-600 line-through">$89.90</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Strawberry
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Delicious whey protein from grass-fed cows</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Consequuntur, esse.
             </p>
@@ -936,11 +1043,10 @@
               >
                 20% off
               </p>
-
               <p
-                class="rounded-full border border-transparent bg-green-300 bg-opacity-70 px-2 text-green-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                gift
+                2 Flavours
               </p>
             </div>
             <div
@@ -959,12 +1065,17 @@
                 <span class="text-slate-600 line-through">$25.99</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              peach ice tea
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Creapure creatine</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               iste optio magni.
             </p>
@@ -996,9 +1107,9 @@
               class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
             >
               <p
-                class="rounded-full border border-transparent bg-green-300 bg-opacity-70 px-2 text-green-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                gift
+                3 Flavours
               </p>
             </div>
             <div
@@ -1014,12 +1125,17 @@
               <p class="text-slate-600">7 Strong Brothers</p>
               <p class="text-lg font-bold">$145.99</p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              natural
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Strongest creatine monohydrate</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
               asperiores sapiente! Deleniti, recusandae ullam.
             </p>
@@ -1056,9 +1172,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                gift
+                3 Flavours
               </p>
             </div>
             <div
@@ -1077,12 +1193,17 @@
                 <span class="text-slate-600 line-through">$45.99</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Rocky Road
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Pure whey protein</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               This is a very long desctiption of the product but only xy chars
               will be shown, the rest could be seen on the products detail
               page...
@@ -1120,9 +1241,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-green-300 bg-opacity-60 px-2 text-green-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                gift
+                8 Flavours
               </p>
             </div>
             <div
@@ -1141,12 +1262,17 @@
                 <span class="text-slate-600 line-through">$89.90</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Caramel capuccino
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Delicious whey protein from grass-fed cows</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Consequuntur, esse.
             </p>
@@ -1178,9 +1304,9 @@
               class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase"
             >
               <p
-                class="rounded-full border border-transparent bg-orange-300 bg-opacity-60 px-2 text-orange-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                free delivery
+                3 Flavours
               </p>
             </div>
             <div
@@ -1196,12 +1322,17 @@
               <p class="text-slate-600">Creapure</p>
               <p class="text-lg font-bold">$25.99</p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              orange
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Creapure creatine</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
               iste optio magni.
             </p>
@@ -1238,14 +1369,9 @@
                 20% off
               </p>
               <p
-                class="rounded-full border border-transparent bg-orange-300 bg-opacity-70 px-2 text-orange-900"
+                class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800"
               >
-                free delivery
-              </p>
-              <p
-                class="rounded-full border border-transparent bg-slate-300 bg-opacity-70 px-2 text-slate-900"
-              >
-                +1
+                9+ Flavours
               </p>
             </div>
             <div
@@ -1264,12 +1390,17 @@
                 <span class="text-slate-600 line-through">$145.99</span>
               </p>
             </div>
+            <p
+              class="flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800"
+            >
+              Fruit punch
+            </p>
             <a
               class="text-lg text-blue-500 hover:underline"
               href="./product-detail.html"
               >Strongest creatine monohydrate</a
             >
-            <p>
+            <p class="text-sm text-slate-800">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum quas
               asperiores sapiente! Deleniti, recusandae ullam.
             </p>
@@ -1296,7 +1427,10 @@
         </ul>
       </div>
 
-      <nav class="ml-auto w-full pb-8 pt-4 lg:w-3/4 lg:pt-8" href="./shop.html">
+      <!-- Pagination -->
+      <nav
+        class="ml-auto w-full scale-75 pb-8 pt-4 sm:scale-100 lg:w-3/4 lg:pt-8"
+      >
         <ul class="flex items-center justify-center gap-4 text-slate-600">
           <li>
             <a
@@ -1391,7 +1525,9 @@
     </section>
 
     <footer class="mt-12 bg-slate-800 px-4 py-4 text-white">
-      <div class="mb-8 text-xl font-bold text-white">strength4u</div>
+      <div class="mb-8 text-xl font-bold text-white">
+        <a href="./index.html">strength4u</a>
+      </div>
 
       <hr class="mx-auto mb-8 w-3/4 opacity-50" />
 

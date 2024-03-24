@@ -5,28 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
+    <script src="./../js/nav_handlers.js"></script>
   </head>
-  <body class="font-dm bg-primary-grey-100"">
+  <body class="bg-primary-grey-100 font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">
-      <a href="index.html">strength4u</a>
+      <a href="./index.html">strength4u</a>
     </div>
     <header class="sticky top-0 z-50">
       <nav
-        class="bg-primary-grey-100 flex items-center justify-end px-4 py-4 font-light shadow-md"
+        class="flex items-center justify-end bg-primary-grey-100 px-4 py-4 font-light shadow-md"
       >
         <ul class="flex items-center gap-8 pr-14">
           <li class="">
             <a
-              class="transform capitalize rounded-[8px] bg-blue-600 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
-              href="./cart.html"
+              class="transform rounded-[8px] bg-blue-600 px-4 py-2 capitalize text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
+              href="./add-product.html"
             >
               Add new
             </a>
           </li>
           <li class="relative flex items-center">
-            <a
+            <button
+              id="user-btn"
               class="custom-underline-transition custom-number-bubble-after"
-              href="admin-panel.html"
             >
               <svg
                 class="fill-slate-800"
@@ -40,7 +41,8 @@
                 />
               </svg>
               <div
-                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border-transparent bg-green-500 bg-opacity-20"
+                id="user-signed"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 border-transparent bg-green-500 bg-opacity-20"
               >
                 <svg
                   class="fill-green-700"
@@ -54,7 +56,22 @@
                   />
                 </svg>
               </div>
-            </a>
+            </button>
+            <div
+              id="user-nav"
+              class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
+            >
+              <ul class="flex flex-col">
+                <li class="rounded-t-[8px]">
+                  <a
+                    id="login-link"
+                    href="./index.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:text-red-600 hover:underline"
+                    >Log out</a
+                  >
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
@@ -115,12 +132,12 @@
             </div>
 
             <div class="flex w-[20%] items-center justify-center gap-4">
-              <button
-                id=""
+              <a
+                href="edit-product.html"
                 class="rounded-[8px] border border-blue-600 px-8 py-1 text-blue-600 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10"
               >
                 Edit
-              </button>
+              </a>
               <button
                 id=""
                 class="rounded-[8px] border border-slate-400 border-opacity-10 bg-slate-400 bg-opacity-10 px-6 py-1 transition duration-200 ease-in-out hover:text-red-600"
@@ -164,12 +181,12 @@
             </div>
 
             <div class="flex w-[20%] items-center justify-center gap-4">
-              <button
-                id=""
+              <a
+                href="edit-product.html"
                 class="rounded-[8px] border border-blue-600 px-8 py-1 text-blue-600 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10"
               >
                 Edit
-              </button>
+              </a>
               <button
                 id=""
                 class="rounded-[8px] border border-slate-400 border-opacity-10 bg-slate-400 bg-opacity-10 px-6 py-1 transition duration-200 ease-in-out hover:text-red-600"
@@ -278,7 +295,7 @@
             </div>
           </li>
 
-                    <!-- Product -->
+          <!-- Product -->
           <li
             class="flex items-center border-b border-slate-200 pb-2 text-slate-800"
           >
@@ -378,7 +395,9 @@
     </main>
 
     <footer class="mt-12 bg-slate-800 px-4 py-4 text-white">
-      <div class="mb-8 text-xl font-bold text-white">strength4u</div>
+      <div class="mb-8 text-xl font-bold text-white">
+        <a href="./index.html">strength4u</a>
+      </div>
 
       <hr class="mx-auto mb-8 w-3/4 opacity-50" />
 

@@ -1,10 +1,432 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>strength4u</title>
+    <link href="./../css/output.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./../js/admin_add_prod.js" defer></script>
+    <script src="./../js/preload_prod_info.js" defer></script>
+    <script src="./../js/nav_handlers.js"></script>
+  </head>
+  <body class="bg-primary-grey-100 font-dm">
+    <div class="bg-white px-4 py-4 text-xl font-bold">
+      <a href="./index.html">strength4u</a>
+    </div>
+    <header class="sticky top-0 z-50">
+      <nav
+        class="flex items-center justify-end bg-primary-grey-100 px-4 py-4 font-light shadow-md"
+      >
+        <ul class="flex items-center gap-8 pr-14">
+          <li class="">
+            <a
+              class="transform rounded-[8px] bg-blue-600 px-4 py-2 capitalize text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
+              href="./add-product.html"
+            >
+              Add new
+            </a>
+          </li>
+          <li class="relative flex items-center">
+            <button
+              id="user-btn"
+              class="custom-underline-transition custom-number-bubble-after"
+            >
+              <svg
+                class="fill-slate-800"
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                viewBox="0 -960 960 960"
+                width="32"
+              >
+                <path
+                  d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+                />
+              </svg>
+              <div
+                id="user-signed"
+                class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 border-transparent bg-green-500 bg-opacity-20"
+              >
+                <svg
+                  class="fill-green-700"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
+                  <path
+                    d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+                  />
+                </svg>
+              </div>
+            </button>
+            <div
+              id="user-nav"
+              class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
+            >
+              <ul class="flex flex-col">
+                <li class="rounded-t-[8px]">
+                  <a
+                    id="login-link"
+                    href="./index.html"
+                    class="block px-4 py-2 hover:bg-gray-100 hover:text-red-600 hover:underline"
+                    >Log out</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-</body>
+    <main
+      class="mx-8 flex max-w-screen-xl flex-col lg:mb-8 lg:flex-row xl:m-auto"
+    >
+      <section class="mt-8 flex w-full flex-col">
+        <p class="p-4 text-4xl font-bold text-slate-800">
+          Admin Panel - Edit product
+        </p>
+        <form
+          class="mt-4 flex min-h-[60vh] flex-col rounded-[4px] bg-white p-4"
+          action="admin-panel.html"
+        >
+          <!-- Title -->
+          <label class="mb-3 block font-bold" for="title">
+            Product Title*
+          </label>
+          <input
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="title"
+            name="title"
+            placeholder="Product title (max 25 symbols)"
+            type="text"
+            required
+            maxlength="25"
+          />
+          <!-- Main Description -->
+          <label class="my-3 block font-bold" for="desc">
+            Product Main Description*
+          </label>
+          <textarea
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="desc"
+            name="desc"
+            placeholder="Product Description (max 600 symbols, after 2 ENTER`s auto new paragraph)"
+            type="text"
+            maxlength="600"
+            rows="4"
+            required
+          ></textarea>
+          <!-- Secondary Description -->
+          <label class="my-3 block font-bold" for="secondary_desc">
+            Product Secondary Description
+          </label>
+          <textarea
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="secondary_desc"
+            name="secondary_desc"
+            placeholder="Product Secondary Description (max 600 symbols, after 2 ENTER`s auto new paragraph)"
+            type="text"
+            maxlength="600"
+            rows="4"
+          ></textarea>
+          <!-- image -->
+          <p class="my-3 block font-bold" for="secondary_desc">Media</p>
+          <label
+            for="uploadFile"
+            class="mx-auto flex h-52 w-80 cursor-pointer flex-col items-center justify-center rounded border-2 border-dashed border-gray-300 bg-white font-[sans-serif] text-base text-black"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mb-2 w-8 fill-black"
+              viewBox="0 0 32 32"
+            >
+              <path
+                d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                data-original="#000000"
+              />
+              <path
+                d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                data-original="#000000"
+              />
+            </svg>
+            Upload file
+            <input
+              type="file"
+              id="uploadFile"
+              class="hidden"
+              onchange="previewImage()"
+              multiple
+            />
+            <span class="mt-2 text-xs text-gray-400">
+              PNG, JPG, SVG, WEBP, and GIF are Allowed.
+            </span>
+          </label>
+          <!-- Image preview section -->
+          <div
+            id="imagePreview"
+            class="mt-4 flex flex-wrap justify-center gap-2"
+          ></div>
+
+          <!-- Pricing -->
+          <label class="my-3 block font-bold" for="price">
+            Pricing (in $ per piece)*
+          </label>
+          <input
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="price"
+            name="price"
+            placeholder="$123.95"
+            type="text"
+            required
+          />
+          <!-- Discount -->
+          <label class="my-3 block font-bold" for="discount">
+            Discount (in % per piece)
+          </label>
+          <input
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="discount"
+            name="discount"
+            placeholder="20%"
+            type="text"
+          />
+          <!-- Amount -->
+          <label class="my-3 block font-bold" for="size"> Size* </label>
+          <input
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="size"
+            name="size"
+            placeholder="1,2.3...9999"
+            type="number"
+            required
+          />
+          <!-- Tag -->
+          <label class="my-3 block font-bold" for="tag"> Tag* </label>
+          <input
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            id="tag"
+            name="tag"
+            placeholder="Protein | Vitamins | ..."
+            type="text"
+            required
+          />
+          <!-- Vendor -->
+          <label class="my-3 block font-bold" for="vendor">Vendor*</label>
+          <select
+            id="vendor"
+            name="vendor"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+            onchange="toggleNewVendorInput()"
+            required
+          >
+            <option value="">Select a vendor</option>
+            <!-- Placeholder option -->
+            <option value="x_nutrition">X Nutrition</option>
+            <option value="protein">PROtein</option>
+            <option value="other">Other</option>
+          </select>
+          <div id="new_vendor_section" class="hidden">
+            <label class="my-3 block font-bold" for="new_vendor"
+              >New Vendor*</label
+            >
+            <input
+              class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+              id="new_vendor"
+              name="new_vendor"
+              placeholder="Type vendor that is not in the list ..."
+              type="text"
+              required
+            />
+          </div>
+          <!-- Flavour -->
+          <div id="flavor-list" class="mb-3">
+            <label class="my-3 block font-bold">Flavour/Amount*</label>
+            <div class="mt-2">
+              <!-- Flavor checkboxes -->
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          id="vanilla"
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Vanilla"
+                  />
+                  <span class="ml-2">Vanilla</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                          id="number_vanilla"
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+                </label>
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Chocolate"
+                  />
+                  <span class="ml-2">Chocolate</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+                </label>
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Strawberry"
+                  />
+                  <span class="ml-2">Strawberry</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input type="checkbox" class="form-checkbox" value="Mint" />
+                  <span class="ml-2">Mint</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+              </div>
+              <div class="flex w-96 justify-between">
+                <label class="inline-flex items-center">
+                  <input
+                          type="checkbox"
+                          class="form-checkbox"
+                          value="Cookie Dough"
+                  />
+                  <span class="ml-2">Cookie Dough</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input
+                          type="number"
+                          class="ml-10 w-36 rounded-md border border-[#e0e0e0] bg-white px-2 py-2 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value="0"
+                          min="0"
+                          max="9999"
+                  />
+              </div>
+            </div>
+          </div>
+          <div class="mt-3">
+            <label
+              for="new-flavor"
+              class="block text-sm font-medium text-gray-700"
+              >Add a new flavor:</label
+            >
+            <div class="mt-1 flex">
+              <input
+                type="text"
+                id="new-flavor"
+                class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                placeholder="Enter a flavor"
+              />
+              <button
+                type="button"
+                id="add-flavor"
+                class="ml-2 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <div class="mx-auto mt-6 flex gap-4">
+            <a
+              class="w-64 rounded-md border-2 border-gray-900 bg-black px-6 py-2 text-center font-medium text-white transition duration-200 ease-in hover:bg-white hover:text-black focus:outline-none"
+              href="admin-panel.html"
+            >
+              Save
+            </a>
+            <a
+              class="w-64 rounded-md border-2 border-gray-900 bg-white px-6 py-2 text-center font-medium text-black transition duration-200 ease-in hover:bg-black hover:text-white focus:outline-none"
+              href="admin-panel.html"
+            >
+              Cancel
+            </a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="mt-12 bg-slate-800 px-4 py-4 text-white">
+      <div class="mb-8 text-xl font-bold text-white">
+        <a href="./index.html">strength4u</a>
+      </div>
+
+      <hr class="mx-auto mb-8 w-3/4 opacity-50" />
+
+      <div class="flex flex-col items-center justify-center">
+        <ul
+          class="mb-6 flex gap-8 rounded-full border border-solid border-transparent bg-slate-200 px-4 py-1 text-slate-800"
+        >
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/instagram-svgrepo-com.svg"
+                alt="instagram icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/facebook-svgrepo-com.svg"
+                alt="facebook icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/twitter-color-svgrepo.svg"
+                alt="facebook icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a class="flex h-12 w-12 items-center justify-center" href="#">
+              <img
+                class="h-10 w-10"
+                src="./../../icons/youtube-svgrepo-com.svg"
+                alt="facebook icon"
+              />
+            </a>
+          </li>
+        </ul>
+        <p class="font-extralight">&copy;Copyright. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>
