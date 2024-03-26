@@ -158,7 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       addOptionToSelect(entry, newFlavor);
-      flavours.push(newFlavor);
+      if (!flavours.includes(newFlavor)) {
+        flavours.push(newFlavor);
+      }
     });
   });
 
@@ -189,7 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       addOptionToSelect(entry, newSize);
-      sizes.push(newSize);
+      if (!sizes.includes(newSize)) {
+        sizes.push(newSize);
+      }
     });
   });
 
