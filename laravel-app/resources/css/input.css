@@ -1,0 +1,81 @@
+/* Define the DM_Sans fonts here */
+@font-face {
+  font-family: "DM_Sans";
+  src: url("./../../fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM_Sans";
+  src: url("./../../fonts/DM_Sans/DMSans-Italic-VariableFont_opsz\,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+/* CUSTOM NATIVE CSS RULES */
+.custom-underline-transition {
+  position: relative;
+}
+
+.custom-underline-transition::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px; /* Underline thickness */
+  bottom: -0.1rem;
+  left: 0;
+  background-color: rgb(30, 41, 59); /* Use text color */
+  transition:
+    width 0.2s ease-in-out,
+    left 0.2s ease-in-out; /* Transition effect */
+}
+
+.custom-underline-transition:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.custom-button-shadow {
+  box-shadow:
+    6px 6px 12px #d3d5d6,
+    -6px -6px 12px #ffffff,
+    inset 6px 6px 8px #ffffff,
+    inset -6px -6px 8px #d3d5d6;
+}
+
+.custom-number-input-rm-arrows::-webkit-inner-spin-button,
+.custom-number-input-rm-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cm-required::after {
+  content: "*";
+  vertical-align: top;
+  font-size: 1.125rem;
+  margin-left: 0.125rem;
+  color: rgb(238, 0, 71);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .cm-circle-btn__checked {
+    @apply border-slate-700 bg-slate-300;
+  }
+
+  /* Hide cancel icon in search bar for WebKit browsers like Chrome and Safari */
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden; /* Using Tailwind's 'hidden' utility class */
+  }
+
+  /* Hide cancel icon in search bar for Firefox */
+  input[type="search"]::-moz-search-clear-button {
+    @apply hidden;
+  }
+}
