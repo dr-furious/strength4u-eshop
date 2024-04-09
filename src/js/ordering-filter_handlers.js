@@ -58,6 +58,7 @@ function updatePriceValue(value) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Ordering
   const orderingButtons = document.querySelectorAll(".cm-order-btn");
 
   orderingButtons.forEach((btn) => {
