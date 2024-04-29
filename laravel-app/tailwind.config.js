@@ -1,7 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 import { blue } from "tailwindcss/colors";
 
-export const content = ["./resources/**/*.blade.php", "./resources/**/*.js"];
+export const content = [
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+    "./resources/**/*.css",
+];
+
+/** @type {import('tailwindcss').Config} */
+import { blue } from "tailwindcss/colors";
+
 export const theme = {
     extend: {
         colors: {

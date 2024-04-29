@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>strength4u</title>
-    <link href="{{ asset('./../css/output.css') }}" rel="stylesheet" />
-    <script src="./../js/nav_handlers.js"></script>
-    <script src="./../js/carousel-handler.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/carousel-handler.js', 'resources/js/app.js'])
   </head>
 
   <body class="bg-primary-grey-100 font-dm">
@@ -207,7 +205,7 @@
 
     <!-- Hero section -->
     <section
-      style="background-image: url(./../../images/man-gym.jpg)"
+      id="index-hero"
       class="relative h-96 bg-cover bg-left"
     >
       <!-- image source: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.goodfon.com%2Fsports%2Fwallpaper-vzgliad-poza-fitnes-muscle-myshtsy-press-atlet-trenazhery--2.html&psig=AOvVaw2aRlvOzRpAvhKRhCyPRjhW&ust=1709931702088000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMiK6JWG44QDFQAAAAAdAAAAABAD -->
@@ -259,7 +257,7 @@
           >
             <img
               class="h-auto w-full object-cover"
-              src="./../../images/protein-protein.webp"
+              src="{{ Vite::asset('resources/assets/images/protein-protein.webp') }}"
               alt="protein image"
             />
           </div>
@@ -1891,7 +1889,7 @@
         >
           <img
             class="h-auto w-full rounded-[8px] border border-transparent object-cover"
-            src="./../../images/man-biceps.jpg!d"
+            src={{ Vite::asset("resources/assets/images/man-biceps.jpg!d") }}
             alt="A black and white photo of man doing a biceps curl with a dumbell"
           />
         </div>
@@ -1982,7 +1980,7 @@
                 <img
                   class="h-full w-full max-w-full rounded-[8px] object-cover"
                   alt="Lewis Hamilton in F1 car"
-                  src="./../../images/man2.jpg"
+                  src={{ Vite::asset("resources/assets/images/man2.jpg") }}
                 />
               </div>
               <div class="flex flex-col-reverse gap-6 md:w-2/3 md:flex-col">
@@ -2011,7 +2009,7 @@
                 <img
                   class="h-full w-full max-w-full rounded-[8px] object-cover"
                   alt="Lewis Hamilton in F1 car"
-                  src="./../../images/woman2.jpg"
+                  src={{ Vite::asset("resources/assets/images/woman2.jpg") }}
                 />
               </div>
               <div class="flex flex-col-reverse gap-6 md:w-2/3 md:flex-col">
@@ -2038,7 +2036,7 @@
                 <img
                   class="h-full w-full max-w-full rounded-[8px] object-cover"
                   alt="Lewis Hamilton in F1 car"
-                  src="./../../images/man1.jpg"
+                  src={{ Vite::asset("resources/assets/images/man1.jpg") }}
                 />
               </div>
               <div class="flex flex-col-reverse gap-6 md:w-2/3 md:flex-col">
@@ -2064,7 +2062,7 @@
                 <img
                   class="h-full w-full max-w-full rounded-[8px] object-cover"
                   alt="Lewis Hamilton in F1 car"
-                  src="./../../images/woman1.jpg"
+                  src={{ Vite::asset("resources/assets/images/woman1.jpg") }}
                 />
               </div>
               <div class="flex flex-col-reverse gap-6 md:w-2/3 md:flex-col">
@@ -2089,7 +2087,7 @@
                 <img
                   class="h-full w-full max-w-full rounded-[8px] object-cover"
                   alt="Lewis Hamilton in F1 car"
-                  src="./../../images/man3.jpeg"
+                  src={{ Vite::asset("resources/assets/images/man3.jpeg") }}
                 />
               </div>
               <div class="flex flex-col-reverse gap-6 md:w-2/3 md:flex-col">
@@ -2114,7 +2112,7 @@
                 <img
                   class="h-full w-full max-w-full rounded-[8px] object-cover"
                   alt="Lewis Hamilton in F1 car"
-                  src="./../../images/woman3.jpeg"
+                  src={{ Vite::asset("resources/assets/images/woman3.jpeg") }}
                 />
               </div>
               <div class="flex flex-col-reverse gap-6 md:w-2/3 md:flex-col">
@@ -2212,7 +2210,7 @@
             <a class="flex h-12 w-12 items-center justify-center" href="#">
               <img
                 class="h-10 w-10"
-                src="./../../icons/instagram-svgrepo-com.svg"
+                src={{ Vite::asset("resources/assets/icons/instagram-svgrepo-com.svg") }}
                 alt="instagram icon"
               />
             </a>
@@ -2221,7 +2219,7 @@
             <a class="flex h-12 w-12 items-center justify-center" href="#">
               <img
                 class="h-10 w-10"
-                src="./../../icons/facebook-svgrepo-com.svg"
+                src={{ Vite::asset("resources/assets/icons/facebook-svgrepo-com.svg") }}
                 alt="facebook icon"
               />
             </a>
@@ -2230,7 +2228,7 @@
             <a class="flex h-12 w-12 items-center justify-center" href="#">
               <img
                 class="h-10 w-10"
-                src="./../../icons/twitter-color-svgrepo.svg"
+                src={{ Vite::asset("resources/assets/icons/twitter-color-svgrepo.svg") }}
                 alt="facebook icon"
               />
             </a>
@@ -2239,7 +2237,7 @@
             <a class="flex h-12 w-12 items-center justify-center" href="#">
               <img
                 class="h-10 w-10"
-                src="./../../icons/youtube-svgrepo-com.svg"
+                src={{ Vite::asset("resources/assets/icons/youtube-svgrepo-com.svg") }}
                 alt="facebook icon"
               />
             </a>
