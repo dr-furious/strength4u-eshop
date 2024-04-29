@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>strength4u</title>
     <link href="./../css/output.css" rel="stylesheet" />
-    <script src="./../js/nav_handlers.js"></script>
-    <script src="./../js/ordering-filter_handlers.js"></script>
+    @vite([
+      'resources/css/app.css', 
+      'resources/js/nav_handlers.js', 
+      'resources/js/ordering-filter_handlers.js', 
+      'resources/js/app.js'
+      ])
   </head>
   <body class="bg-primary-grey-100 font-dm">
     <div class="bg-white px-4 py-4 text-xl font-bold">
@@ -206,7 +210,7 @@
 
     <!-- Hero section-->
     <section
-      style="background-image: url(./../../images/woman-gym.jpg)"
+      id="shop-hero"
       class="relative h-96 bg-cover bg-left"
     >
       <!-- image source: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.goodfon.com%2Fsports%2Fwallpaper-vzgliad-poza-fitnes-muscle-myshtsy-press-atlet-trenazhery--2.html&psig=AOvVaw2aRlvOzRpAvhKRhCyPRjhW&ust=1709931702088000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMiK6JWG44QDFQAAAAAdAAAAABAD -->
