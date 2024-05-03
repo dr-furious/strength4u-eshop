@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create("images", function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("product_id");
-            $table->string("name", 64);
+            $table->string("name", 64)->unique();
             $table->boolean("is_main")->default(false);
             $table->timestamps();
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists("images");
     }
 };

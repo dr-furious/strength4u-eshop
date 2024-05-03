@@ -11,23 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_order_details', function (Blueprint $table) {
+        Schema::create("product_order_details", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('size_id');
-            $table->unsignedBigInteger('flavour_id');
-            $table->decimal('price_in_dollars');
-            $table->unsignedInteger('discount_percentage')->default(0);
-            $table->unsignedInteger('stock_amount');
-            $table->unsignedInteger('sold_amount');
+            $table->unsignedBigInteger("order_id");
+            $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("size_id");
+            $table->unsignedBigInteger("flavour_id");
+            $table->decimal("price_in_dollars");
+            $table->unsignedInteger("discount_percentage")->default(0);
+            $table->unsignedInteger("stock_amount");
+            $table->unsignedInteger("sold_amount");
             $table->timestamps();
 
             // Define foreign key constraints
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('size_id')->references('id')->on('sizes');
-            $table->foreign('flavour_id')->references('id')->on('flavours');
+            $table->foreign("order_id")->references("id")->on("orders");
+            $table->foreign("product_id")->references("id")->on("products");
+            $table->foreign("size_id")->references("id")->on("sizes");
+            $table->foreign("flavour_id")->references("id")->on("flavours");
+
+            // Define unique constraint for 4 attributes
+            $table->unique(["order_id", "product_id", "size_id", "flavour_id"]);
         });
     }
 
@@ -36,7 +39,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_order_details');
+        Schema::dropIfExists("product_order_details");
     }
 };
 
