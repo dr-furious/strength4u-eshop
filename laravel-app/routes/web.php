@@ -10,6 +10,10 @@ Route::get("/product-detail", function () {
     return view("product-detail");
 })->name('product-detail');
 
+Route::get("/shop", function () {
+    return view("shop");
+})->name("shop");
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
