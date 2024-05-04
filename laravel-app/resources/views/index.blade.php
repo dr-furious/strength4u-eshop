@@ -21,7 +21,7 @@
         </p>
         <a
           class="transform rounded-[8px] bg-blue-600 px-6 py-3 text-lg text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
-          href="./shop.html"
+          href="{{ route("shop" )}}"
           >Shop now</a
         >
       </div>
@@ -89,7 +89,7 @@
       </ul>
       <a
         class="transform rounded-[8px] bg-blue-600 px-6 py-3 text-lg text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
-        href="./shop.html"
+        href="{{ route("shop" )}}"
         >Shop now</a
       >
     </section>
@@ -159,7 +159,7 @@
       </ul>
       <a
         class="transform rounded-[8px] bg-blue-600 px-6 py-3 text-lg text-slate-100 duration-200 ease-in-out hover:bg-blue-700"
-        href="./shop.html"
+        href="{{ route("shop" )}}"
         >Shop now</a
       >
     </section>
