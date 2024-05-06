@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Flavour;
 use App\Models\Product;
+use App\Models\Stock;
 
 class ProductController extends Controller
 {
@@ -35,9 +37,22 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(int $product_id)
     {
-        //
+        $product = Product::findOrFail($product_id);
+
+        // Fetch sizes in stock for the specified product
+        $sizesInStock = Stock::where('product_id', $product_id)
+            ->distinct('size_id')
+            ->pluck('size_id');
+
+        $flavours = Flavour::all();
+
+        return view('product-detail', [
+            'product' => $product,
+            'sizesInStock' => $sizesInStock,
+            'flavours' => $flavours
+        ]);
     }
 
     /**
