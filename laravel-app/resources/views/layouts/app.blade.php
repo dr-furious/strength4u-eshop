@@ -8,7 +8,7 @@
         <title>@yield("title", 'strenght4u')</title>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/carousel-handler.js'])
+        @vite(['resources/css/app.css', 'resources/js/nav_handlers.js'])
         @stack('scripts')  <!-- For additional JS specific to some pages -->
     </head>
     <body class="bg-primary-grey-100 font-dm">

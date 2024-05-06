@@ -31,9 +31,10 @@ class Stock extends Model
     {
         return $query->with([
         'product' => function ($query) {
-            // Using a raw SQL query to correctly handle distinct count
+            // Correctly using withCount to automatically handle distinct counts via relationship
             $query->withCount(['flavours as flavour_count' => function ($subquery) {
-                $subquery->select(\DB::raw('COUNT(DISTINCT flavour_id)'));
+                // Specify the distinct count on the flavour_id directly
+                $subquery->distinct();
             }]);
         },
         'flavour',  // Eager load the entire flavour
