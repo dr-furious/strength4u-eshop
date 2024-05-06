@@ -379,5 +379,5 @@
 @endsection
 
 @push('scripts')
-    @vite(["resources/js/nav_handlers.js"])
+    @vite(["resources/js/carousel-handler.js"])
 @endpush

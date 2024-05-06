@@ -5,9 +5,11 @@
         <p class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900">
             {{ $product->discount_percentage }}% off
         </p>
+        @if ($product->product->flavour_count > 1)
         <p class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800">
-            {{ $product->product->flavour_count }}+ Flavours
+            {{ $product->product->flavour_count > 9 ? '9+' : $product->product->flavour_count }} Flavours
         </p>
+        @endif
     </div>
     <div class="w-full self-center overflow-hidden rounded-[8px] border border-transparent">
         <img class="h-auto w-full object-cover" src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->product->name }} image">
