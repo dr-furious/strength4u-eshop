@@ -40,7 +40,7 @@ class StockController extends Controller
     {
         $stock_data = Stock::withProductDetails()->findOrFail($stock_id);
         $product_data = Product::with(['sizes', 'flavours'])->findOrFail($stock_data->product_id);
-        Log::info($product_data);
+
         return view('product-detail',[
             'stock_data' => $stock_data,
             'product_data' => $product_data]

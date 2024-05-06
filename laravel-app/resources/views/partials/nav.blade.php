@@ -161,7 +161,7 @@
                 <li class="rounded-t-[8px]">
                   <a
                     id="login-link"
-                    href="./login.html"
+                    href="{{ route("login") }}"
                     class="block px-4 py-2 hover:bg-gray-100 hover:underline"
                     >Log in</a
                   >
