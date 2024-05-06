@@ -31,7 +31,7 @@
         {{ $product->size->label }}
       </span>
     </div>
-    <a class="text-lg text-blue-500 hover:underline" href="{{ route('product-detail', ["product_id" => $product->product_id]) }}"> {{ $product->product->name }}</a>
+    <a class="text-lg text-blue-500 hover:underline" href="{{ route('product-detail', ["product_id" => $product->id]) }}"> {{ $product->product->name }}</a>
     <p class="text-sm text-slate-800">
         {{ Str::limit($product->product->main_description, 100) }} <!-- Limit to 100 chars -->
     </p>
