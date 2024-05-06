@@ -58,6 +58,12 @@ function updatePriceValue(value) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Filters
+    let priceRange = document.getElementById("priceRange");
+    priceRange.addEventListener("input", () => {
+        updatePriceValue(priceRange.value);
+    });
+
     // Ordering
     const orderingButtons = document.querySelectorAll(".cm-order-btn");
 

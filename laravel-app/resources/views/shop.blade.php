@@ -116,7 +116,7 @@
         </button>
       </div>
 
-      <div class="flex flex-col gap-16 lg:flex-row">
+      <div class="flex flex-col gap-16 lg:flex-row min-w-full">
         <!-- Filters -->
         <div
           id="filter-menu"
@@ -174,20 +174,19 @@
               <!-- Price Range Slider -->
               <!-- Display Current Value -->
               <p class="mt-2">
-                Current Price: $0 - $<span id="currentPrice">200</span>
+                Current Price: ${{ floor($minPrice) }} - $<span id="currentPrice">{{ ceil($maxPrice) }}</span>
               </p>
               <input
                 type="range"
                 id="priceRange"
-                min="5"
-                max="200"
-                value="200"
+                min="{{ floor($minPrice) }}"
+                max="{{ ceil($maxPrice) }}"
+                value="{{ ceil($maxPrice) }}"
                 class="w-full cursor-pointer"
-                oninput="updatePriceValue(this.value)"
               />
               <div class="flex justify-between text-sm">
-                <span>$5</span>
-                <span>$200</span>
+                <span>${{ floor($minPrice) }}</span>
+                <span>${{ ceil($maxPrice) }}</span>
               </div>
             </div>
           </div>
@@ -278,58 +277,12 @@
               id="flavour-list"
               class="mt-4 font-medium max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
+              @foreach($flavours as $flavour)
               <label class="ml-4 mt-2 block">
                 <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Vanilla</span>
+                <span class="ml-2">{{ $flavour->label }}</span>
               </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Strawberry</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Mint Chocolate Chip</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Cookies and Cream</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Pistachio</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Salted Caramel</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Raspberry</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Natural</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Chocolate</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Rocky Road</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Banana</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Coconut</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Coffee</span>
-              </label>
+              @endforeach
               <div
                 class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
@@ -364,58 +317,12 @@
               id="brand-list"
               class="mt-4 font-medium max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
+            @foreach($brands as $brand)
               <label class="ml-4 mt-2 block">
                 <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">PROtein</span>
+                <span class="ml-2">{{ $brand->vendor }}</span>
               </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Furious</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Creapure</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">7 Strong Brothers</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Nutriblast</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Vitalist</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">GreenGain</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">PurePower</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">OmegaPeak</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">HerbalHarvest</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Essentials</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Beasts</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Aura</span>
-              </label>
+            @endforeach
               <div
                 class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
@@ -434,7 +341,7 @@
         @forelse ($data as $item)
             
         @empty
-            <p>No products</p>
+            <p class="p-4 text-center bg-white rounded-[8px] col-span-3 h-fit text-slate-500">No products match the criteria</p>
         @endforelse
         </ul>
       </div>

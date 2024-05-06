@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Flavour;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -14,7 +16,18 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $minPrice = Stock::min("price_in_dollars");
+        $maxPrice = Stock::max("price_in_dollars");
+        $flavours = Flavour::all();
+        $brands = Product::distinct()->get("vendor");
+
+        return view("shop", [
+            "data" => [],
+            "minPrice" => $minPrice,
+            "maxPrice" => $maxPrice, 
+            "flavours" => $flavours,
+            "brands" => $brands,
+        ]);
     }
 
     /**
