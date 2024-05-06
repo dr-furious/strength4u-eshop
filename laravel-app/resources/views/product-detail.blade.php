@@ -32,13 +32,16 @@
         <h2
           class="mb-5 mt-8 self-center text-4xl font-bold md:mb-10 md:mr-5 md:self-start md:text-6xl"
         >
-          {{ $product -> name }}
+          {{ $stock_data->product->name }}
         </h2>
-        <h2 class="my-5 text-2xl font-bold md:text-4xl">$55.99</h2>
+        <div class="flex gap-6">
+            <h2 class="my-5 text-2xl font-bold text-red-600 md:text-4xl">${{ number_format($stock_data->price_in_dollars - ($stock_data->price_in_dollars * $stock_data->discount_percentage / 100), 2) }}</h2>
+            <h2 class="my-5 text-2xl text-slate-600 md:text-4xl line-through">${{ $stock_data->price_in_dollars }}</h2>
+        </div>
         <h3 class="mb-1 text-xl font-bold">Details Product</h3>
         <article class="text-base md:mr-10 xl:mr-40">
           <p>
-              {{ $product -> main_description }}
+              {{ $stock_data->product->main_description }}
           </p>
         </article>
 
@@ -83,8 +86,11 @@
               <select
                 class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
               >
-                  @foreach($sizesInStock as $sizeId)
-                <option value="">{{ $sizeId }}</option>
+                  <option value="">{{ $stock_data->flavour->label }}</option>
+                  @foreach($product_data->flavours as $flavour)
+                      @if($flavour->label != $stock_data->flavour->label)
+                          <option value="{{ $flavour->id }}">{{ $flavour->label }}</option>
+                      @endif
                   @endforeach
               </select>
             </div>
@@ -99,49 +105,50 @@
               <select
                 class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
               >
-                <option value="">Select Size</option>
-                <option value="250g">250g</option>
-                <option value="500g">500g</option>
-                <option value="2025g">2025g</option>
-                <option value="4000g">4000g</option>
-              </select>
-            </div>
-          </div>
+        <option value="">{{ $stock_data->size->label }}</option>
+        @foreach($product_data->sizes as $size)
+            @if($size->label != $stock_data->size->label)
+              <option value="{{ $size->label }}">{{ $size->label }}</option>
+            @endif
+        @endforeach
+</select>
+</div>
+</div>
 
-          <!-- Action button -->
-          <div class="flex items-center justify-end text-center">
-            <button
-              class="flex flex-row rounded-lg bg-blue-600 px-6 py-3 text-white transition duration-200 ease-in hover:bg-blue-700 focus:outline-none"
-            >
-              Add to cart
-              <svg
-                class="ml-2 h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </section>
-    </main>
-    <div class="w-full bg-primary-grey-100">
-      <section class="mx-5 flex max-w-screen-lg flex-col md:mx-auto md:w-1/2">
-        <h2
-          class=":text-2xl mb-5 mt-8 self-start font-bold md:mb-10 md:text-4xl"
-        >
-          Description
-        </h2>
-        <p>
-            {{ $product -> secondary_description }}
-        </p>
-      </section>
-    </div>
+<!-- Action button -->
+<div class="flex items-center justify-end text-center">
+<button
+class="flex flex-row rounded-lg bg-blue-600 px-6 py-3 text-white transition duration-200 ease-in hover:bg-blue-700 focus:outline-none"
+>
+Add to cart
+<svg
+  class="ml-2 h-6 w-6"
+  fill="none"
+  stroke="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+</svg>
+</button>
+</div>
+</div>
+</section>
+</main>
+<div class="w-full bg-primary-grey-100">
+<section class="mx-5 flex max-w-screen-lg flex-col md:mx-auto md:w-1/2">
+<h2
+class=":text-2xl mb-5 mt-8 self-start font-bold md:mb-10 md:text-4xl"
+>
+Description
+</h2>
+<p>
+{{ $stock_data->product->secondary_description }}
+</p>
+</section>
+</div>
 @endsection

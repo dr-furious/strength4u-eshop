@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name("index");
 
-Route::get("/shop/product-detail/{product_id}", [ProductController::class, 'show']
+Route::get("/shop/product-detail/{product_id}", [StockController::class, 'show']
 )->name('product-detail');
 
 Route::get("/shop", function () {
