@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Size extends Model
 {
     use HasFactory;
+
+    // Each size can be associated with many stocks
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'size_id');
+    }
 }

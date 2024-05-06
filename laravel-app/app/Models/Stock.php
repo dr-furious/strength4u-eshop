@@ -9,17 +9,36 @@ class Stock extends Model
 {
     use HasFactory;
 
+    // Stock belongs to a Product
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    // Stock belongs to a Flavour
+    public function flavour()
+    {
+        return $this->belongsTo(Flavour::class, 'flavour_id');
+    }
+
+    // Stock belongs to a Size
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'size_id');
+    }
+
     public function scopeWithProductDetails($query)
     {
-        return $query->join("products", "stocks.product_id", "=", "products.id")
-                    ->join("flavours", "stocks.flavour_id", "=", "flavours.id")
-                    ->join("sizes", "stocks.size_id", "=", "sizes.id")
-                    ->select(
-                        'stocks.*', // Select all columns from stocks table
-                        'products.*', // Potentially specify only needed columns
-                        'flavours.label as flavour_label', // Alias the label column from flavours
-                        'sizes.label as size_label' // Alias the label column from sizes
-                    );
+        return $query->with([
+        'product' => function ($query) {
+            // Using a raw SQL query to correctly handle distinct count
+            $query->withCount(['flavours as flavour_count' => function ($subquery) {
+                $subquery->select(\DB::raw('COUNT(DISTINCT flavour_id)'));
+            }]);
+        },
+        'flavour',  // Eager load the entire flavour
+        'size'      // Eager load the entire size
+    ]);
     } 
 
 
