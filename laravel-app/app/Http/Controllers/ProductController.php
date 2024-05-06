@@ -37,22 +37,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $product_id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($product_id);
-
-        // Fetch sizes in stock for the specified product
-        $sizesInStock = Stock::where('product_id', $product_id)
-            ->distinct('size_id')
-            ->pluck('size_id');
-
-        $flavours = Flavour::all();
-
-        return view('product-detail', [
-            'product' => $product,
-            'sizesInStock' => $sizesInStock,
-            'flavours' => $flavours
-        ]);
+        //
     }
 
     /**

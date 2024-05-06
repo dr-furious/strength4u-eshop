@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class StockController extends Controller
 {
@@ -33,9 +36,15 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $stock_id)
     {
-        //
+        $stock_data = Stock::withProductDetails()->findOrFail($stock_id);
+        $product_data = Product::with(['sizes', 'flavours'])->findOrFail($stock_data->product_id);
+        Log::info($product_data);
+        return view('product-detail',[
+            'stock_data' => $stock_data,
+            'product_data' => $product_data]
+        );
     }
 
     /**
