@@ -1,21 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>strength4u</title>
-    <link href="./../css/output.css" rel="stylesheet" />
-    <script src="./../js/nav_handlers.js"></script>
-  </head>
-  <body>
-    <div class="bg-white px-4 py-4 text-xl font-bold">
-      <a href="./index.html">strength4u</a>
-    </div>
-
-    <header
-      class="sticky top-0 z-50 w-full bg-primary-grey-100 shadow-md lg:px-10"
-    >
-      <nav
+<nav
         class="relative flex max-w-screen-2xl items-center justify-between gap-8 bg-primary-grey-100 px-4 py-4 font-light lg:gap-20 xl:mx-auto xl:gap-24"
       >
         <!-- this part of navbar disappears for devices with width bellow 768px -->
@@ -27,17 +10,17 @@
             class="flex w-fit flex-col gap-6 px-4 text-lg text-slate-100 md:flex-row md:text-inherit"
           >
             <li>
-              <a class="custom-underline-transition" href="./index.html"
+              <a class="custom-underline-transition" href="{{ route("index") }}"
                 >Home</a
               >
             </li>
             <li>
-              <a class="custom-underline-transition" href="./shop.html">Shop</a>
+              <a class="custom-underline-transition" href="{{ route("shop") }}">Shop</a>
             </li>
             <li>
               <a
                 class="custom-underline-transition"
-                href="./index.html#about-us"
+                href="{{ route("index") }}#about-us"
                 >About
               </a>
             </li>
@@ -149,6 +132,7 @@
                   d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
                 />
               </svg>
+              @if (auth()->check())
               <div
                 id="user-signed"
                 class="absolute -right-4 -top-3 flex h-7 w-7 items-center justify-center rounded-full border border-primary-grey-100 bg-green-500 bg-opacity-20"
@@ -165,6 +149,7 @@
                   />
                 </svg>
               </div>
+              @endif
             </button>
 
             <!-- User navigation -->
@@ -173,10 +158,11 @@
               class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
             >
               <ul class="flex flex-col">
+            @guest
                 <li class="rounded-t-[8px]">
                   <a
                     id="login-link"
-                    href="./login.html"
+                    href="{{ route("login") }}"
                     class="block px-4 py-2 hover:bg-gray-100 hover:underline"
                     >Log in</a
                   >
@@ -184,168 +170,32 @@
                 <li>
                   <a
                     id="signup-link"
-                    href="./signup.html"
+                    href="{{ route("register") }}"
                     class="block px-4 py-2 hover:bg-gray-100 hover:underline"
                     >Sign up</a
                   >
                 </li>
-                <li class="rounded-b-[8px] border-t">
-                  <a
-                    id="admin-link"
-                    href="./admin-panel.html"
-                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
-                    >Admin</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <!--https://tailwindcomponents.com/component/simple-login-->
-    <main
-      class="flex min-h-screen flex-col justify-center bg-primary-grey-100 py-12"
-    >
-      <div class="xs:p-0 mx-auto p-10 md:w-full md:max-w-md">
-        <div class="w-full divide-y divide-gray-200 rounded-lg bg-white shadow">
-          <div class="px-5 py-7">
-            <label class="block pb-1 text-sm text-gray-600">E-mail</label>
-            <input
-              type="text"
-              class="mb-5 mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-blue-600"
-            />
-            <label class="block pb-1 text-sm text-gray-600">Password</label>
-            <input
-              type="text"
-              class="mb-5 mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-blue-600"
-            />
-            <button
-              type="button"
-              id="LoginButton"
-              class="inline-block w-full rounded-lg bg-blue-500 py-2.5 text-center text-sm text-white shadow-sm transition duration-200 hover:bg-blue-600 hover:shadow-md"
-            >
-              <span class="mr-2 inline-block">Login</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="inline-block h-4 w-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="py-5">
-            <div class="whitespace-nowrap text-center sm:text-left">
-              <button
-                id="signup"
-                class="mx-5 cursor-pointer rounded-lg px-5 py-4 text-sm font-normal text-gray-500 ring-inset transition duration-200 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-              >
-                <span class="ml-1 inline-block">Register</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="py-5">
-          <div class="grid grid-cols-2 gap-1">
-            <div class="whitespace-nowrap text-center sm:text-left">
-              <button
-                id="navigateButton"
-                class="mx-5 cursor-pointer rounded-lg px-5 py-4 text-sm font-normal text-gray-500 ring-inset transition duration-200 hover:bg-gray-200 focus:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  class="inline-block h-4 w-4 align-text-top"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                  />
-                </svg>
-                <span class="ml-1 inline-block">Back to strength4u.com</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer class="bg-slate-800 px-4 py-4 text-white">
-      <div class="mb-8 text-xl font-bold text-white">
-        <a href="./index.html">strength4u</a>
-      </div>
-
-      <hr class="mx-auto mb-8 w-3/4 opacity-50" />
-
-      <div class="flex flex-col items-center justify-center">
-        <ul
-          class="mb-6 flex gap-8 rounded-full border border-solid border-transparent bg-slate-200 px-4 py-1 text-slate-800"
-        >
-          <li>
-            <a class="flex h-12 w-12 items-center justify-center" href="#">
-              <img
-                class="h-10 w-10"
-                src="./../../icons/instagram-svgrepo-com.svg"
-                alt="instagram icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a class="flex h-12 w-12 items-center justify-center" href="#">
-              <img
-                class="h-10 w-10"
-                src="./../../icons/facebook-svgrepo-com.svg"
-                alt="facebook icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a class="flex h-12 w-12 items-center justify-center" href="#">
-              <img
-                class="h-10 w-10"
-                src="./../../icons/twitter-color-svgrepo.svg"
-                alt="facebook icon"
-              />
-            </a>
-          </li>
-          <li>
-            <a class="flex h-12 w-12 items-center justify-center" href="#">
-              <img
-                class="h-10 w-10"
-                src="./../../icons/youtube-svgrepo-com.svg"
-                alt="facebook icon"
-              />
-            </a>
-          </li>
-        </ul>
-        <p class="font-extralight">&copy;Copyright. All rights reserved.</p>
-      </div>
-    </footer>
-  </body>
-  <script>
-    document
-      .getElementById("navigateButton")
-      .addEventListener("click", function () {
-        window.location.href = "index.html";
-      });
-    document
-      .getElementById("LoginButton")
-      .addEventListener("click", function () {
-        window.location.href = "index.html";
-      });
-    document.getElementById("signup").addEventListener("click", function () {
-      window.location.href = "signup.html";
-    });
-  </script>
-</html>
+            @endguest
+            @if (auth()->check())
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+            @endif
+                @if(auth()->check() && Auth::user()->isAdministrator())
+                    <li class="rounded-b-[8px] border-t">
+                      <a
+                        id="admin-link"
+                        href="./admin-panel.html"
+                        class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                        >Admin</a
+                      >
+                    </li>
+                @endif
+  </ul>
+</div>
+</li>
+</ul>
+</nav>

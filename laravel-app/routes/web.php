@@ -1,15 +1,24 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', IndexController::class)->name("index");
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get("/shop/product-detail/{product_id}", [StockController::class, 'show']
+)->name('product-detail');
+
+Route::get("/shop", [StockController::class, 'index'])->name("shop");
+
+Route::get("/login", function (){
+    return view("login");
+})->name("login");
+
+Route::get("/register", function (){
+    return view("register");
+})->name("register");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

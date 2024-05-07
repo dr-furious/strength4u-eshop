@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             FlavourSeeder::class,
             ProductSeeder::class,
             StockSeeder::class,
+            RoleUserSeeder::class
         ]);
     }
 }
