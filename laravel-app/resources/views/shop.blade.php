@@ -126,7 +126,7 @@
         </button>
       </div>
 
-      <div class="flex flex-col gap-16 lg:flex-row min-w-full">
+      <div class="flex flex-col gap-16 lg:flex-row min-w-full items-start">
         <!-- Filters -->
         <form
           id="filter-menu"
@@ -341,7 +341,7 @@
 
         <!-- Products -->
         <ul
-          class="grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:w-3/4 max-h-fit h-auto items-start"
+          class="grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:w-3/4 max-h-fit h-auto"
         >
         @forelse ($data as $item)
             <x-product-card :product=$item />
