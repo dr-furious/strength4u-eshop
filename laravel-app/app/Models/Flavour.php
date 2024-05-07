@@ -12,6 +12,6 @@ class Flavour extends Model
     // Each flavour can be associated with many stocks
     public function stocks()
     {
-        return $this->hasMany(Stock::class, 'flavour_id');
+        return $this->hasMany(Stock::class, "flavour_id");
     }
 }

@@ -8,11 +8,11 @@ use App\Models\Flavour;
 
 class FlavourSeeder extends Seeder
 {
-				/**
-					* Run the database seeds.
-					*/
-				public function run(): void
-				{
-								Flavour::factory()->count(10)->create();
-				}
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Flavour::factory()->count(10)->create();
+    }
 }
