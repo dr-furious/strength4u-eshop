@@ -8,11 +8,11 @@ use Illuminate\Database\Seeder;
 
 class SizeSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Size::factory()->count(3)->create();
-    }
+				/**
+					* Run the database seeds.
+					*/
+				public function run(): void
+				{
+								Size::factory()->count(5)->create();
+				}
 }

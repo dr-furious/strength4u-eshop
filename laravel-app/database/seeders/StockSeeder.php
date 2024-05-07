@@ -8,14 +8,13 @@ use Illuminate\Database\Seeder;
 
 class StockSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        for ($i=0; $i<20; $i++) {
-            Stock::factory()->create();
-        }
-        
-    }
+				/**
+					* Run the database seeds.
+					*/
+				public function run(): void
+				{
+								for ($i = 0; $i < 200; $i++) {
+												Stock::factory()->create();
+								}
+				}
 }
