@@ -105,13 +105,13 @@
               <select
                 class="h-full w-full rounded-[8px] bg-slate-200 p-2 text-center outline-none focus:outline-none"
               >
-        <option value="">{{ $stock_data->size->label }}</option>
-        @foreach($product_data->sizes as $size)
-            @if($size->label != $stock_data->size->label)
-              <option value="{{ $size->label }}">{{ $size->label }}</option>
-            @endif
-        @endforeach
-</select>
+                <option value="">{{ $stock_data->size->label }}</option>
+                @foreach($product_data->sizes as $size)
+                    @if($size->label != $stock_data->size->label)
+                      <option value="{{ $size->label }}">{{ $size->label }}</option>
+                    @endif
+                @endforeach
+            </select>
 </div>
 </div>
 
@@ -152,3 +152,6 @@ Description
 </section>
 </div>
 @endsection
+@push('scripts')
+    @vite(["resources/js/amount_handler.js", "resources/js/refresh_product_handler.js"])
+@endpush

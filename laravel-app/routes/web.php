@@ -14,9 +14,13 @@ Route::get("/shop", function () {
     return view("shop");
 })->name("shop");
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get("/login", function (){
+    return view("login");
+})->name("login");
+
+Route::get("/register", function (){
+    return view("register");
+})->name("register");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
