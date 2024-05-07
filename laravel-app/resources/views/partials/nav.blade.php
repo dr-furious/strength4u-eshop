@@ -158,6 +158,7 @@
               class="absolute -right-1/2 top-full mt-2 hidden w-36 overflow-hidden rounded-[8px] border border-slate-200 bg-white text-slate-800 shadow-md lg:-right-full"
             >
               <ul class="flex flex-col">
+            @guest
                 <li class="rounded-t-[8px]">
                   <a
                     id="login-link"
@@ -169,21 +170,32 @@
                 <li>
                   <a
                     id="signup-link"
-                    href="./signup.html"
+                    href="{{ route("register") }}"
                     class="block px-4 py-2 hover:bg-gray-100 hover:underline"
                     >Sign up</a
                   >
                 </li>
-                <li class="rounded-b-[8px] border-t">
-                  <a
-                    id="admin-link"
-                    href="./admin-panel.html"
-                    class="block px-4 py-2 hover:bg-gray-100 hover:underline"
-                    >Admin</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
+            @endguest
+            @if (auth()->check())
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+            @endif
+                @if(auth()->check() && Auth::user()->isAdministrator())
+                    <li class="rounded-b-[8px] border-t">
+                      <a
+                        id="admin-link"
+                        href="./admin-panel.html"
+                        class="block px-4 py-2 hover:bg-gray-100 hover:underline"
+                        >Admin</a
+                      >
+                    </li>
+                @endif
+  </ul>
+</div>
+</li>
+</ul>
 </nav>
