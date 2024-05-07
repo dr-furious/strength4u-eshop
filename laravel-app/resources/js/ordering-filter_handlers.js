@@ -57,24 +57,32 @@ function updatePriceValue(value) {
     document.getElementById("currentPrice").textContent = value;
 }
 
+function submitFilterForm(orderBy) {
+    const form = document.getElementById("filter-menu");
+    let input = form.querySelector('input[name="orderBy"]');
+    if (!input) {
+        input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "orderBy";
+        form.appendChild(input);
+    }
+    input.value = orderBy;
+    form.submit();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Filters
+    let priceRange = document.getElementById("priceRange");
+    priceRange.addEventListener("input", () => {
+        updatePriceValue(priceRange.value);
+    });
+
     // Ordering
     const orderingButtons = document.querySelectorAll(".cm-order-btn");
-
     orderingButtons.forEach((btn) => {
         btn.addEventListener("click", (event) => {
             const clickedBtn = event.target;
-            // Add "text-slate-700" class to the clicked button if it doesn't already have it
-            if (!clickedBtn.classList.contains("text-slate-700")) {
-                clickedBtn.classList.add("text-slate-700");
-            }
-
-            // Remove "text-slate-700" class from all other buttons
-            orderingButtons.forEach((element) => {
-                if (element !== clickedBtn) {
-                    element.classList.remove("text-slate-700");
-                }
-            });
+            submitFilterForm(clickedBtn.value);
         });
     });
 

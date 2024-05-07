@@ -10,9 +10,7 @@ Route::get('/', IndexController::class)->name("index");
 Route::get("/shop/product-detail/{product_id}", [StockController::class, 'show']
 )->name('product-detail');
 
-Route::get("/shop", function () {
-    return view("shop");
-})->name("shop");
+Route::get("/shop", [StockController::class, 'index'])->name("shop");
 
 Route::get("/login", function (){
     return view("login");

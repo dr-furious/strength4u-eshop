@@ -33,7 +33,7 @@
     </div>
     <a class="text-lg text-blue-500 hover:underline" href="{{ route('product-detail', ["product_id" => $product->id]) }}"> {{ $product->product->name }}</a>
     <p class="text-sm text-slate-800">
-        {{ Str::limit($product->product->main_description, 100) }} <!-- Limit to 100 chars -->
+        {{ Str::limit($product->product->main_description, 90) }} <!-- Limit to 90 chars -->
     </p>
     <div class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2">
         <button class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600">

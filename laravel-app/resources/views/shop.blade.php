@@ -25,7 +25,7 @@
     <section
       class="mx-4 flex flex-col items-center gap-4 pt-12 md:mt-8 lg:gap-12 xl:mx-24 2xl:mx-auto 2xl:max-w-[1280px]"
     >
-      <h2 class="text-center text-5xl font-bold capitalize text-slate-800">
+      <h2 class="text-center text-5xl font-bold capitalize text-slate-800" id="shop">
         Shop
       </h2>
 
@@ -79,21 +79,31 @@
           class="flex flex-col items-start gap-8 text-xl text-slate-400 lg:flex-row lg:items-center"
         >
           <li>
-            <button class="cm-order-btn text-slate-700 hover:text-slate-700">
-              Newest
+            <button 
+            class="cm-order-btn hover:text-slate-700 {{ empty(request('orderBy')) || request('orderBy') == 'popular' ? 'text-slate-700' : '' }}" 
+            value="popular">
+              Popular
             </button>
           </li>
           <li>
-            <button class="cm-order-btn hover:text-slate-700">Oldest</button>
+            <button 
+            class="cm-order-btn hover:text-slate-700 {{ request('orderBy') == 'newest' ? 'text-slate-700' : '' }}" 
+            value="newest">Newest</button>
           </li>
           <li>
-            <button class="cm-order-btn hover:text-slate-700">Discount</button>
+            <button 
+            class="cm-order-btn hover:text-slate-700 {{ request('orderBy') == 'discount' ? 'text-slate-700' : '' }}" 
+            value="discount">Discount</button>
           </li>
           <li>
-            <button class="cm-order-btn hover:text-slate-700">Price up</button>
+            <button
+            class="cm-order-btn hover:text-slate-700 {{ request('orderBy') == 'priceUp' ? 'text-slate-700' : '' }}" 
+            value="priceUp">Price up</button>
           </li>
           <li>
-            <button class="cm-order-btn hover:text-slate-700">
+            <button 
+            class="cm-order-btn hover:text-slate-700 {{ request('orderBy') == 'priceDown' ? 'text-slate-700' : '' }}"
+             value="priceDown">
               Price down
             </button>
           </li>
@@ -116,10 +126,12 @@
         </button>
       </div>
 
-      <div class="flex flex-col gap-16 lg:flex-row">
+      <div class="flex flex-col gap-16 lg:flex-row min-w-full">
         <!-- Filters -->
-        <div
+        <form
           id="filter-menu"
+          action="{{ route("shop") }}#shop"
+          method="GET"
           class="fixed bottom-0 left-0 right-0 top-0 z-50 flex w-full translate-x-full transform flex-col gap-3 overflow-y-auto bg-primary-grey-100 px-4 font-semibold text-slate-800 transition-transform duration-500 ease-in-out md:pr-48 lg:static lg:z-auto lg:w-1/4 lg:translate-x-0 lg:pr-0 lg:transition-none"
         >
           <button
@@ -151,6 +163,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Price</p>
               <button
+                type="button"
                 id="price-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
@@ -167,27 +180,27 @@
                 </svg>
               </button>
             </div>
-            <div
+            <div 
               id="price-list"
               class="mt-4 font-medium max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
             >
               <!-- Price Range Slider -->
               <!-- Display Current Value -->
               <p class="mt-2">
-                Current Price: $0 - $<span id="currentPrice">200</span>
+                Current Price: ${{ floor($minPrice) }} - $<span id="currentPrice">{{ request('priceRange',ceil($maxPrice)) }}</span>
               </p>
               <input
                 type="range"
                 id="priceRange"
-                min="5"
-                max="200"
-                value="200"
+                min="{{ floor($minPrice) }}"
+                max="{{ ceil($maxPrice) }}"
+                value="{{ request('priceRange',ceil($maxPrice)) }}"
                 class="w-full cursor-pointer"
-                oninput="updatePriceValue(this.value)"
+                name="priceRange"
               />
               <div class="flex justify-between text-sm">
-                <span>$5</span>
-                <span>$200</span>
+                <span>${{ floor($minPrice) }}</span>
+                <span>${{ ceil($maxPrice) }}</span>
               </div>
             </div>
           </div>
@@ -199,6 +212,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Category</p>
               <button
+                type="button"
                 id="category-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
@@ -220,30 +234,13 @@
               id="category-list"
               class="mt-4 font-medium max-h-80 overflow-y-auto transition-all duration-200 ease-in-out"
             >
+            @foreach($categories as $category)
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Proteins</span>
+                <input type="checkbox" class="cursor-pointer" name="categories[]" value="{{ $category }}" 
+                {{ in_array($category, request('categories', [])) ? 'checked' : '' }}/>
+                <span class="ml-2 capitalize">{{ $category }}</span>
               </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Amino Acids</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Vitamins</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Minerals</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Healthy Food</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Special Offers</span>
-              </label>
+            @endforeach
               <div
                 class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
@@ -257,6 +254,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Flavour</p>
               <button
+                type="button"
                 id="flavour-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
@@ -278,58 +276,13 @@
               id="flavour-list"
               class="mt-4 font-medium max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
+              @foreach($flavours as $flavour)
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Vanilla</span>
+                <input type="checkbox" class="cursor-pointer" name="flavours[]" value="{{ $flavour->label }}"
+                {{ in_array($flavour->label, request('flavours', [])) ? 'checked' : '' }}/>
+                <span class="ml-2">{{ $flavour->label }}</span>
               </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Strawberry</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Mint Chocolate Chip</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Cookies and Cream</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Pistachio</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Salted Caramel</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Raspberry</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Natural</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Chocolate</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Rocky Road</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Banana</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Coconut</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Coffee</span>
-              </label>
+              @endforeach
               <div
                 class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
@@ -343,6 +296,7 @@
             <div class="flex items-center justify-between">
               <p class="text-xl font-semibold">Brand</p>
               <button
+                type="button"
                 id="brand-btn"
                 class="rounded-full p-1 transition duration-200 ease-in-out hover:bg-slate-600 hover:bg-opacity-10"
               >
@@ -364,77 +318,35 @@
               id="brand-list"
               class="mt-4 font-medium max-h-0 overflow-y-auto transition-all duration-200 ease-in-out"
             >
+            @foreach($brands as $brand)
               <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">PROtein</span>
+                <input type="checkbox" class="cursor-pointer" name="vendors[]" value="{{ $brand }}"
+                {{ in_array($brand, request('vendors', [])) ? 'checked' : '' }}/>
+                <span class="ml-2">{{ $brand }}</span>
               </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Furious</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Creapure</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">7 Strong Brothers</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Nutriblast</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Vitalist</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">GreenGain</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">PurePower</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">OmegaPeak</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">HerbalHarvest</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Essentials</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Beasts</span>
-              </label>
-              <label class="ml-4 mt-2 block">
-                <input type="checkbox" class="cursor-pointer" />
-                <span class="ml-2">Aura</span>
-              </label>
+            @endforeach
               <div
                 class="cm-scroll-indicator pointer-events-none absolute bottom-0 left-0 right-0 hidden h-16 bg-gradient-to-t from-primary-grey-100 to-transparent"
               ></div>
             </div>
           </div>
 
-          <button class="mt-4 px-4 py-2 border border-slate-500 rounded-[8px] text-slate-700 bg-slate-50 hover:bg-white transition-colors duration-200">
+          <button type="submit" class="mt-4 px-4 py-2 border border-slate-500 rounded-[8px] text-slate-700 bg-primary-gray-100 hover:bg-slate-100 transition-colors duration-200 cursor-pointer">
             Apply Filters
           </button>
-        </div>
+          <a href="{{ route("shop") }}#shops" class="text-center font-regular mt-4 px-4 py-2 underline text-slate-700 transition-colors duration-200 cursor-pointer hover:scale-105">
+            Clear All Filters
+          </a>
+        </form>
 
         <!-- Products -->
         <ul
-          class="grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:w-3/4"
+          class="grid grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:w-3/4 max-h-fit h-auto items-start"
         >
         @forelse ($data as $item)
-            
+            <x-product-card :product=$item />
         @empty
-            <p>No products</p>
+            <p class="p-4 text-center bg-white rounded-[8px] col-span-3 h-fit text-slate-500">No products match the criteria</p>
         @endforelse
         </ul>
       </div>
