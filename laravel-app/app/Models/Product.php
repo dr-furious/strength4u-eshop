@@ -9,6 +9,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'main_description',
+        'secondary_description',
+        'category',
+        'vendor'];
+
     public function images()
     {
         return $this->hasMany(Image::class);
@@ -21,6 +28,20 @@ class Product extends Model
     }
 
     // Optionally, define a relationship to get all unique flavours through stocks
+
+    public function sizes()
+    {
+        return $this->hasManyThrough(Size::class, Stock::class, "product_id", "id", "id", "size_id")->distinct();
+    }
+
+    // Optionally, define a relationship to get all unique sizes through stocks
+
+    public function getFlavourCount()
+    {
+        // This counts the unique flavours associated via stocks
+        return $this->flavours()->distinct()->count("flavours.id");
+    }
+
     public function flavours()
     {
         return $this->hasManyThrough(
@@ -31,17 +52,5 @@ class Product extends Model
             "id", // Local key on the Product table
             "flavour_id", // Local key on the Stock table
         )->distinct();
-    }
-
-    // Optionally, define a relationship to get all unique sizes through stocks
-    public function sizes()
-    {
-        return $this->hasManyThrough(Size::class, Stock::class, "product_id", "id", "id", "size_id")->distinct();
-    }
-
-    public function getFlavourCount()
-    {
-        // This counts the unique flavours associated via stocks
-        return $this->flavours()->distinct()->count("flavours.id");
     }
 }
