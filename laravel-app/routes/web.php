@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", IndexController::class)->name("index");
 
-Route::get("/shop/product-detail/{product_id}", [StockController::class, "show"])->name("product-detail");
+Route::get("/shop/product-detail/{stock_id}", [StockController::class, "show"])->name("product-detail");
 
 Route::get("/shop", [StockController::class, "index"])->name("shop");
 
-Route::get("/shop/search", [StockController::class, "search"])->name("shop.search");
+Route::get("/shop/search", [StockController::class, "search"])->name("shop-search");
 
 Route::get("/login", function () {
     return view("login");

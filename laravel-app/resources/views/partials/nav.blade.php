@@ -16,7 +16,7 @@
       </li>
     </ul>
 
-    <form action="{{ route("shop.search") }}#shop" method="GET" class="relative mt-4 w-full px-4 md:mt-0">
+    <form action="{{ route("shop-search") }}#shop" method="GET" class="relative mt-4 w-full px-4 md:mt-0">
       <label for="search-bar" class="hidden">Search</label>
       <input class="h-12 w-full rounded-[4px] border border-slate-200 px-4 font-light outline-blue-600" type="search"
         name="search" id="search-bar" placeholder="Search for your favourite product..." />

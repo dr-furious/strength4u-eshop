@@ -138,14 +138,49 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $stock_id)
+    public function show(int $stock_id, Request $request)
     {
+        $size_id = $request->input("size", null);
         $stock_data = Stock::withProductDetails()->findOrFail($stock_id);
-        $product_data = Product::with(["sizes", "flavours"])->findOrFail($stock_data->product_id);
+
+        if ($size_id) {
+            $new_stock = Stock::where("product_id", "=", $stock_data->product_id)
+                ->where("flavour_id", "=", $stock_data->flavour_id)
+                ->where("size_id", "=", $size_id)
+                ->first();
+            return redirect()->route("product-detail", ["stock_id" => $new_stock->id]);
+        }
+
+        // Get all stocks related to the same product
+        $related_stocks = Stock::with("flavour", "size")
+            ->where("product_id", "=", $stock_data->product_id)
+            ->get();
+
+        // Get unique flavours
+        $unique_flavours = $related_stocks->pluck("flavour")->unique("id");
+
+        // Get unique sizes associated with the product and current flavour
+        $unique_sizes = $stock_data->product
+            ->stocks()
+            ->where("flavour_id", $stock_data->flavour_id)
+            ->with("size")
+            ->get()
+            ->pluck("size")
+            ->unique("id");
+
+        $next_stocks = [];
+
+        foreach ($unique_flavours as $flavour) {
+            // Find the first stock that matches this flavour and has a size
+            $next_stock = $related_stocks->where("flavour_id", $flavour->id)->first();
+            $next_stocks[$flavour->id] = $next_stock->id;
+        }
 
         return view("product-detail", [
             "stock_data" => $stock_data,
-            "product_data" => $product_data,
+            "flavours" => $unique_flavours,
+            "sizes" => $unique_sizes,
+            "next_stocks" => $next_stocks,
         ]);
     }
 
