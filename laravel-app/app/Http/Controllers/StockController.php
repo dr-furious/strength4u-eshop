@@ -46,9 +46,19 @@ class StockController extends Controller
         $brands = $request->input("vendors", []);
         $orderBy = $request->input("orderBy", "created_at"); // Default sort field
         $order = $orderMapping[$orderBy] ?? $orderMapping["default"];
+        $searchQuery = $request->input("search");
 
         // Start the query on the Stock model
         $query = Stock::withProductDetails();
+
+        // Conditional search query
+        if ($searchQuery) {
+            $query->whereHas("product", function ($q) use ($searchQuery) {
+                $q->where("name", "ilike", "%{$searchQuery}%")
+                    ->orWhere("main_description", "ilike", "%{$searchQuery}%")
+                    ->orWhere("secondary_description", "ilike", "%{$searchQuery}%");
+            });
+        }
 
         // Apply price filter
         if ($priceTo !== null) {
@@ -96,6 +106,17 @@ class StockController extends Controller
             "brands" => $brands,
             "categories" => $categories,
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $validatedData = $request->validate([
+            "search" => "nullable|string", // Validate optional search query
+        ]);
+        $searchQuery = $request->input("search");
+
+        // Redirect with the search parameter to be handled by the index method
+        return redirect()->route("shop", ["search" => $searchQuery]);
     }
 
     /**
