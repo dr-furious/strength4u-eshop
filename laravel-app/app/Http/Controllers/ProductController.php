@@ -130,9 +130,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, int $product_id)
     {
-        return ($product);
+        //validate just product data
         $request->validate([
             'title' => 'required|min:3|max:50',
             'desc' => 'required|min:3|max:600',
@@ -140,7 +140,42 @@ class ProductController extends Controller
             'category' => 'required',
             'vendor' => 'required',
         ]);
-        $product_stock = Stock::Allpopular()->where('product_id', $product->id);
+        $product = Product::where('id', $product_id)->firstOrFail();
+        //update just product
+        $product->name = request('title');
+        $product->main_description = request('desc');
+        $product->secondary_description = request('secondary_desc');
+        $product->category = request('category');
+        $product->vendor = request('vendor');
+        $product->save();
+
+        //first update all old ones
+        $product_stock = Stock::where('product_id', $product_id)->orderBy("sold_amount", "desc")->get();
+        $stockCount = $product_stock->count();
+        for ($i = 1; $i <= $stockCount; $i++) {
+            $discountKey = "discount$i";
+            $stock_update = $product_stock->skip($i - 1)->first();
+            if ($request->has($discountKey)) {
+                // get new flavour and size id
+                $flavour_id_new = Flavour::firstOrCreate(['label' => $request->input("flavour$i")]);
+                $size_id_new = Size::firstOrCreate(['label' => $request->input("size$i")]);
+
+                // get stock record that is in updated request
+                if (($flavour_id_new->id != $stock_update->flavour_id) || ($size_id_new->id != $stock_update->size_id)) {
+                    $stock_update->size_id = $size_id_new->id;
+                    $stock_update->flavour_id = $flavour_id_new->id;
+                }
+                $stock_update->price_in_dollars = $request->input("price$i");
+                $stock_update->discount_percentage = $request->input("discount$i");
+                $stock_update->stock_amount = $request->input("amount$i");
+
+                $stock_update->save();
+            } else {
+                $stock_update->delete();
+            }
+        }
+        //Todo:Adam update rest
+        return ($stock_update);
 
     }
 
