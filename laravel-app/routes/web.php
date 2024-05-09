@@ -26,6 +26,7 @@ Route::get('/admin/create', [ProductController::class, 'create'])->middleware(['
 Route::post('/admin/', [ProductController::class, 'store'])->middleware(['auth']);
 Route::get('/admin/{product_id}/', [ProductController::class, 'show'])->middleware(['auth']);
 Route::get('/admin/{product_id}/edit/', [ProductController::class, 'edit'])->middleware(['auth']);
+Route::put('/admin/{product_id}', [ProductController::class, 'update'])->middleware(['auth']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

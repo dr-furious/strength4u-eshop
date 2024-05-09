@@ -1,12 +1,12 @@
 @extends("layouts.app")
 
-@section("title", "Home")
+@section("title", "Admin - Show")
 
 @section("content")
 
     <main class="flex max-w-screen-xl flex-col px-2 lg:mb-8 xl:m-auto">
         <h2 class="mt-8 p-4 text-4xl font-bold text-slate-800">
-            Admin Panel - Add New Product
+            Admin Panel - Show Product
         </h2>
         <section
             class="mt-8 flex w-full flex-col rounded-[4px] bg-white px-8 py-4"

@@ -107,6 +107,17 @@ function addProductEntry() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const deleteBtns = document.querySelectorAll(
+        '[id^="delete-product-entry-btn-"]',
+    );
+    deleteBtns.forEach((button) => {
+        // Add an event listener for the delete button
+        button.addEventListener("click", function (e) {
+            e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
+            // + on this button will need to be a call to the database to update tables in case they were created
+        });
+    });
+
     // Add new flavour
     document
         .getElementById("add-flavor")

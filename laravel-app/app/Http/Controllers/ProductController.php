@@ -110,8 +110,21 @@ class ProductController extends Controller
      */
     public function edit(int $product_id)
     {
+        $flavours = Flavour::all()->pluck('label');
+        $sizes = Size::all()->pluck('label');
+
+        $vendors = Product::distinct()->pluck('vendor');
+        $categories = Product::distinct()->pluck('category');
         $product_stock = Stock::Allpopular()->where('product_id', $product_id);
-        return view('admin.edit', ['product' => $product]);
+        $stockCount = $product_stock->count();
+        return view('admin.edit', [
+            'product_stock' => $product_stock,
+            'stockCount' => $stockCount,
+            'flavours' => $flavours,
+            'sizes' => $sizes,
+            'vendors' => $vendors,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -119,7 +132,16 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        return ($product);
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+            'desc' => 'required|min:3|max:600',
+            'secondary_desc' => 'required|min:3|max:600',
+            'category' => 'required',
+            'vendor' => 'required',
+        ]);
+        $product_stock = Stock::Allpopular()->where('product_id', $product->id);
+
     }
 
     /**
