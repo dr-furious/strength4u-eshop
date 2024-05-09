@@ -1,21 +1,21 @@
-@props(["product"])
+@props(["stock_item"])
 
 <li
   class="relative flex flex-col gap-1 rounded-[4px] border border-transparent bg-white p-4 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-xl">
   <div class="absolute -left-2 -top-4 flex w-max gap-2 text-sm uppercase">
-    @if ($product->discount_percentage > 0)
+    @if ($stock_item->discount_percentage > 0)
       <p class="rounded-full border border-transparent bg-red-300 bg-opacity-60 px-2 text-red-900">
-        {{ $product->discount_percentage }}% off
+        {{ $stock_item->discount_percentage }}% off
       </p>
     @endif
-    @if ($product->product->flavour_count > 1)
+    @if ($stock_item->product->flavour_count > 1)
       <p class="rounded-full border border-transparent bg-slate-300 bg-opacity-60 px-2 text-slate-800">
-        {{ $product->product->flavour_count > 9 ? "9+" : $product->product->flavour_count }} Flavours
+        {{ $stock_item->product->flavour_count > 9 ? "9+" : $stock_item->product->flavour_count }} Flavours
       </p>
     @endif
   </div>
   <div class="w-full self-center overflow-hidden rounded-[8px] border border-transparent">
-    @foreach ($product->product->images as $image)
+    @foreach ($stock_item->product->images as $image)
       @if ($image->is_main)
         <img class="h-auto w-full object-cover" src="{{ asset("storage/" . $image->name) }}"
           alt="{{ $image->name }} image">
@@ -23,33 +23,33 @@
     @endforeach
   </div>
   <div>
-    <p class="text-slate-600">{{ $product->product->vendor }}</p>
+    <p class="text-slate-600">{{ $stock_item->product->vendor }}</p>
     <p class="flex gap-2 text-lg">
-      @if ($product->discount_percentage > 0)
+      @if ($stock_item->discount_percentage > 0)
         <span
-          class="font-bold text-red-600">${{ number_format($product->price_in_dollars - ($product->price_in_dollars * $product->discount_percentage) / 100, 2) }}
+          class="font-bold text-red-600">${{ number_format($stock_item->price_in_dollars - ($stock_item->price_in_dollars * $stock_item->discount_percentage) / 100, 2) }}
 
         </span>
-        <span class="text-slate-600 line-through">${{ $product->price_in_dollars }}</span>
+        <span class="text-slate-600 line-through">${{ $stock_item->price_in_dollars }}</span>
       @else
-        <span class="font-bold text-slate-700">${{ $product->price_in_dollars }}</span>
+        <span class="font-bold text-slate-700">${{ $stock_item->price_in_dollars }}</span>
       @endif
 
     </p>
   </div>
   <div>
     <span class="inline-flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800">
-      {{ $product->flavour->label }}
+      {{ $stock_item->flavour->label }}
     </span>
     <span class="inline-flex w-fit items-center rounded-[8px] bg-slate-100 px-2 py-1 text-sm lowercase text-slate-800">
-      {{ $product->size->label }}
+      {{ $stock_item->size->label }}
     </span>
   </div>
   <a class="text-lg text-blue-500 hover:underline"
-    href="{{ route("product-detail", ["product_id" => $product->id]) }}">
-    {{ $product->product->name }}</a>
+    href="{{ route("product-detail", ["stock_id" => $stock_item->id]) }}">
+    {{ $stock_item->product->name }}</a>
   <p class="text-sm text-slate-800">
-    {{ Str::limit($product->product->main_description, 90) }} <!-- Limit to 90 chars -->
+    {{ Str::limit($stock_item->product->main_description, 90) }} <!-- Limit to 90 chars -->
   </p>
   <div class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2">
     <button
