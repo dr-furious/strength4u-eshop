@@ -66,7 +66,7 @@ class Stock extends Model
                 // Using withCount to handle distinct counts via relationship
                 $query->withCount([
                     "flavours as flavour_count" => function ($subquery) {
-                        $subquery->distinct();
+                        $subquery->select(\DB::raw("count(distinct flavour_id)"));
                     },
                 ]);
             },
