@@ -47,8 +47,15 @@ class ProductController extends Controller
         // Initialize an index for dynamic field grouping
         $index = 1;
         while ($request->has("flavour$index")) {
-            $Size = Size::where('label', 'ilike', $request->input("size$index"))->first();
-            $Flavour = Flavour::where('label', 'ilike', $request->input("flavour$index"))->first();
+            // Attempt to retrieve the Size, or create it if it does not exist
+            $Size = Size::firstOrCreate(
+                ['label' => $request->input("size$index")]
+            );
+
+            // Attempt to retrieve the Flavour, or create it if it does not exist
+            $Flavour = Flavour::firstOrCreate(
+                ['label' => $request->input("flavour$index")]
+            );
 
             // Check if the size and flavour were found, if not, skip this iteration
             if ($Size && $Flavour) {
@@ -94,16 +101,16 @@ class ProductController extends Controller
      */
     public function show(int $product_id)
     {
-        $product = Product::where('id', $product_id)->firstOrFail();
-        return view('admin.show', ['product' => $product]);
+        $product_stock = Stock::Allpopular()->where('product_id', $product_id);
+        return view('admin.show', ['product_stock' => $product_stock]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(int $product_id)
     {
-        return ($product);
+        $product_stock = Stock::Allpopular()->where('product_id', $product_id);
         return view('admin.edit', ['product' => $product]);
     }
 

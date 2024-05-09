@@ -20,7 +20,7 @@
                         Product Title
                     <div
                         class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md">
-                        {{ $product->name }}
+                        {{ $product_stock->first()->product->name }}
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@
                     </p>
                     <div
                         class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    >{{ $product->main_description}}</div>
+                    >{{ $product_stock->first()->product->main_description}}</div>
                 </div>
 
                 <!-- Secondary Description -->
@@ -41,7 +41,7 @@
                     </p>
                     <div
                         class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    >{{ $product->secondary_description}}</div>
+                    >{{ $product_stock->first()->product->secondary_description}}</div>
                 </div>
 
                 <!-- image -->
@@ -93,7 +93,7 @@
 
                         class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >
-                        {{ $product->category}}
+                        {{ $product_stock->first()->product->category}}
                     </div>
                 </div>
 
@@ -105,24 +105,9 @@
                     <div
                         class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >
-                        {{ $product->vendor}}
+                        {{ $product_stock->first()->product->vendor}}
                     </div>
                 </div>
-                <!-- New vendor -->
-                <div id="new_vendor_section" class="hidden flex-col gap-2">
-                    <label class="cm-required block font-bold" for="new_vendor"
-                    >New Vendor</label
-                    >
-                    <input
-                        class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        id="new_vendor"
-                        name="new_vendor"
-                        placeholder="Type vendor that is not in the list ..."
-                        type="text"
-                        maxlength="25"
-                    />
-                </div>
-
                 <ul class="flex flex-col gap-4" id="product-entries">
                     <li
                         class="hidden justify-between border-b border-slate-400 pb-2 font-bold text-slate-800 md:flex"
@@ -134,80 +119,9 @@
                         <p class="cm-required w-[18%]">Amount</p>
                         <p class="w-[10%]"></p>
                     </li>
-                    <!-- Product Entry Template -->
-                    <template id="product-entry-template">
-                        <li
-                            class="flex items-center border-b border-slate-200 pb-4 text-slate-800"
-                        >
-                            <!-- Flavour -->
-                            <div class="w-[18%]">
-                                <label class="hidden" for="flavour">Flavour</label>
-                                <select
-                                    id="flavour"
-                                    name="flavour"
-                                    class="w-5/6 rounded-md border border-[#e0e0e0] bg-white px-2 py-1 text-sm font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    required
-                                ></select>
-                            </div>
-                            <!-- Size -->
-                            <div class="w-[18%]">
-                                <label class="hidden" for="size">Size</label>
-                                <select
-                                    id="size"
-                                    name="size"
-                                    class="w-5/6 rounded-md border border-[#e0e0e0] bg-white px-2 py-1 text-sm font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    required
-                                ></select>
-                            </div>
-                            <!-- Price -->
-                            <div class="w-[18%]">
-                                <label class="hidden" for="price">
-                                    Pricing (in $ per piece)*
-                                </label>
-                                <input
-                                    class="w-5/6 rounded-md border border-[#e0e0e0] bg-white px-2 py-1 text-sm font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    id="price"
-                                    name="price"
-                                    placeholder="$123.95"
-                                    type="text"
-                                    required
-                                />
-                            </div>
-                            <!-- Discount -->
-                            <div class="w-[18%]">
-                                <label class="hidden" for="discount">
-                                    Discount (in % per piece)
-                                </label>
-                                <input
-                                    class="w-5/6 rounded-md border border-[#e0e0e0] bg-white px-2 py-1 text-sm font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    id="discount"
-                                    name="discount"
-                                    placeholder="20%"
-                                    type="text"
-                                />
-                            </div>
-                            <!-- Amount -->
-                            <div class="w-[18%]">
-                                <label class="hidden" for="amount"> Amount </label>
-                                <input
-                                    class="w-5/6 rounded-md border border-[#e0e0e0] bg-white px-2 py-1 text-sm font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    id="amount"
-                                    name="amount"
-                                    placeholder="1,2.3...9999"
-                                    type="number"
-                                    required
-                                />
-                            </div>
-                            <div class="flex w-[10%] items-center justify-center gap-4">
-                                <button
-                                    id="delete-product-entry-btn-0"
-                                    class="rounded-[8px] border border-slate-400 border-opacity-10 bg-slate-400 bg-opacity-10 px-4 py-1 transition duration-200 ease-in-out hover:text-red-600"
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </li>
-                    </template>
+                    @foreach($product_stock as $stock_record)
+                        <x-flavour-size_admin_show :stock_record=$stock_record/>
+                    @endforeach
                 </ul>
         </section>
     </main>
