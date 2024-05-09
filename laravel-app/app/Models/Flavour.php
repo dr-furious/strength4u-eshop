@@ -9,6 +9,8 @@ class Flavour extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['label'];
+
     // Each flavour can be associated with many stocks
     public function stocks()
     {
