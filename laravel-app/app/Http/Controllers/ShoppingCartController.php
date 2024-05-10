@@ -12,7 +12,10 @@ class ShoppingCartController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $cartData = json_decode($request->input("cart"), true); // Decode JSON string to array
+        $cartData = json_decode($request->input("cart", "[]"), true); // Decode JSON string to array
+        if ($cartData == null) {
+            return view("cart", ["data" => []]);
+        }
         $rules = [
             "*" => "required|array", // Ensure each item is an array
             "*.stockId" => "required|integer|min:1", // Validate stockId as unsigned integer

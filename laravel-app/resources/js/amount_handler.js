@@ -6,12 +6,17 @@ function updateQuantity(stockId, delta) {
     const itemIndex = cart.findIndex((item) => item.stockId === stockId);
 
     if (itemIndex > -1) {
+        if (cart[itemIndex].quantity + delta < 1) {
+            return;
+        }
         cart[itemIndex].quantity += delta;
         if (cart[itemIndex].quantity <= 0) {
             cart.splice(itemIndex, 1); // Remove the item if quantity is 0 or less
         }
         localStorage.setItem("cart", JSON.stringify(cart));
     }
+    updateIndicator();
+    updatePrice();
 }
 
 // Deletes the item from the cart
@@ -21,10 +26,59 @@ function removeFromCart(stockId) {
 
     if (itemIndex > -1) {
         cart[itemIndex].quantity = 0;
-        document.getElementById("cart-row-" + stockId).remove(); // remove cart row from DOM
+        let cartRow = document.getElementById("cart-row-" + stockId);
+        cartRow.classList.add("hidden");
+        cartRow.remove(); // remove cart row from DOM
         cart.splice(itemIndex, 1); // Remove the item
         localStorage.setItem("cart", JSON.stringify(cart));
     }
+    updateIndicator();
+    updatePrice();
+}
+
+function updatePrice() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let subtotal = document.getElementById("subtotal");
+    let sum = 0;
+
+    cart.forEach((item) => {
+        const stockID = item.stockId;
+        const quantity = item.quantity;
+        let unitPriceReal = document.getElementById(
+            "real-unit-price-" + stockID,
+        );
+        let unitPriceDisc = document.getElementById(
+            "disc-unit-price-" + stockID,
+        );
+        let totalPriceReal = document.getElementById(
+            "real-total-price-" + stockID,
+        );
+        let totalPriceDisc = document.getElementById(
+            "disc-total-price-" + stockID,
+        );
+
+        // Parse unit prices from textContent, removing the $ sign and converting to float
+        const realPrice = parseFloat(
+            unitPriceReal.textContent.replace("$", ""),
+        );
+        // Calculate total prices
+        const totalRealPrice = realPrice * quantity;
+
+        // Update the total price elements with dollar sign prefixed
+        totalPriceReal.textContent = `$${totalRealPrice.toFixed(2)}`; // Formats the number to 2 decimal places
+
+        if (unitPriceDisc) {
+            const discountedPrice = parseFloat(
+                unitPriceDisc.textContent.replace("$", ""),
+            );
+            const totalDiscountedPrice = discountedPrice * quantity;
+            totalPriceDisc.textContent = `$${totalDiscountedPrice.toFixed(2)}`; // Formats the number to 2 decimal places
+            sum += totalDiscountedPrice;
+        } else {
+            sum += totalRealPrice;
+        }
+    });
+    subtotal.textContent = `$${sum.toFixed(2)}`;
 }
 
 function decrement(e) {
@@ -59,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", (event) => {
             decrement(event);
             if (btn.classList.contains("cm-cart-dec-btn")) {
+                updateQuantity(parseInt(btn.id.split("-").pop()), -1);
             }
         });
     });
@@ -67,14 +122,16 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", (event) => {
             increment(event);
             if (btn.classList.contains("cm-cart-inc-btn")) {
+                updateQuantity(parseInt(btn.id.split("-").pop()), 1);
             }
         });
     });
 
-    deleteButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            removeFromCart(parseInt(button.id.split("-").pop()));
-            updateIndicator();
+    deleteButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            removeFromCart(parseInt(btn.id.split("-").pop()));
         });
     });
+
+    updatePrice();
 });
