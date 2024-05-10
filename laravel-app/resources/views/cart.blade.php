@@ -51,5 +51,5 @@
 @endsection
 
 @push("scripts")
-  @vite(["resources/js/amount_handler.js"])
+  @vite(["resources/js/amount_handler.js", "resources/js/reload-cart.js"])
 @endpush

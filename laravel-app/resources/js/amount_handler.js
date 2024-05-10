@@ -6,12 +6,16 @@ function updateQuantity(stockId, delta) {
     const itemIndex = cart.findIndex((item) => item.stockId === stockId);
 
     if (itemIndex > -1) {
+        if (cart[itemIndex].quantity + delta < 1) {
+            return;
+        }
         cart[itemIndex].quantity += delta;
         if (cart[itemIndex].quantity <= 0) {
             cart.splice(itemIndex, 1); // Remove the item if quantity is 0 or less
         }
         localStorage.setItem("cart", JSON.stringify(cart));
     }
+    updateIndicator();
 }
 
 // Deletes the item from the cart
@@ -21,10 +25,13 @@ function removeFromCart(stockId) {
 
     if (itemIndex > -1) {
         cart[itemIndex].quantity = 0;
-        document.getElementById("cart-row-" + stockId).remove(); // remove cart row from DOM
+        let cartRow = document.getElementById("cart-row-" + stockId);
+        cartRow.classList.add("hidden");
+        cartRow.remove(); // remove cart row from DOM
         cart.splice(itemIndex, 1); // Remove the item
         localStorage.setItem("cart", JSON.stringify(cart));
     }
+    updateIndicator();
 }
 
 function decrement(e) {
@@ -59,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", (event) => {
             decrement(event);
             if (btn.classList.contains("cm-cart-dec-btn")) {
+                updateQuantity(parseInt(btn.id.split("-").pop()), -1);
             }
         });
     });
@@ -67,14 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", (event) => {
             increment(event);
             if (btn.classList.contains("cm-cart-inc-btn")) {
+                updateQuantity(parseInt(btn.id.split("-").pop()), 1);
             }
         });
     });
 
-    deleteButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            removeFromCart(parseInt(button.id.split("-").pop()));
-            updateIndicator();
+    deleteButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            removeFromCart(parseInt(btn.id.split("-").pop()));
         });
     });
 });

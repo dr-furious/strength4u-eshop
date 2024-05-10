@@ -24,17 +24,17 @@
   <div class="col-start-1 col-end-2 row-start-2 flex w-full justify-center justify-self-start md:w-2/12">
     <!--https://tailwindcomponents.com/component/number-input-counter -->
     <div class="custom-number-input flex w-full flex-row rounded-[8px] text-center md:w-4/6">
-      <button
+      <button id="dec-{{ $stock_item->id }}"
         class="cm-cart-dec-btn h-full w-1/4 cursor-pointer rounded-l-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
         data-action="decrement">
         <span class="m-auto text-2xl md:font-thin">−</span>
       </button>
 
-      <input
-        class="cm-cart-inc-btn text-md md:text-basecursor-default custom-number-input-rm-arrows flex w-2/4 items-center bg-primary-grey-100 text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:bg-opacity-70 focus:outline-none"
+      <input id="input-{{ $stock_item->id }}"
+        class="cm-cart-input text-md md:text-basecursor-default custom-number-input-rm-arrows flex w-2/4 items-center bg-primary-grey-100 text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:bg-opacity-70 focus:outline-none"
         min="0" name="custom-input-number" type="number" value="{{ $quantity }}" />
-      <button
-        class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
+      <button id="inc-{{ $stock_item->id }}"
+        class="cm-cart-inc-btn h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
         data-action="increment">
         <span class="m-auto text-2xl md:font-thin">+</span>
       </button>
