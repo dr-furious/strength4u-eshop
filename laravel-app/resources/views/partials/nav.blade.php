@@ -101,17 +101,17 @@
           @if (auth()->check())
             <form method="POST" action="{{ route("logout") }}">
               @csrf
-              <x-responsive-nav-link :href="route("logout")"
-                onclick="event.preventDefault(); this.closest('form').submit();">
-                {{ __("Log Out") }}
+              <x-responsive-nav-link :href='route("logout")' onclick="event.preventDefault(); this.closest('form').submit();">
+                log out
               </x-responsive-nav-link>
             </form>
-            @if (auth()->check() && Auth::user()->isAdministrator())
-              <li class="rounded-b-[8px] border-t">
-                <a id="admin-link" href="{{ route("admin") }}"
-                  class="block px-4 py-2 hover:bg-gray-100 hover:underline">Admin</a>
-              </li>
-            @endif
+          @endif
+          @if (auth()->check() && Auth::user()->isAdministrator())
+            <li class="rounded-b-[8px] border-t">
+              <a id="admin-link" href="{{ route("admin") }}"
+                class="block px-4 py-2 hover:bg-gray-100 hover:underline">Admin</a>
+            </li>
+          @endif
         </ul>
       </div>
     </li>
