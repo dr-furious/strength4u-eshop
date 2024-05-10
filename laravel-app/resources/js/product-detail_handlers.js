@@ -1,29 +1,4 @@
-function addToCart(stockId, quantity) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let cartItem = cart.find((item) => item.stockId === stockId);
-
-    if (cartItem) {
-        cartItem.quantity += quantity; // Increment quantity if item already exists
-    } else {
-        cart.push({ stockId, quantity }); // Add new item to cart
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart back to local storage
-}
-
-// Updates the quantity of an item in the cart
-function updateQuantity(stockId, delta) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const itemIndex = cart.findIndex((item) => item.stockId === stockId);
-
-    if (itemIndex > -1) {
-        cart[itemIndex].quantity += delta;
-        if (cart[itemIndex].quantity <= 0) {
-            cart.splice(itemIndex, 1); // Remove the item if quantity is 0 or less
-        }
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }
-}
+import { addToCart } from "./add-to-cart";
 
 document.addEventListener("DOMContentLoaded", () => {
     // Handle refresh when flavours-select dropdown value is changed

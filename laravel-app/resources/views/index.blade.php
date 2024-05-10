@@ -284,5 +284,5 @@
 @endsection
 
 @push("scripts")
-  @vite(["resources/js/carousel-handler.js"])
+  @vite(["resources/js/carousel-handler.js", "resources/js/add-to-card-btn-handlers.js"])
 @endpush

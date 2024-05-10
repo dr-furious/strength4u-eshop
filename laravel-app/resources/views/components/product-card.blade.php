@@ -52,8 +52,8 @@
     {{ Str::limit($stock_item->product->main_description, 90) }} <!-- Limit to 90 chars -->
   </p>
   <div class="mt-auto flex w-full flex-col items-end justify-end gap-2 pt-2">
-    <button
-      class="flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600">
+    <button id="{{ $stock_item->id }}"
+      class="cm-add-to-card-btn flex w-full transform items-center justify-center rounded-[8px] border border-transparent bg-blue-500 px-4 py-2 text-slate-100 duration-200 ease-in-out hover:bg-blue-600">
       <svg class="fill-slate-100" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960"
         width="32">
         <path

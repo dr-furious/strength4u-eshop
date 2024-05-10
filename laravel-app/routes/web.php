@@ -4,6 +4,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", IndexController::class)->name("index");
@@ -13,6 +14,8 @@ Route::get("/shop/product-detail/{stock_id}", [StockController::class, "show"])-
 Route::get("/shop", [StockController::class, "index"])->name("shop");
 
 Route::get("/shop/search", [StockController::class, "search"])->name("shop-search");
+
+Route::post("/shop/cart", ShoppingCartController::class)->name("shop.cart");
 
 Route::get("/login", function () {
     return view("login");

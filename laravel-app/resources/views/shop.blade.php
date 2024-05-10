@@ -242,5 +242,5 @@
 @endsection
 
 @push("scripts")
-  @vite(["resources/js/ordering-filter_handlers.js"])
+  @vite(["resources/js/ordering-filter_handlers.js", "resources/js/add-to-card-btn-handlers.js"])
 @endpush
