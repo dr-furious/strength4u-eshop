@@ -16,6 +16,7 @@ function updateQuantity(stockId, delta) {
         localStorage.setItem("cart", JSON.stringify(cart));
     }
     updateIndicator();
+    updatePrice();
 }
 
 // Deletes the item from the cart
@@ -32,6 +33,52 @@ function removeFromCart(stockId) {
         localStorage.setItem("cart", JSON.stringify(cart));
     }
     updateIndicator();
+    updatePrice();
+}
+
+function updatePrice() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let subtotal = document.getElementById("subtotal");
+    let sum = 0;
+
+    cart.forEach((item) => {
+        const stockID = item.stockId;
+        const quantity = item.quantity;
+        let unitPriceReal = document.getElementById(
+            "real-unit-price-" + stockID,
+        );
+        let unitPriceDisc = document.getElementById(
+            "disc-unit-price-" + stockID,
+        );
+        let totalPriceReal = document.getElementById(
+            "real-total-price-" + stockID,
+        );
+        let totalPriceDisc = document.getElementById(
+            "disc-total-price-" + stockID,
+        );
+
+        // Parse unit prices from textContent, removing the $ sign and converting to float
+        const realPrice = parseFloat(
+            unitPriceReal.textContent.replace("$", ""),
+        );
+        // Calculate total prices
+        const totalRealPrice = realPrice * quantity;
+
+        // Update the total price elements with dollar sign prefixed
+        totalPriceReal.textContent = `$${totalRealPrice.toFixed(2)}`; // Formats the number to 2 decimal places
+
+        if (unitPriceDisc) {
+            const discountedPrice = parseFloat(
+                unitPriceDisc.textContent.replace("$", ""),
+            );
+            const totalDiscountedPrice = discountedPrice * quantity;
+            totalPriceDisc.textContent = `$${totalDiscountedPrice.toFixed(2)}`; // Formats the number to 2 decimal places
+            sum += totalDiscountedPrice;
+        } else {
+            sum += totalRealPrice;
+        }
+    });
+    subtotal.textContent = `$${sum.toFixed(2)}`;
 }
 
 function decrement(e) {
@@ -85,4 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
             removeFromCart(parseInt(btn.id.split("-").pop()));
         });
     });
+
+    updatePrice();
 });

@@ -44,24 +44,27 @@
   <!-- Price per piece-->
   <div class="hidden w-2/12 text-center md:block">
     @if ($stock_item->discount_percentage > 0)
-      <p class="text-slate-600 line-through">${{ $stock_item->price_in_dollars }}</p>
-      <p class="font-bold text-red-600">
+      <p id="real-unit-price-{{ $stock_item->id }}" class="cm-real-unit-price text-slate-600 line-through">
+        ${{ $stock_item->price_in_dollars }}</p>
+      <p class="cm-disc-unit-price font-bold text-red-600" id="disc-unit-price-{{ $stock_item->id }}">
         ${{ number_format($stock_item->price_in_dollars - ($stock_item->price_in_dollars * $stock_item->discount_percentage) / 100, 2) }}
       </p>
     @else
-      <p>${{ $stock_item->price_in_dollars }}
+      <p id="real-unit-price-{{ $stock_item->id }}" class="cm-real-unit-price">${{ $stock_item->price_in_dollars }}
     @endif
     </p>
   </div>
+
   <!-- Price total -->
   <div class="w-2/12 text-center">
     @if ($stock_item->discount_percentage > 0)
-      <p class="text-slate-600 line-through">${{ $stock_item->price_in_dollars * $quantity }}</p>
-      <p class="font-bold text-red-600">
+      <p id="real-total-price-{{ $stock_item->id }}" class="cm-real-total-price text-slate-600 line-through">
+        ${{ $stock_item->price_in_dollars * $quantity }}</p>
+      <p id="disc-total-price-{{ $stock_item->id }}" class="font-bold text-red-600">
         ${{ number_format(($stock_item->price_in_dollars - ($stock_item->price_in_dollars * $stock_item->discount_percentage) / 100) * $quantity, 2) }}
       </p>
     @else
-      <p>
+      <p id="real-total-price-{{ $stock_item->id }}" class="cm-real-total-price">
         ${{ number_format($stock_item->price_in_dollars * $quantity, 2) }}
       </p>
     @endif

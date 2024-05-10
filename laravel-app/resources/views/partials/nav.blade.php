@@ -53,7 +53,7 @@
     </li>
 
     <li class="relative">
-      <a class="custom-underline-transition custom-number-bubble-after flex items-center"
+      <a class="custom-underline-transition custom-number-bubble-after flex cursor-pointer items-center"
         id="display-shopping-cart-btn">
         <svg class="fill-slate-800" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960"
           width="32">
