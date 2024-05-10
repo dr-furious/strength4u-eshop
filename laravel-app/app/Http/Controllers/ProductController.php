@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Flavour;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Stock;
@@ -43,6 +44,24 @@ class ProductController extends Controller
             'category' => $request->category,
             'vendor' => $request->vendor
         ]);
+
+        //create image records
+        $i = 1;
+        if ($request->hasFile('uploaded_files')) {
+
+            foreach ($request->file('uploaded_files') as $file) {
+                $filename = $file->getClientOriginalName();
+                config('app.external_image_path') . '/' . $filename;
+                ($file->move(config('app.external_image_path'), $filename));
+                Image::create([
+                    'product_id' => $Product->id,
+                    'name' => $filename,
+                    'is_main' => $i == 1 ? true : false
+                ]);
+                $i++;
+            }
+        }
+
 
         // Initialize an index for dynamic field grouping
         $index = 1;
@@ -133,6 +152,7 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, int $product_id)
     {
         //validate just product data
+
         $request->validate([
             'title' => 'required|min:3|max:50',
             'desc' => 'required|min:3|max:600',
@@ -148,6 +168,49 @@ class ProductController extends Controller
         $product->category = request('category');
         $product->vendor = request('vendor');
         $product->save();
+
+        // Check for images to delete
+        if ($request->has('images_to_delete')) {
+            foreach ($request->images_to_delete as $imageId) {
+                $image = Image::find($imageId);
+                if ($image) {
+                    if ($image->is_main) {
+                        $mainImageDeleted = true;
+                        $mainImageId = $image->id;
+                    }
+                    $image->delete(); // Delete the image
+                    // Optionally remove the file from disk
+                    if ($mainImageDeleted) {
+                        $tmp_secord = Image::where('product_id', $product_id)->first();
+                        $tmp_secord->is_main = true;
+                        $tmp_secord->save();
+                        $mainImageDeleted = false;
+                    }
+                }
+            }
+        }
+
+        //create image records
+        $i = 1;
+        $imageCount = Image::where('product_id', $product_id)->count();
+        if ($imageCount > 0) {
+            $i = 2;
+        }
+
+        if ($request->hasFile('uploaded_files')) {
+
+            foreach ($request->file('uploaded_files') as $file) {
+                $filename = $file->getClientOriginalName();
+                config('app.external_image_path') . '/' . $filename;
+                ($file->move(config('app.external_image_path'), $filename));
+                Image::create([
+                    'product_id' => $product->id,
+                    'name' => $filename,
+                    'is_main' => $i == 1 ? true : false
+                ]);
+                $i++;
+            }
+        }
 
         //first update all old ones
         $product_stock = Stock::where('product_id', $product_id)->orderBy("sold_amount", "desc")->get();

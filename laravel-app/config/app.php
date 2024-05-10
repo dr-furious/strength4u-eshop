@@ -38,7 +38,7 @@ return [
     |
     */
 
-    "debug" => (bool) env("APP_DEBUG", false),
+    "debug" => (bool)env("APP_DEBUG", false),
 
     /*
     |--------------------------------------------------------------------------
@@ -117,4 +117,8 @@ return [
         "driver" => env("APP_MAINTENANCE_DRIVER", "file"),
         "store" => env("APP_MAINTENANCE_STORE", "database"),
     ],
+
+    'external_image_path' => env('EXTERNAL_IMAGE_PATH'),
+
+
 ];

@@ -15,6 +15,7 @@
                 class="mt-4 flex min-h-[60vh] flex-col gap-12"
                 action="/admin/"
                 method="post"
+                enctype="multipart/form-data"
             >
                 {{ csrf_field() }}
                 <!-- Title -->
@@ -68,7 +69,7 @@
 
                 <!-- image -->
                 <div class="flex flex-col gap-2">
-                    <p class="block font-bold" for="secondary_desc">Media</p>
+                    <p class="block font-bold">Media</p>
                     <label
                         for="uploadFile"
                         class="mx-auto flex h-52 w-80 cursor-pointer flex-col items-center justify-center rounded border-2 border-dashed border-gray-300 bg-white font-[sans-serif] text-base text-black"
@@ -91,8 +92,8 @@
                         <input
                             type="file"
                             id="uploadFile"
+                            name="uploaded_files[]"
                             class="hidden"
-                            onchange="previewImage()"
                             multiple
                         />
                         <span class="mt-2 text-xs text-gray-400">

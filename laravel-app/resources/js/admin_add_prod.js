@@ -204,18 +204,27 @@ function addImageToPreview(src) {
 }
 
 // Function to handle image file selection
-function previewImage() {
-    const files = document.getElementById("uploadFile").files;
-    document.getElementById("imagePreview").innerHTML = ""; // Clear existing images
+function previewImage(event) {
+    const files = event.target.files; // Use `event.target.files` to access the file list directly
+    const previewContainer = document.getElementById("imagePreview");
+    previewContainer.innerHTML = ""; // Clear existing images
+
     if (files) {
         Array.from(files).forEach((file) => {
             if (/\.(jpe?g|png|gif|svg|webp)$/i.test(file.name)) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    addImageToPreview(e.target.result);
+                    addImageToPreview(e.target.result); // Assuming addImageToPreview is defined elsewhere
                 };
                 reader.readAsDataURL(file);
             }
         });
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const uploader = document.getElementById("uploadFile");
+    if (uploader) {
+        uploader.addEventListener("change", previewImage);
+    }
+});
