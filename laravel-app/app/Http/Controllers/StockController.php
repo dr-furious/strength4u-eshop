@@ -111,7 +111,7 @@ class StockController extends Controller
     public function search(Request $request)
     {
         $validatedData = $request->validate([
-            "search" => "nullable|string", // Validate optional search query
+            "search" => "string", // Validate optional search query
         ]);
         $searchQuery = $request->input("search");
 
@@ -140,6 +140,9 @@ class StockController extends Controller
      */
     public function show(int $stock_id, Request $request)
     {
+        $validatedData = $request->validate([
+            "size" => "integer", // Validate optional search query
+        ]);
         $size_id = $request->input("size", null);
         $stock_data = Stock::withProductDetails()->findOrFail($stock_id);
 

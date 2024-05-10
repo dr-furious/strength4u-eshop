@@ -60,7 +60,7 @@
 
             <input
               class="text-md md:text-basecursor-default flex w-2/4 items-center bg-primary-grey-100 text-center font-light text-slate-700 outline-none focus:bg-blue-50 focus:outline-none"
-              min="0" name="custom-input-number" type="number" value="0" />
+              min="0" name="custom-input-number" type="number" value="1" id="quantity-input" />
             <button
               class="h-full w-1/4 cursor-pointer rounded-r-[8px] bg-slate-200 text-gray-600 transition duration-200 ease-in-out hover:bg-slate-300"
               data-action="increment">
@@ -108,7 +108,7 @@
 
         <!-- Action button -->
         <div class="flex items-center justify-end text-center">
-          <button
+          <button id="add-to-cart-btn"
             class="flex flex-row rounded-lg bg-blue-600 px-6 py-3 text-white transition duration-200 ease-in hover:bg-blue-700 focus:outline-none">
             Add to cart
             <svg class="ml-2 h-6 w-6" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
