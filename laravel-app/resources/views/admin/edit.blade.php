@@ -217,7 +217,7 @@
                     <button
                             id="add-entry-btn"
                             type="button"
-                            class="-mt-4 ml-auto w-2/12 rounded-[8px] border border-blue-600 px-6 py-3 text-blue-600 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10"
+                            class="mt-4 ml-auto w-2/12 rounded-[8px] border border-blue-600 px-6 py-3 text-blue-600 transition duration-200 ease-in-out hover:bg-slate-400 hover:bg-opacity-10"
                     >
                         Add Entry
                     </button>

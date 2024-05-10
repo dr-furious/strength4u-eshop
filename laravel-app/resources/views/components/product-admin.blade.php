@@ -37,11 +37,12 @@
         >
             Edit
         </a>
-        <button
-                id=""
-                class="rounded-[8px] border border-slate-400 border-opacity-10 bg-slate-400 bg-opacity-10 px-4 py-1 transition duration-200 ease-in-out hover:text-red-600"
-        >
-            Delete
-        </button>
+        <form action="{{ url('admin', [$product->product->id]) }}" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input
+                    class="rounded-[8px] border border-slate-400 border-opacity-10 bg-slate-400 bg-opacity-10 px-4 py-1 transition duration-200 ease-in-out hover:text-red-600"
+                    type="submit" value="Delete"/>
+        </form>
     </div>
 </li>

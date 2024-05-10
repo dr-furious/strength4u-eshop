@@ -108,6 +108,19 @@ function addProductEntry() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const deleteBtns = document.querySelectorAll(
+        '[id^="old_delete-product-entry-btn-"]',
+    );
+    deleteBtns.forEach((button) => {
+        // Add an event listener for the delete button
+        button.addEventListener("click", function (e) {
+            e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
+            // + on this button will need to be a call to the database to update tables in case they were created
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const deleteBtns = document.querySelectorAll(
         '[id^="delete-product-entry-btn-"]',
     );
     deleteBtns.forEach((button) => {
@@ -191,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const addEntryBtn = document.getElementById("add-entry-btn");
     addEntryBtn.addEventListener("click", addProductEntry);
     // Simulate the click to add the first entry row
-    addEntryBtn.dispatchEvent(new Event("click"));
+    //addEntryBtn.dispatchEvent(new Event("click"));
 });
 
 //https://readymadeui.com/tailwind-components/form/upload-file
@@ -199,7 +212,7 @@ function addImageToPreview(src) {
     const preview = document.getElementById("imagePreview");
     const img = new Image();
     img.src = src;
-    img.classList.add("w-24", "h-24", "object-cover"); // Tailwind classes for image styling
+    img.classList.add("w-48", "h-48", "object-cover"); // Tailwind classes for image styling
     preview.appendChild(img);
 }
 

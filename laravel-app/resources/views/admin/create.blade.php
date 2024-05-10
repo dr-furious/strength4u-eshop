@@ -256,6 +256,6 @@
         let flavours = @json($flavours);
         let sizes = @json($sizes);
     </script>
-    @vite(['resources/js/nav_handlers.js', 'resources/js/admin_add_prod.js'])
+    @vite(['resources/js/nav_handlers.js', 'resources/js/admin_add_prod.js', 'resources/js/admin_add_entry.js'])
 @endpush
 

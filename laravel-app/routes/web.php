@@ -36,7 +36,7 @@ Route::middleware([EnsureUserIsAdmin::class])->group(function () {
     Route::get("/admin/{product_id}/", [ProductController::class, "show"])->middleware(["auth"]);
     Route::get("/admin/{product_id}/edit/", [ProductController::class, "edit"])->middleware(["auth"]);
     Route::put('/admin/{product_id}', [ProductController::class, 'update'])->middleware(['auth']);
-    // admin routes
+    Route::delete('/admin/{product_id}/', [ProductController::class, 'destroy'])->middleware(['auth']);
 });
 
 Route::get('/images/{filename}', [ImageController::class, "show"]);
