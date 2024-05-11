@@ -107,6 +107,30 @@ function addProductEntry() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const deleteBtns = document.querySelectorAll(
+        '[id^="old_delete-product-entry-btn-"]',
+    );
+    deleteBtns.forEach((button) => {
+        // Add an event listener for the delete button
+        button.addEventListener("click", function (e) {
+            e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
+            // + on this button will need to be a call to the database to update tables in case they were created
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const deleteBtns = document.querySelectorAll(
+        '[id^="delete-product-entry-btn-"]',
+    );
+    deleteBtns.forEach((button) => {
+        // Add an event listener for the delete button
+        button.addEventListener("click", function (e) {
+            e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
+            // + on this button will need to be a call to the database to update tables in case they were created
+        });
+    });
+
     // Add new flavour
     document
         .getElementById("add-flavor")
@@ -180,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const addEntryBtn = document.getElementById("add-entry-btn");
     addEntryBtn.addEventListener("click", addProductEntry);
     // Simulate the click to add the first entry row
-    addEntryBtn.dispatchEvent(new Event("click"));
+    //addEntryBtn.dispatchEvent(new Event("click"));
 });
 
 //https://readymadeui.com/tailwind-components/form/upload-file
@@ -188,23 +212,32 @@ function addImageToPreview(src) {
     const preview = document.getElementById("imagePreview");
     const img = new Image();
     img.src = src;
-    img.classList.add("w-24", "h-24", "object-cover"); // Tailwind classes for image styling
+    img.classList.add("w-48", "h-48", "object-cover"); // Tailwind classes for image styling
     preview.appendChild(img);
 }
 
 // Function to handle image file selection
-function previewImage() {
-    const files = document.getElementById("uploadFile").files;
-    document.getElementById("imagePreview").innerHTML = ""; // Clear existing images
+function previewImage(event) {
+    const files = event.target.files; // Use `event.target.files` to access the file list directly
+    const previewContainer = document.getElementById("imagePreview");
+    previewContainer.innerHTML = ""; // Clear existing images
+
     if (files) {
         Array.from(files).forEach((file) => {
             if (/\.(jpe?g|png|gif|svg|webp)$/i.test(file.name)) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    addImageToPreview(e.target.result);
+                    addImageToPreview(e.target.result); // Assuming addImageToPreview is defined elsewhere
                 };
                 reader.readAsDataURL(file);
             }
         });
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const uploader = document.getElementById("uploadFile");
+    if (uploader) {
+        uploader.addEventListener("change", previewImage);
+    }
+});
