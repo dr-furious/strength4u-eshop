@@ -3,23 +3,28 @@
 @section("title", "Admin - Show")
 
 @section("content")
-
+    @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
     <main class="flex max-w-screen-xl flex-col px-2 lg:mb-8 xl:m-auto">
         <h2 class="mt-8 p-4 text-4xl font-bold text-slate-800">
             Admin Panel - Show Product
         </h2>
         <section
-                class="mt-8 flex w-full flex-col rounded-[4px] bg-white px-8 py-4"
+            class="mt-8 flex w-full flex-col rounded-[4px] bg-white px-8 py-4"
         >
             <div
-                    class="mt-4 flex min-h-[60vh] flex-col gap-12"
+                class="mt-4 flex min-h-[60vh] flex-col gap-12"
             >
                 <!-- Title -->
                 <div class="flex flex-col gap-2">
                     <p class="block font-bold">
                         Product Title
                     <div
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md">
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md">
                         {{ $product_stock->first()->product->name }}
                     </div>
                 </div>
@@ -30,7 +35,7 @@
                         Product Main Description
                     </p>
                     <div
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >{{ $product_stock->first()->product->main_description}}</div>
                 </div>
 
@@ -40,7 +45,7 @@
                         Product Secondary Description
                     </p>
                     <div
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >{{ $product_stock->first()->product->secondary_description}}</div>
                 </div>
 
@@ -60,7 +65,7 @@
                     </p>
                     <div
 
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >
                         {{ $product_stock->first()->product->category}}
                     </div>
@@ -72,14 +77,14 @@
                     >Vendor</p
                     >
                     <div
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >
                         {{ $product_stock->first()->product->vendor}}
                     </div>
                 </div>
                 <ul class="flex flex-col gap-4" id="product-entries">
                     <li
-                            class="hidden justify-between border-b border-slate-400 pb-2 font-bold text-slate-800 md:flex"
+                        class="hidden justify-between border-b border-slate-400 pb-2 font-bold text-slate-800 md:flex"
                     >
                         <p class="cm-required w-[18%]">Flavour</p>
                         <p class="cm-required w-[18%]">Size</p>
