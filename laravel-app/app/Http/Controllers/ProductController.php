@@ -28,13 +28,32 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $request->validate([
+        $rules = ([
             'title' => 'required|min:3|max:50',
             'desc' => 'required|min:3|max:600',
             'secondary_desc' => 'required|min:3|max:600',
             'category' => 'required',
             'vendor' => 'required',
+            'uploaded_files.*' => 'mimes:jpeg,jpg,png,gif',
+            'uploaded_files.0' => 'required'
+
         ]);
+
+        foreach ($request->all() as $key => $value) {
+            if (strpos($key, 'size') === 0) {
+                $rules[$key] = 'required|string';
+            } elseif (strpos($key, 'price') === 0) {
+                $rules[$key] = 'required|numeric|min:0';
+            } elseif (strpos($key, 'discount') === 0) {
+                $rules[$key] = 'required|numeric|between:0,100';
+            } elseif (strpos($key, 'amount') === 0) {
+                $rules[$key] = 'required|integer|min:1';
+            } elseif (strpos($key, 'flavour') === 0) {
+                $rules[$key] = 'required|string';
+            }
+        }
+
+        $request->validate($rules);
 
         // Create the main product entry
         $Product = Product::create([
@@ -152,13 +171,30 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, int $product_id)
     {
         //validate just product data
-        $request->validate([
+        $rules = ([
             'title' => 'required|min:3|max:50',
             'desc' => 'required|min:3|max:600',
             'secondary_desc' => 'required|min:3|max:600',
             'category' => 'required',
             'vendor' => 'required',
+            'uploaded_files.*' => 'mimes:jpeg,jpg,png,gif',
         ]);
+
+        foreach ($request->all() as $key => $value) {
+            if (preg_match('/^(old_)?size\d+$/', $key)) {
+                $rules[$key] = 'required|string';
+            } elseif (preg_match('/^(old_)?price\d+$/', $key)) {
+                $rules[$key] = 'required|numeric|min:0';
+            } elseif (preg_match('/^(old_)?discount\d+$/', $key)) {
+                $rules[$key] = 'required|numeric|between:0,100';
+            } elseif (preg_match('/^(old_)?amount\d+$/', $key)) {
+                $rules[$key] = 'required|integer|min:1';
+            } elseif (preg_match('/^(old_)?flavour\d+$/', $key)) {
+                $rules[$key] = 'required|string';
+            }
+        }
+        $request->validate($rules);
+
         $product = Product::where('id', $product_id)->firstOrFail();
         //update just product
         $product->name = request('title');
@@ -269,7 +305,7 @@ class ProductController extends Controller
             $index++;
         }
 
-        return redirect('/admin' . '/' . $product_id);
+        return redirect('/admin' . '/' . $product_id)->with('success', 'Record updated successfully! ');
 
     }
 
@@ -278,8 +314,8 @@ class ProductController extends Controller
      */
     public function destroy(int $product_id)
     {
-
+        $deleted_product_name = Product::where('id', $product_id)->first()->name;
         Stock::where('product_id', $product_id)->delete();
-        return redirect('/admin');
+        return redirect('/admin')->with('success', 'Record deleted successfully! ' . 'Deleted product name: ' . $deleted_product_name);
     }
 }
