@@ -9,6 +9,8 @@ class Size extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['label'];
+
     // Each size can be associated with many stocks
     public function stocks()
     {

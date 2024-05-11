@@ -18,7 +18,9 @@ class FlavourFactory extends Factory
     public function definition(): array
     {
         return [
-           "label" => fake()->unique()->randomElement(["Vanilla", "Chocolate", "Strawberry", "Natural", "Banana"])
+            "label" => fake()
+                ->unique()
+                ->randomElement(["Vanilla", "Chocolate", "Strawberry", "Natural", "Banana", "Caramel", "Lemon", "Orange", "Rocky Road", "Chocolate Mint"]),
         ];
     }
 }

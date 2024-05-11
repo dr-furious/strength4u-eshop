@@ -13,8 +13,6 @@ class FlavourSeeder extends Seeder
      */
     public function run(): void
     {
-        Flavour::factory()
-        ->count(4)
-        ->create();
+        Flavour::factory()->count(10)->create();
     }
 }
