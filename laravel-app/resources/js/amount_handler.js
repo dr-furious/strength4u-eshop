@@ -29,7 +29,7 @@ function removeFromCart(stockId) {
         let cartRow = document.getElementById("cart-row-" + stockId);
         cartRow.classList.add("hidden");
         cartRow.remove(); // remove cart row from DOM
-        cart.splice(itemIndex, 1); // Remove the item
+        cart.splice(itemIndex, 1); // Remove the item from the local storage
         localStorage.setItem("cart", JSON.stringify(cart));
     }
     updateIndicator();
