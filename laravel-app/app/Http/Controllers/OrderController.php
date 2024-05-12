@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\ProductOrderDetail;
 use App\Models\Stock;
 use Illuminate\Http\Request;
-use Validator;
 
 class OrderController extends Controller
 {
