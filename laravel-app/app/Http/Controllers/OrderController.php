@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         $cartData = json_decode($request->input("cart", "[]"), true); // Decode JSON string to array
-        if ($cartData == null) {
+        if ($cartData == []) {
             return view("cart", ["data" => []]);
         }
         $rules = [
@@ -32,9 +32,7 @@ class OrderController extends Controller
             "*.quantity" => "required|integer|min:1", // Validate quantity as unsigned integer
         ];
         $errors = [];
-        if ($cartData == []) {
-            $errors[] = "Cart is empty.";
-        }
+
         $validator = \Validator::make($cartData, $rules);
         if ($validator->fails()) {
             // If validation fails, return a response with the errors
@@ -55,7 +53,7 @@ class OrderController extends Controller
                 $errors[] = "There are only " . $stock->stock_amount . " piece(s) left on stock for '" . $stock->product->name . "' with flavour '" . $stock->flavour->label . "' and size '" . $stock->size->label . "'.";
             }
 
-            $total_price += (1 - $stock->discount_percentage / 100) * $stock->price_in_dollars;
+            $total_price += (1 - $stock->discount_percentage / 100) * $stock->price_in_dollars * $item["quantity"];
             $data[] = [
                 "stock" => $stock,
                 "quantity" => $item["quantity"],
@@ -134,10 +132,6 @@ class OrderController extends Controller
             $is_form_error = true;
         }
 
-        if ($cartData == []) {
-            $errors[] = "Cart is empty.";
-        }
-
         $data = [];
         $total_price = 0;
         foreach ($cartData as $item) {
@@ -191,6 +185,12 @@ class OrderController extends Controller
         foreach ($cartData as $item) {
             $stock = Stock::find($item["stockId"]);
 
+            // Update stock levels and sold amount
+            $stock->stock_amount -= $item["quantity"];
+            $stock->sold_amount += $item["quantity"];
+            $stock->save(); // Save the updated stock to the database
+
+            // Create order product detail record
             $orderProductDetail = new ProductOrderDetail([
                 "order_id" => $order->id,
                 "product_id" => $stock->product_id,
