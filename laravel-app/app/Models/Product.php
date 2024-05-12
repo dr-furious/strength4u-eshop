@@ -22,14 +22,10 @@ class Product extends Model
         return $this->hasMany(Stock::class, "product_id");
     }
 
-    // Optionally, define a relationship to get all unique flavours through stocks
-
     public function sizes()
     {
         return $this->hasManyThrough(Size::class, Stock::class, "product_id", "id", "id", "size_id")->distinct();
     }
-
-    // Optionally, define a relationship to get all unique sizes through stocks
 
     public function getFlavourCount()
     {
