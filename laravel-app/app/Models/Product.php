@@ -9,12 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'main_description',
-        'secondary_description',
-        'category',
-        'vendor'];
+    protected $fillable = ["name", "main_description", "secondary_description", "category", "vendor"];
 
     public function images()
     {
@@ -52,5 +47,10 @@ class Product extends Model
             "id", // Local key on the Product table
             "flavour_id", // Local key on the Stock table
         )->distinct();
+    }
+
+    public function orderProductDetails()
+    {
+        return $this->hasMany(OrderProductDetail::class);
     }
 }

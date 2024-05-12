@@ -1,4 +1,4 @@
-import { loadCart } from "./load-card";
+import { loadCart } from "./cart-data-sender";
 
 document.addEventListener("DOMContentLoaded", () => {
     const userBtn = document.getElementById("user-btn"); // get user icon button

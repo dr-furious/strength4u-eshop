@@ -9,11 +9,16 @@ class Size extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['label'];
+    protected $fillable = ["label"];
 
     // Each size can be associated with many stocks
     public function stocks()
     {
-        return $this->hasMany(Stock::class, 'size_id');
+        return $this->hasMany(Stock::class, "size_id");
+    }
+
+    public function orderProductDetails()
+    {
+        return $this->hasMany(OrderProductDetail::class);
     }
 }
