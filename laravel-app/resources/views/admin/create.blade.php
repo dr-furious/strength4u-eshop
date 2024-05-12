@@ -20,6 +20,15 @@
                 {{ csrf_field() }}
                 <!-- Title -->
                 <div class="flex flex-col gap-2">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <label class="cm-required block font-bold" for="title">
                         Product Title
                     </label>
@@ -232,15 +241,6 @@
                         </button>
                     </div>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <button
                     class="mt-6 w-64 self-center rounded-md bg-blue-500 px-6 py-3 font-medium text-white outline-none transition duration-200 ease-in hover:bg-blue-600"
                     type="submit"

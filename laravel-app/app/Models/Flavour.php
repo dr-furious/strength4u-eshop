@@ -9,11 +9,16 @@ class Flavour extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['label'];
+    protected $fillable = ["label"];
 
     // Each flavour can be associated with many stocks
     public function stocks()
     {
         return $this->hasMany(Stock::class, "flavour_id");
+    }
+
+    public function orderProductDetails()
+    {
+        return $this->hasMany(OrderProductDetail::class);
     }
 }

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,8 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("flavour_id");
             $table->decimal("price_in_dollars");
             $table->unsignedInteger("discount_percentage")->default(0);
-            $table->unsignedInteger("stock_amount");
-            $table->unsignedInteger("sold_amount");
+            $table->unsignedInteger("quantity");
             $table->timestamps();
 
             // Define foreign key constraints
@@ -42,4 +40,3 @@ return new class extends Migration
         Schema::dropIfExists("product_order_details");
     }
 };
-

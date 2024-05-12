@@ -3,6 +3,12 @@
 @section("title", "Admin")
 
 @section("content")
+    @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
 
     <main class="mx-8 flex max-w-screen-xl flex-col px-2 lg:mb-8 xl:mx-auto">
         <section class="mt-8 flex w-full flex-col">
@@ -18,7 +24,7 @@
                     <p class="w-[15%] text-center">Category</p>
                     <p class="w-[12.5%] text-center">Flavours</p>
                     <p class="w-[12.5%] text-center">Amount</p>
-                    <p class="w-[12.5%] text-center">Discounted</p>
+                    <p class="w-[12.5%] text-center">Sold Amount</p>
                     <p class="w-[22.5%] text-center">Actions</p>
                 </li>
                 @foreach ($allProducts as $product)
