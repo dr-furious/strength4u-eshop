@@ -147,8 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const existingEntries =
-                document.querySelectorAll('[id^="flavour"]');
+            const existingEntries = document.querySelectorAll(
+                '[id^="flavour"], [id^="old_flavour"]',
+            );
             existingEntries.forEach((entry) => {
                 // Check if the new flavor already exists in the options
                 const flavorExist = Array.from(entry.options).some(
@@ -181,7 +182,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const existingEntries = document.querySelectorAll('[id^="size"]');
+        const existingEntries = document.querySelectorAll(
+            '[id^="size"], [id^="old_size"]',
+        );
         existingEntries.forEach((entry) => {
             // Check if the new size already exists in the options
             const sizeExist = Array.from(entry.options).some(
