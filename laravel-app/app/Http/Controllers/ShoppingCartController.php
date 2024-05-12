@@ -43,6 +43,6 @@ class ShoppingCartController extends Controller
         }
 
         //return $data;
-        return view("cart", ["data" => $data]);
+        return view("cart", ["data" => $data, "errors" => []]);
     }
 }

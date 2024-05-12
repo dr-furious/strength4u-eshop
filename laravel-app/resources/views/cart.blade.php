@@ -13,7 +13,16 @@
   </h2>
   <main class="mx-auto flex max-w-screen-xl flex-col gap-2 lg:mb-8 lg:flex-row 2xl:gap-8">
     <!-- Cart content section -->
-    <section class="flex flex-col shadow-sm lg:w-3/4">
+    <section class="flex flex-col lg:w-3/4">
+      @if (count($errors) > 0)
+
+        <div class="f-full m-2 rounded-[8px] bg-red-50 px-4 py-4 md:mx-0 md:px-8">
+          @foreach ($errors as $error)
+            <p class="text-red-500">{{ $error }}</p>
+          @endforeach
+        </div>
+
+      @endif
       <ul class="flex min-h-[60vh] flex-col gap-4 rounded-[4px] bg-white p-4">
         <!-- Cart headers -->
         <li class="hidden justify-between border-b border-slate-400 pb-2 font-bold text-slate-800 md:flex">
@@ -35,7 +44,7 @@
 
     <!-- Price and checkout section -->
     <section
-      class="min-w-64 mx-auto my-2 mb-6 mt-6 flex flex-col rounded-[4px] border bg-slate-200 p-6 lg:fixed lg:right-0 lg:mx-2 lg:w-1/4 lg:min-w-0 lg:max-w-full">
+      class="min-w-64 mx-auto my-2 mb-6 mt-6 flex flex-col rounded-[4px] bg-slate-200 p-6 lg:fixed lg:right-0 lg:mx-2 lg:w-1/4 lg:min-w-0 lg:max-w-full">
       <h2 class="mb-5 text-center text-xl font-bold">Cart Total</h2>
       <div class="my-2 flex justify-between">
         <p class="text-lg font-bold">Subtotal</p>
@@ -43,15 +52,15 @@
           <p class="mb-1 text-lg font-bold" id="subtotal">$200</p>
         </div>
       </div>
-      <a href="checkout.html"
-        class="mt-6 w-full self-center rounded-[8px] border-2 bg-blue-600 px-6 py-2 text-center font-medium text-white transition duration-200 ease-in-out hover:bg-blue-700 focus:outline-none">
+      <button id="checkout-btn"
+        class="mt-6 w-full self-center rounded-[8px] bg-blue-600 px-6 py-2 text-center font-medium text-white transition duration-200 ease-in-out hover:bg-blue-700 focus:outline-none">
         Checkout
-      </a>
+      </button>
     </section>
   </main>
 
 @endsection
 
 @push("scripts")
-  @vite(["resources/js/amount_handler.js", "resources/js/reload-cart.js"])
+  @vite(["resources/js/amount_handler.js", "resources/js/reload-cart.js", "resources/js/shopping-cart_handlers.js"])
 @endpush
