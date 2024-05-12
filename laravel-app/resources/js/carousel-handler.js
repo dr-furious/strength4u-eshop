@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentItemIndex = 0;
 
     // Calculate total width of a carousel item
-    // Assuming all items have the same width and including margin, padding, etc., if any
     const itemWidth = carouselItems[0].clientWidth;
 
     circleNavBtns.forEach((button, index) => {

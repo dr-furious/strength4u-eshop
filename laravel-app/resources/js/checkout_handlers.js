@@ -22,7 +22,7 @@ function formatExpDate() {
     const input = document.getElementById("exp_date");
     let cardNumber = input.value.split(" ").join(""); // Remove existing spaces
 
-    // Keep only digits in the card number
+    // Keep only digits
     cardNumber = cardNumber.replace(/\D/g, "");
 
     // Add / every 2 digits
@@ -42,7 +42,7 @@ function numbers_only_input(element_id) {
     const input = document.getElementById(`${element_id}`);
     let cardNumber = input.value.split(" ").join(""); // Remove existing spaces
 
-    // Keep only digits in the card number
+    // Keep only digits
     cardNumber = cardNumber.replace(/\D/g, "");
     // Update the input field with the formatted value
     input.value = cardNumber;
@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document
         .getElementById("submit-checkout-form")
         .addEventListener("submit", (event) => {
+            // catch the submission of form and submit it with added cart info
             event.preventDefault();
             submitCheckout();
         });

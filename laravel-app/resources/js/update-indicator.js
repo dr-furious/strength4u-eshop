@@ -1,3 +1,4 @@
+// Updates indicator that shows how many items are in the cart (in the menu)
 export function updateIndicator() {
     let stockQuantity = 0;
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
