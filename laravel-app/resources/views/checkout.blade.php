@@ -10,7 +10,7 @@
     <p class="mx-2 text-gray-700 md:mx-7">3. Order Succeed</p>
   </div>
 
-  @if ($errors)
+  @if (count($errors) > 0)
 
     <div class="flex w-full justify-center">
       <div class="m-2 max-w-screen-lg rounded-[8px] bg-red-50 px-4 py-4 md:mx-0 md:px-8">

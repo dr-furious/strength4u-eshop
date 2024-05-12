@@ -1,5 +1,6 @@
 import { updateIndicator } from "./update-indicator";
 
+// Adds the stockID (product of specific flavour and size) and its quantity to the local storage 'cart' object
 export function addToCart(stockId, quantity) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let cartItem = cart.find((item) => item.stockId === stockId);

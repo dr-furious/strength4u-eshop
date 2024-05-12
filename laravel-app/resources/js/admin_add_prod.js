@@ -19,6 +19,7 @@ function capitalize(str) {
     return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+// Adds new option to the passed select element
 function addOptionToSelect(selectElement, newOptionValue) {
     // Get the currently selected item
     const selectedItem = selectElement.value;
@@ -41,6 +42,7 @@ function addOptionToSelect(selectElement, newOptionValue) {
     selectElement.value = selectedItem;
 }
 
+// Uses the template to generate new row for the product where admin can select flavour, size, amount etc.
 function addProductEntry() {
     const template = document
         .getElementById("product-entry-template")
@@ -99,11 +101,10 @@ function addProductEntry() {
 
     // Add an event listener for the delete button
     deleteButton.addEventListener("click", function (e) {
-        e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
-        // + on this button will need to be a call to the database to update tables in case they were created
+        e.target.closest("li").remove(); // Removes the product entry
     });
 
-    document.getElementById("product-entries").appendChild(template); // Append to the container
+    document.getElementById("product-entries").appendChild(template);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -113,8 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteBtns.forEach((button) => {
         // Add an event listener for the delete button
         button.addEventListener("click", function (e) {
-            e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
-            // + on this button will need to be a call to the database to update tables in case they were created
+            e.target.closest("li").remove(); // Removes the product entry
         });
     });
 });
@@ -126,8 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteBtns.forEach((button) => {
         // Add an event listener for the delete button
         button.addEventListener("click", function (e) {
-            e.target.closest("li").remove(); // Removes the closest <li> ancestor, effectively deleting the product entry
-            // + on this button will need to be a call to the database to update tables in case they were created
+            e.target.closest("li").remove();
         });
     });
 
@@ -203,11 +202,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Add an event listener to the 'add entry' button
     const addEntryBtn = document.getElementById("add-entry-btn");
     addEntryBtn.addEventListener("click", addProductEntry);
-    // Simulate the click to add the first entry row
-    //addEntryBtn.dispatchEvent(new Event("click"));
 });
 
 //https://readymadeui.com/tailwind-components/form/upload-file
@@ -221,7 +217,7 @@ function addImageToPreview(src) {
 
 // Function to handle image file selection
 function previewImage(event) {
-    const files = event.target.files; // Use `event.target.files` to access the file list directly
+    const files = event.target.files;
     const previewContainer = document.getElementById("imagePreview");
     previewContainer.innerHTML = ""; // Clear existing images
 
@@ -230,7 +226,7 @@ function previewImage(event) {
             if (/\.(jpe?g|png|gif|svg|webp)$/i.test(file.name)) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    addImageToPreview(e.target.result); // Assuming addImageToPreview is defined elsewhere
+                    addImageToPreview(e.target.result);
                 };
                 reader.readAsDataURL(file);
             }
