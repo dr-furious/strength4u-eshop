@@ -33,7 +33,7 @@ class OrderController extends Controller
         ];
         $errors = [];
 
-        $validator = Validator::make($cartData, $rules);
+        $validator = \Validator::make($cartData, $rules);
         if ($validator->fails()) {
             // If validation fails, return a response with the errors
             $errors[] = $validator->errors();
@@ -121,7 +121,7 @@ class OrderController extends Controller
         ];
 
         // Validate input
-        $validator = Validator::make($request->all(), $rules);
+        $validator = \Validator::make($request->all(), $rules);
         $errors = [];
         $is_form_error = false;
 
