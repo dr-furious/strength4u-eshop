@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Stock;
 use App\Models\Order;
 use App\Models\ProductOrderDetail;
+use App\Models\Stock;
+use Illuminate\Http\Request;
+use Validator;
 
 class OrderController extends Controller
 {
@@ -33,7 +34,7 @@ class OrderController extends Controller
         ];
         $errors = [];
 
-        $validator = \Validator::make($cartData, $rules);
+        $validator = Validator::make($cartData, $rules);
         if ($validator->fails()) {
             // If validation fails, return a response with the errors
             $errors[] = $validator->errors();
@@ -101,7 +102,6 @@ class OrderController extends Controller
             return view("cart", ["data" => []]);
         }
         // Information validation
-        // TODO: this
         $rules = [
             "cart" => "required|json",
             "email" => "required|email",
@@ -122,7 +122,7 @@ class OrderController extends Controller
         ];
 
         // Validate input
-        $validator = \Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
         $errors = [];
         $is_form_error = false;
 
@@ -154,7 +154,6 @@ class OrderController extends Controller
         }
 
         if ($errors) {
-            //return $errors;
             if (!$is_form_error) {
                 return view("cart", ["data" => $data, "errors" => $errors]);
             } else {

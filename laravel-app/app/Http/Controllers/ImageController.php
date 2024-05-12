@@ -11,7 +11,8 @@ class ImageController extends Controller
         $path = config('app.external_image_path') . '/' . $filename;
 
         if (!File::exists($path)) {
-            abort(404);  // Return a 404 if the image does not exist
+            // Return a 404 if the image not exists
+            abort(404);
         }
 
         $file = File::get($path);

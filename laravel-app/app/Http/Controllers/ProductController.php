@@ -234,7 +234,6 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('uploaded_files')) {
-
             foreach ($request->file('uploaded_files') as $file) {
                 $filename = $file->getClientOriginalName();
                 config('app.external_image_path') . '/' . $filename;
@@ -288,7 +287,7 @@ class ProductController extends Controller
                 ['label' => $request->input("flavour$index")]
             );
 
-            // Check if the size and flavour were found, if not, skip this iteration
+            // Check if the size and flavour were found, if not, skip
             if ($Size && $Flavour) {
                 Stock::create([
                     'product_id' => $product->id,
@@ -301,7 +300,6 @@ class ProductController extends Controller
                 ]);
             }
 
-            // Increment the index for the next group of inputs
             $index++;
         }
 
